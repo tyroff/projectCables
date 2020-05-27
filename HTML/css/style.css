@@ -90,7 +90,7 @@ button {
 .menu-hrefs {
   display: flex;
   align-items: center;
-  margin-left: 350px;
+  margin-left: 220px;
 }
 
 .menu-href {
@@ -99,6 +99,11 @@ button {
   align-items: center;
   margin-right: 15px;
   color: #CBC4C1;
+}
+
+.container-main{
+  display: flex;
+  align-items: flex-start;
 }
 
 .left_pannel {
@@ -138,4 +143,29 @@ button {
 .left_pannel-search-button {
   margin-top: 1px;
   margin-left: 20px;
+}
+
+.main{
+  padding: 30px;
+  background: linear-gradient(180deg, rgba(254, 240, 218, 0) 0%, rgba(254, 240, 218, 0.3) 100%);
+  border-radius: 5px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.main-cards{
+  width: 291px;
+  height: 234px
+}
+
+.main-cards-card{
+
+}
+
+.card-text{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
