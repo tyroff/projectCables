@@ -10,6 +10,7 @@
 
 <body>
   <div class="container">
+    
     <header class="header">
       <a href="index.html" class="logo">
         <img src="images/logoCable.svg" alt="Logotype" class="logo">
@@ -35,13 +36,14 @@
           </div>
           <div class="authentication-form-href">
             <p><a href="registration.html">Регистрация</a></p>
-            <p><a href="input.html">Вход</a></p>
+            <button class="button button-authentication_form">
+              <span class="button-text-authentication">Вход</span>
+            </button>
           </div>
         </form>
       </div>
     </header>
-  </div>
-  <div class="container">
+
     <div class="menu">
       <div class="menu-hrefs">
         <div class="menu-href">
@@ -52,8 +54,7 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
+
     <div class="container-main">
       <div class="left_pannel">
         <div class="left_pannel-href_cables">
@@ -83,24 +84,24 @@
             <input type=" text" name="text" class="input left_pannel-search-input">
           </fieldset>
           <button class="button left_pannel-search-button">
-            <span class="button-text">Найти</span>
+            <span>Найти</span>
           </button>
         </form>
       </div>
       <div class="main">
-        <a href="power_cable.html" title="Кабели силовые" class="main-card">
+        <a href="power_cable.html" class="main-card">
           <img src="images/power_cables.png" alt="power_cables" class="card-image">
           <div class="main-card-text">
             <h3 class="main-card-title">Силовые кабели на напряжение 0,66-6</h3>
           </div>
         </a>
-        <a href="household_wires.html" title="Провода бытового назначения" class="main-card">
+        <a href="household_wires.html" class="main-card">
           <img src="images/household_wires.png" alt="power_cables" class="card-image">
           <div class="main-card-text">
             <h3 class="main-card-title">Провода бытового назначения</h3>
           </div>
         </a>
-        <a href="control_cables.html" title="Кабели контрольные" class="main-card">
+        <a href="control_cables.html" class="main-card">
           <img src="images/control_cables.png" alt="power_cables" class="card-image">
           <div class="main-card-text">
             <h3 class="main-card-title">Кабели контрольные</h3>
@@ -108,8 +109,8 @@
         </a>
       </div>
     </div>
+
     <footer class="footer">
-      <div class="container">
         <div class="footer-block">
           <nav class="footer-info">
             <p>
@@ -128,8 +129,10 @@
             +375(17) 298-42-85 Городской
           </div>
         </div>
-      </div>
     </footer>
+
+  </div>
+
 </body>
 
 </html>
