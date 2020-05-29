@@ -32,7 +32,15 @@ p {
 
 a {
   text-decoration: none;
+  padding: 0;
   color: #667280;
+}
+th {
+  background: #E5E5E5;
+}
+
+td {
+font-size: 14px;
 }
 
 .button {
@@ -43,8 +51,29 @@ a {
   border-radius: 5px;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.0015);
   font-size: 18px;
+  display: flex;
   text-align: center;
   color: #667280;
+}
+
+.button_add {
+  background: #5AD845;
+}
+
+.button_update {
+  background: #E5EF74;
+}
+
+.button_del {
+  background: #F47676;
+}
+
+.button_tables {
+  background: #82AEF0;
+}
+
+.button-text {
+  margin: auto;
 }
 
 .container {
@@ -65,6 +94,10 @@ a {
 
 .logo {
   margin-left: 6px;
+  background: none;
+  border-radius: 0px;
+  color: none;
+  text-decoration: none;
 }
 
 .authentication-form {
@@ -99,16 +132,32 @@ a {
 
 .menu-hrefs {
   display: flex;
-  align-items: center;
   margin-left: 220px;
 }
 
 .menu-href {
-  height: 44px;
+  height: 40px;
   display: flex;
   align-items: center;
-  margin-right: 15px;
   color: #CBC4C1;
+  margin: 5px;
+}
+
+.menu-href:hover {
+  background: #D1D2D4;
+  border-radius: 5px;
+  color: #667280;
+  text-decoration: none;
+}
+
+.sertificates,
+.contacts,
+.TNLA,
+.parameters,
+.formuls,
+.raw_materials{
+  background: #369B25;
+  border-radius: 5px;
 }
 
 .container-main {
@@ -118,7 +167,8 @@ a {
 
 .left_pannel {
   width: 200px;
-  height: 410px;
+  height: 395px;
+  display: block;
   background: #F3EFED;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
@@ -150,7 +200,7 @@ a {
   background: #F3EFED;
 }
 
-.left_pannel-search-button {
+.left_pannel-button {
   margin-top: 10px;
   margin-left: 20px;
   margin-right: 20px;
@@ -192,7 +242,7 @@ a {
 
 .footer {
   height: 117px;
-  padding: 5px 20px;
+  padding: 10px 20px;
   background: #CBC4C1;
   box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
