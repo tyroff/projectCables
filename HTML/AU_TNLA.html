@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Добавить или изменить ТНПА</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    
+    <header class="header">
+      <a href="index.html" class="logo">
+        <img src="images/logoCable.svg" alt="Logotype" class="logo">
+      </a>
+      <div class="authentication">
+        <form action="user-input.html" class="authentication-form">
+          <div class="authentication-form-fieldset">
+            <h3>Винокуров К.А.</h3>
+          </div>
+          <div class="authentication-form-href">
+            <p><a href="output.html">Выход</a></p>
+          </div>
+        </form>
+      </div>
+    </header>
+
+    <div class="menu">
+ 
+    </div>
+
+    <div class="container-main">
+      <div class="left_pannel">
+      </div>
+      <div class="main main-workspace">
+        <div class="au_form">
+          <div class="head_au_form">
+            <h1>Добавить ТНПА</h1>
+          </div>
+          <div class="main_au_form">
+          <form action="AU-TNLAs">
+            <fieldset title="код ТНПА" class="AU_fieldset">
+              <legend>код ТНПА</legend>
+              <input type="text" name="text">
+            </fieldset>
+            <fieldset title="наименование ТНПА" class="AU_fieldset">
+              <legend>наименование ТНПА</legend>
+              <input type="text" name="text">
+            </fieldset>
+            <p class="au_text">Срок действия</p>
+            <div class="data_TNLA">
+              <fieldset title="дата от">
+                <legend>дата от</legend>
+                <input type="date" id="date" name="date">
+              </fieldset>
+              <fieldset title="дата до">
+                <legend>дата до</legend>
+                <input type="date" id="date" name="date">
+              </fieldset>
+            </div>  
+            <button class="button button_AU_form button_add">
+              <span class="button-text">Добавить</span>
+            </button>
+          </form>
+          <button class="button button_AU_form">
+            <span class="button-text">Отмена</span>
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
