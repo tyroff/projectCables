@@ -260,3 +260,34 @@ font-size: 14px;
   margin-left: 35px;
   margin-right: auto;
 }
+
+.au_form {
+  margin: 20px auto;
+}
+
+.head_au_form {
+  margin-bottom: 20px;
+}
+
+.AU_fieldset {
+  width: 400px;
+}
+
+.data_AU_form {
+  display: flex;
+  align-items: center;  
+  justify-content: space-between;
+}
+
+.data_TNLA {
+  display: flex;
+  justify-content: space-between;
+}
+
+.au_text {
+  margin-top: 20px;
+}
+
+.button_AU_form {
+  margin: 15px 0 0 0;
+}
