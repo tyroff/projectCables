@@ -1,8 +1,11 @@
 package org.itstep.vinokurov.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Tnla extends Entity {
+	public static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-MM-yyyy");
+	
 	public String codTnla;
 	public String nameTnla;
 	public Date dateStartTnla;
@@ -42,7 +45,8 @@ public class Tnla extends Entity {
 
 	@Override
 	public String toString() {
-		return "Tnla [cod=" + codTnla + ", name=" + nameTnla + ", dateStart=" + dateStartTnla
-				+ ", dateEnd=" + dateEndTnla + "]";
+		return "Tnla [cod=" + codTnla + ", name=" + nameTnla 
+				+ ", dateStart=" + FORMAT.format(dateStartTnla)
+				+ ", dateEnd=" + FORMAT.format(dateEndTnla) + "]";
 	}
 }
