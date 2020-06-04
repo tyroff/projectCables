@@ -15,9 +15,9 @@ public class Factory implements AutoCloseable{
 	
 	
 	
-//	commands.compute("create", factory.getTnlaCreateCommand());
-//	commands.compute("update", factory.getTnlaUpdateCommand());
-//	commands.compute("delete", factory.getTnlaDeleteCommand());
+//	commands.put("list", factory.getTnlaListCommand());
+//	commands.put("add", factory.getTnlaAddCommand());
+//	commands.put("update", factory.getTnlaUpdateCommand());
 	
 	@Override
 	public void close() throws Exception {

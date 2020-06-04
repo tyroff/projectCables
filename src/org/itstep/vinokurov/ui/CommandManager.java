@@ -13,11 +13,10 @@ public class CommandManager implements Command, AutoCloseable{
 	
 	public CommandManager() throws LogicException {
 		commands.put("menu", this);
-		commands.compute("listall", factory.getTnlaListCommand());
-		commands.compute("create", factory.getTnlaCreateCommand());
-		commands.compute("update", factory.getTnlaUpdateCommand());
-		commands.compute("delete", factory.getTnlaDeleteCommand());
-		commands.compute("exit", new ExitCommand());
+		commands.put("list", factory.getTnlaListCommand());
+		commands.put("add", factory.getTnlaAddCommand());
+		commands.put("update", factory.getTnlaUpdateCommand());
+		commands.put("exit", new ExitCommand());
 	}
 	
 	public boolean execute(String commandLine) {
