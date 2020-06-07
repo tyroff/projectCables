@@ -1,6 +1,6 @@
 package org.itstep.vinokurov.domain;
 
-public class Entity {
+abstract public class Entity {
 	private Long id;
 
 	public Long getId() {
