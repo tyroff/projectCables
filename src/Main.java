@@ -14,7 +14,7 @@ public class Main {
 			try(CommandManager commandManager = new CommandManager()) {
 				boolean goOn = true;
 				while(goOn) {
-					System.out.println("=> ");
+					System.out.print("=> ");
 					String command = scanner.nextLine();
 					goOn = commandManager.execute(command);
 				}

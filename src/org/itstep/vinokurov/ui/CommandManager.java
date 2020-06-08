@@ -14,8 +14,8 @@ public class CommandManager implements Command, AutoCloseable{
 	public CommandManager() throws LogicException {
 		commands.put("menu", this);
 		commands.put("list", factory.getTnlaListCommand());
-		commands.put("add", factory.getTnlaAddCommand());
-		commands.put("update", factory.getTnlaUpdateCommand());
+		commands.put("add", factory.getTnlaSaveCommand());
+		commands.put("update", factory.getTnlaSaveCommand());
 		commands.put("exit", new ExitCommand());
 	}
 	

@@ -1,9 +1,14 @@
 package org.itstep.vinokurov;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import org.itstep.vinokurov.logic.LogicException;
 import org.itstep.vinokurov.logic.TnlaService;
 import org.itstep.vinokurov.logic.TnlaServiceImpl;
 import org.itstep.vinokurov.storage.TnlaDao;
+import org.itstep.vinokurov.storage.postgres.TnlaDbDaoImpl;
 import org.itstep.vinokurov.ui.Command;
 import org.itstep.vinokurov.ui.TnlaListCommand;
 import org.itstep.vinokurov.ui.TnlaSaveCommand;
@@ -43,14 +48,32 @@ public class Factory implements AutoCloseable{
 	}
 	
 	private TnlaDao tnlaDao = null;
-	public TnlaDao getTnlaDao() {
-		// TODO create the TnlaDaoImpl
-		return null;
+	public TnlaDao getTnlaDao() throws LogicException{
+		if(tnlaDao == null) {
+			TnlaDbDaoImpl tnlaDbDaoImpl = new TnlaDbDaoImpl();
+			tnlaDao = tnlaDbDaoImpl;
+			tnlaDbDaoImpl.setConnection(getConnection());
+		}
+		return tnlaDao;
+	}
+
+	private Connection connection = null;
+	public Connection getConnection() throws LogicException {
+		if(connection == null) {
+			try {
+				connection = DriverManager.getConnection("jdbc:postgresql://localhost/cables", "root", "hello");
+			} catch(SQLException e) {
+				throw new LogicException(e);
+			}
+		}
+		return connection;
 	}
 
 	@Override
-	public void close() throws Exception {
-				
+	public void close(){
+		try {
+			connection.close();
+		} catch(Exception e) {}
 	}
 	
 }

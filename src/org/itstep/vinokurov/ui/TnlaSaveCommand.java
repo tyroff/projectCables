@@ -13,7 +13,7 @@ public class TnlaSaveCommand extends TnlaCommand {
 			try {
 				Tnla tnla = new Tnla();
 				int bias = 0;
-				if(args.length ==6) {
+				if(args.length == 5) {
 					tnla.setId(Long.valueOf(args[0]));
 					bias = 1;
 				}
@@ -23,10 +23,16 @@ public class TnlaSaveCommand extends TnlaCommand {
 						tnla.setNameTnla(args[1 + bias]);
 						try {
 							tnla.setDateStartTnla(Tnla.FORMAT.parse(args[2 + bias]));
-							if(args[3 + bias] == null || args[3 + bias].equals("")) {
-								tnla.setDateEndTnla(null);
-							} else {
-								tnla.setDateEndTnla(Tnla.FORMAT.parse(args[3 + bias]));
+							try {
+								if(args[3 + bias] == null || args[3 + bias].equals(" ")) {
+									tnla.setDateEndTnla(null);
+								} else {
+									tnla.setDateEndTnla(Tnla.FORMAT.parse(args[3 + bias]));
+								}
+								getTnlaService().save(tnla);
+								System.out.println("Данные успешно сохранены (id = " + tnla.getId() + ")");
+							} catch(ParseException e) {
+								System.out.println("Дата окончания действия ТНПА " + args[3 + bias] + " должна соответствовать формату " + Tnla.FORMAT.toPattern() + ", либо должна содержать пустую строку.");
 							}
 						} catch(ParseException e) {
 							System.out.println("Дата начала действия ТНПА " + args[2 + bias] + " должна соответствовать формату " + Tnla.FORMAT.toPattern());
