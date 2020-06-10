@@ -45,8 +45,8 @@ public class Tnla extends Entity {
 
 	@Override
 	public String toString() {
-		return  codTnla + " \"" + nameTnla 
-				+ "\" с " + FORMAT.format(dateStartTnla)
-				+ " по " + FORMAT.format(dateEndTnla);
+		return  codTnla + "| \"" + nameTnla 
+				+ "\" | с " + FORMAT.format(dateStartTnla)
+				+ " | по " + FORMAT.format(dateEndTnla);
 	}
 }

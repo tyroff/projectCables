@@ -23,8 +23,8 @@ CREATE TABLE "type_of_material_value" (
 CREATE TABLE "manufacturer's_raw_materials" (
 	"id" SERIAL PRIMARY KEY,
 	"id_type_of_material_value" SMALLINT NOT NULL REFERENCES "type_of_material_value" ON DELETE RESTRICT,
-	"name" TEXT NOT NULL UNIQUE,
-	"name_manufacturer" TEXT NOT NULL UNIQUE,
+	"name" TEXT NOT NULL,
+	"name_manufacturer" TEXT NOT NULL,
 	"price" BIGINT NOT NULL CHECK ("price" > 0)
 );
 CREATE TABLE "raw_materials_group" (
