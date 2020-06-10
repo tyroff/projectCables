@@ -21,7 +21,7 @@ public class TnlaDbDaoImpl implements TnlaDao {
 
 	@Override
 	public Long create(Tnla tnla) throws DaoException {
-		String sqlRequest = "INSERN INTO \"technical_normative_legal_act\"(\"code\", \"name\", \"date_start\", \"date_end\") VALUES(?, ?, ?, ?)";
+		String sqlRequest = "INSERT INTO \"technical_normative_legal_act\"(\"code\", \"name\", \"date_start\", \"date_end\") VALUES(?, ?, ?, ?)";
 		PreparedStatement statement = null;
 		ResultSet result = null;
 		try {

@@ -30,7 +30,7 @@ public class TnlaServiceImpl implements TnlaService {
 				Long id = tnlaDao.create(tnla);
 				tnla.setId(id);
 			} else {
-				tnlaDao.create(tnla);
+				tnlaDao.update(tnla);
 			}
 		} catch(DaoException e) {
 			throw new LogicException(e);
