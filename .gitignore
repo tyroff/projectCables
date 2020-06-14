@@ -1,4 +1,2 @@
-/bin/
-.settings
-.classpath
-.project
+.*
+web/WEB-INF/classes/
