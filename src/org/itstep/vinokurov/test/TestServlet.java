@@ -13,7 +13,10 @@ public class TestServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
  		PrintWriter pw = resp.getWriter();
-		pw.print("<p>TEST SERVLET</p>");
+		pw.print("<p style=\"color: green\">start_SERVLET</p>");
+		pw.print("<ul>");
+		pw.print("<li><a href=\"workspace/tnla/list.html\">TNLAs list</a></li>");
+		pw.print("</ul>");
 	}
 
 }

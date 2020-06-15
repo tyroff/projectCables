@@ -25,7 +25,7 @@
  
     <servlet-mapping>
         <servlet-name>TnlaListServlet</servlet-name>
-        <url-pattern>/workspace/tnla.html</url-pattern>
+        <url-pattern>/workspace/tnla/list.html</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
