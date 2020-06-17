@@ -18,7 +18,7 @@
         <url-pattern>/index.html</url-pattern>
     </servlet-mapping>
 	
-	    <servlet>
+	<servlet>
       <servlet-name>TnlaListServlet</servlet-name>
       <servlet-class>org.itstep.vinokurov.web.TnlaListServlet</servlet-class>
     </servlet>
@@ -26,6 +26,16 @@
     <servlet-mapping>
         <servlet-name>TnlaListServlet</servlet-name>
         <url-pattern>/workspace/tnla/list.html</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+      <servlet-name>TnlaListViewServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.TnlaListViewServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>TnlaListViewServlet</servlet-name>
+        <url-pattern>/WEB-INF/workspace/tnla/list.html</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

@@ -31,37 +31,10 @@ public class TnlaListServlet extends HttpServlet{
 		try(Factory factory = new Factory()){
 			TnlaService service = factory.getTnlaService();
 			List<Tnla> tnlas = service.findAll();
-			resp.setCharacterEncoding("UTF-8");
-			PrintWriter pw = resp.getWriter();
-			pw.println("<!DOCTYPE html>");
-			pw.println("<head>");
-			pw.println("<meta charset=\"UTF-8\">");
-			pw.println("<title>ТНПА</title>");
-			pw.println("</head>");
-			pw.println("<body>");
-			pw.println("<table border=\"1\">");
-			pw.println("<tr>");
-			pw.println("<th>id</th>");
-			pw.println("<th>Код ТНПА</th>");
-			pw.println("<th>Наименование ТНПА</th>");
-			pw.println("<th>Дата от</th>");
-			pw.println("<th>Дата до</th>");
-			pw.println("</tr>");
-			for(Tnla tnla : tnlas) {
-				pw.println("<tr>");
-				pw.printf("<td>%d</td>", tnla.getId());
-				pw.printf("<td>%s</td>", tnla.getCodTnla());
-				pw.printf("<td>%s</td>", tnla.getNameTnla());
-				pw.printf("<td>%1$td.%1$tm.%1$tY</td>", tnla.getDateStartTnla());
-				pw.printf("<td>%1$td.%1$tm.%1$tY</td>", tnla.getDateEndTnla());
-				pw.println("</tr>");
-			}
-			pw.println("</table>");
-			pw.println("</body>");
-			pw.println("</html>");
+			req.setAttribute("tnlas", tnlas);// (назначается имя передаваемого объекта, сам объект)положили объект в запрос(request) для передачи его в другой сервлет, т.е. передача данных в другой сервлет
+			req.getRequestDispatcher("/WEB-INF/workspace/tnla/list.html").forward(req, resp);//forward перенаправляет запрос (передаёт данные) другому сервлету и заканчивает работать.
 		} catch (LogicException e) {
 			throw new ServletException(e); 
 		}
 	}
-	
 }
