@@ -32,7 +32,7 @@ public class TnlaListServlet extends HttpServlet{
 			TnlaService service = factory.getTnlaService();
 			List<Tnla> tnlas = service.findAll();
 			req.setAttribute("tnlas", tnlas);// (назначается имя передаваемого объекта, сам объект)положили объект в запрос(request) для передачи его в другой сервлет, т.е. передача данных в другой сервлет
-			req.getRequestDispatcher("/WEB-INF/workspace/tnla/list.html").forward(req, resp);//forward перенаправляет запрос (передаёт данные) другому сервлету и заканчивает работать.
+			req.getRequestDispatcher("/WEB-INF/jsp/workspace/tnla/list.jsp").forward(req, resp);//forward перенаправляет запрос (передаёт данные) другому сервлету и заканчивает работать.
 		} catch (LogicException e) {
 			throw new ServletException(e); 
 		}
