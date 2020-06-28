@@ -9,4 +9,6 @@ public interface Dao<T extends Entity> {
 	T read(Long id) throws DaoException;
 	
 	void update(T entity) throws DaoException;
+	
+	void delete(Long id) throws DaoException;
 }

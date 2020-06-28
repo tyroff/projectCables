@@ -10,10 +10,21 @@ import org.itstep.vinokurov.logic.TnlaServiceImpl;
 import org.itstep.vinokurov.storage.TnlaDao;
 import org.itstep.vinokurov.storage.postgres.TnlaDbDaoImpl;
 import org.itstep.vinokurov.ui.Command;
+import org.itstep.vinokurov.ui.TnlaDeleteCommand;
 import org.itstep.vinokurov.ui.TnlaListCommand;
 import org.itstep.vinokurov.ui.TnlaSaveCommand;
 
 public class Factory implements AutoCloseable{
+	
+	private Command tnlaDeleteCommand = null;
+	public Command getTnlaDeleteCommand() throws LogicException {
+		if(tnlaDeleteCommand == null) {
+			TnlaDeleteCommand command = new TnlaDeleteCommand();
+			tnlaDeleteCommand = command;
+			command.setTnlaService(getTnlaService());
+		}
+		return tnlaDeleteCommand;
+	}
 	
 	private Command tnlaListCommand = null;
 	public Command getTnlaListCommand() throws LogicException {

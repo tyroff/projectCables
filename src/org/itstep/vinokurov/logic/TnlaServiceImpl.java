@@ -37,4 +37,14 @@ public class TnlaServiceImpl implements TnlaService {
 		}
 	}
 
+	@Override
+	public void delete(Long id) throws LogicException {
+		try {
+			tnlaDao.delete(id);
+		} catch (DaoException e) {
+			throw new LogicException(e);
+		}
+		
+	}
+
 }

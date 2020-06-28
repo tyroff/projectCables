@@ -1,10 +1,45 @@
+INSERT INTO "cable_category"
+(
+"id",
+"name"
+) VALUES
+(1, 'Силовые кабели на напряжение 0,66-6 кВ'),
+(2, 'Провода бытового назначения'),
+(3, 'Кабели контрольные');
+
 INSERT INTO "technical_normative_legal_act"
-("id", "code", "name", "date_start", "date_end") VALUES
+(
+"id",
+"code",
+"name",
+"date_start",
+"date_end"
+) VALUES
 (1, 'ГОСТ 16442-80', 'Кабели силовые с пластмассовой изоляцией', '1980-05-22', '2020-12-31'),
-(2, 'Техническое соглашение №1', 'Кабели силовые с пластмассовой изоляцией по ТС№1', '2020-03-09', '2020-12-31');
+(2, 'ГОСТ 1508-78', 'Кабели контрольные с резиновой и пластмассовой изоляцией', '1980-01-01', '2020-12-31'),
+(3, 'Техническое соглашение №1', 'Кабели силовые и контольные с пластмассовой изоляцией по ТС№1', '2020-03-09', '2020-12-31');
+
+INSERT INTO "technical_normative_legal_act_vs_cable_category"
+(
+"id",
+"id_technical_normative_legal_act",
+"id_cable_category"
+) VALUES
+(1, 1, 1),
+(2, 2, 3),
+(3, 3, 1),
+(4, 3, 3);
+
+
 
 INSERT INTO "parameters"
-("id", "name", "units", "print_to_task", "read_by_the_formula") VALUES
+(
+"id",
+"name",
+"units",
+"print_to_task",
+"read_by_the_formula"
+) VALUES
 (1, 'Номинальное сечение основной жилы', 'мм.кв.', true, false),
 (2, 'Количество основных жил', 'шт.', true, false),
 (3, 'Номинальное напряжение', 'кВ.', true, false),
@@ -18,7 +53,11 @@ INSERT INTO "parameters"
 (11, 'Тип жилы', NULL, true, true);
 
 INSERT INTO "type_material"
-("id", "id_parameter", "value") VALUES
+(
+"id",
+"id_parameter",
+"value"
+) VALUES
 (1, 9, ''),
 (2, 9, 'поливинилхлоридный'),
 (3, 9, 'полиэтилен'),
@@ -26,7 +65,11 @@ INSERT INTO "type_material"
 (5, 9, 'краситель поливинилхлоридный');
 
 INSERT INTO "nominal_cross_section"
-("id", "id_parameter", "value") VALUES
+(
+"id",
+"id_parameter",
+"value"
+) VALUES
 (1,1,''),
 (2,1,'0,5'),
 (3,1,'0,75'),
@@ -60,7 +103,11 @@ INSERT INTO "nominal_cross_section"
 (31,1,'2000c');
 
 INSERT INTO "type_conductor"
-("id", "id_parameter", "value") VALUES
+(
+"id",
+"id_parameter",
+"value"
+) VALUES
 (1,11,''),
 (2,11,'ок'),
 (3,11,'мк'),
@@ -68,7 +115,11 @@ INSERT INTO "type_conductor"
 (5,11,'мс');
 
 INSERT INTO "number_of_conductors"
-("id", "id_parameter", "value") VALUES
+(
+"id",
+"id_parameter",
+"value"
+) VALUES
 (1,2,0),
 (2,2,1),
 (3,2,2),
@@ -77,7 +128,11 @@ INSERT INTO "number_of_conductors"
 (6,2,5);
 
 INSERT INTO "rated_voltage"
-("id", "id_parameter", "value") VALUES
+(
+"id",
+"id_parameter",
+"value"
+) VALUES
 (1, 3, ''),
 (2, 3, '0,38'),
 (3, 3, '0,66'),
@@ -94,7 +149,11 @@ INSERT INTO "rated_voltage"
 (14, 3, '220');
 
 INSERT INTO "conductor_metal"
-("id", "id_parameter", "value") VALUES
+(
+"id",
+"id_parameter",
+"value"
+) VALUES
 (1, 4, ''),
 (2, 4, 'алюминий'),
 (3, 4, 'алюминиевый сплав'),
@@ -103,7 +162,10 @@ INSERT INTO "conductor_metal"
 (6, 4, 'сталь');
 
 INSERT INTO "technological_stage"
-("id", "name") VALUES
+(
+"id",
+"name"
+) VALUES
 (1, 'Волочение проволоки'),
 (2, 'Скрутка жилы'),
 (3, 'Опрессование токопроводящей жилы'),
@@ -111,28 +173,51 @@ INSERT INTO "technological_stage"
 (5, 'Опрессование кабеля');
 
 INSERT INTO "type_of_material_value"
-("id", "name") VALUES
+(
+"id",
+"name"
+) VALUES
 (1, 'Готовая продукция'),
 (2, 'Полуфабрикаты'),
 (3, 'Сырьё'),
 (4, 'Сырьё-группа');
 
 INSERT INTO "table_of_technical_normative_legal_act"
-("id", "id_technical_normative_legal_act", "id_technological_stage", "name") VALUES
+(
+"id",
+"id_technical_normative_legal_act",
+"id_technological_stage",
+"name"
+) VALUES
 (1, 1, 3, 'Номинальная радиальная толщина изоляции'),
 (2, 1, 5, 'Номинальная радиальная толщина оболочки'),
 (3, 2, 3, 'Номинальная радиальная толщина изоляции'),
 (4, 2, 5, 'Номинальная радиальная толщина оболочки');
 
 INSERT INTO "parameters_vs_table_of_technical_normative_legal_act"
-("id", "id_table_of_technical_normative_legal_act", "id_parameter_result", "id_parameter_determinant_1", "id_parameter_determinant_2", "id_parameter_determinant_3") VALUES
+(
+"id",
+"id_table_of_technical_normative_legal_act",
+"id_parameter_result",
+"id_parameter_determinant_1",
+"id_parameter_determinant_2",
+"id_parameter_determinant_3"
+) VALUES
 (1, 1, 5, 3, 1, 9),
 (2, 1, 6, 10, NULL, NULL),
 (3, 2, 5, 3, 1, 9),
 (4, 2, 6, 10, 9, NULL);
 
 INSERT INTO "technical_normative_legal_act_vs_parameters"
-("line_number", "id_parameters_vs_table", "id_parameter", "value_nominal", "value_minimum", "value_maximum", "value") VALUES
+(
+"line_number",
+"id_parameters_vs_table",
+"id_parameter",
+"value_nominal",
+"value_minimum",
+"value_maximum",
+"value"
+) VALUES
 (1, 1, 5, 0.6, 0.4, NULL, NULL),
 (1, 1, 3, NULL, NULL, NULL, '0,66'),
 (1, 1, 1, NULL, NULL, NULL, '1'),
@@ -247,7 +332,12 @@ INSERT INTO "technical_normative_legal_act_vs_parameters"
 (8, 4, 10, NULL, 60, 666, NULL);
 
 INSERT INTO "manufacturer's_raw_materials"
-("id", "id_type_of_material_value", "name", "name_manufacturer", "price") VALUES
+(
+"id",
+"id_type_of_material_value",
+"name", "name_manufacturer",
+"price"
+) VALUES
 (3000001, 3, 'Поливинилхлоридный пластикат изоляционный - марки И 40-14 ГОСТ 16336', 'ОДО ФТОРОТЕКС', 9.99),
 (3000002, 3, 'Поливинилхлоридный пластикат изоляционный - марки И 40-13 ГОСТ 16336', 'ООО Пластинвест', 10.09),
 (3000003, 3, 'Поливинилхлоридный пластикат изоляционный - марки И 40-13 ГОСТ 16336', 'ОДО ФТОРОТЕКС', 8.88),
@@ -264,15 +354,25 @@ INSERT INTO "manufacturer's_raw_materials"
 (3000014, 3, 'Краситель поливинилхлоридный коричневый', 'ОДО ФТОРОТЕКС', 1950);
 
 INSERT INTO "raw_materials_group"
-("id", "id_type_of_material_value", "name") VALUES
-(4000001, 4, 'ИЗОЛЯЦИЯ ПОЛИВИНИЛХЛОРИДНЫЙ'),
-(4000002, 4, 'ОБОЛОЧКА ПОЛИВИНИЛХЛОРИДНЫЙ'),
+(
+"id",
+"id_type_of_material_value",
+"name"
+) VALUES
+(4000001, 4, 'ИЗОЛЯЦИЯ ПОЛИВИНИЛХЛОРИДНАЯ'),
+(4000002, 4, 'ОБОЛОЧКА ПОЛИВИНИЛХЛОРИДНАЯ'),
 (4000003, 4, 'КАТАНКА АЛЮМИНИЕВАЯ'),
 (4000004, 4, 'КАТАНАКА МЕДНАЯ'),
-(4000004, 4, 'КРАСИТЕЛЬ ПОЛИВИНИЛХЛОРИДНЫЙ');
+(4000005, 4, 'КРАСИТЕЛЬ ПОЛИВИНИЛХЛОРИДНЫЙ');
 
 INSERT INTO "parameters_vs_materials"
-("id_material", "id_parameter", "value_nominal", "value_minimum", "value_maximum", "value") VALUES
+(
+"id_material",
+"id_parameter",
+"value_nominal",
+"value_minimum",
+"value_maximum",
+"value") VALUES
 (3000001, 8, 1.35, NULL, NULL, NULL),
 (3000001, 9, NULL, NULL, NULL, 'поливинилхлоридный'),
 (3000002, 8, 1.35, NULL, NULL, NULL),
@@ -299,14 +399,25 @@ INSERT INTO "parameters_vs_materials"
 (3000014, 8, 1.55, NULL, NULL, NULL);
 
 INSERT INTO "parameters_vs_materials_group"
-("id_material_group", "id_parameter", "value_nominal", "value_minimum", "value_maximum", "value") VALUES
+(
+"id_material_group",
+"id_parameter",
+"value_nominal",
+"value_minimum",
+"value_maximum",
+"value"
+) VALUES
 (4000001, 8, 1.34, NULL, NULL, NULL),
 (4000002, 8, 1.3, NULL, NULL, NULL),
 (4000003, 8, 2.7, NULL, NULL, NULL),
 (4000004, 8, 8.89, NULL, NULL, NULL);
 
 INSERT INTO "raw_materials_group_vs_manufacturer's_raw_materials"
-("id_raw_materials_group", "id_manufacturer's_raw_materials", "ratio") VALUES
+(
+"id_raw_materials_group",
+"id_manufacturer's_raw_materials",
+"ratio"
+) VALUES
 (4000001, 3000001, 1.00),
 (4000001, 3000002, 1.34),
 (4000001, 3000003, 1.11),
@@ -320,7 +431,19 @@ INSERT INTO "raw_materials_group_vs_manufacturer's_raw_materials"
 (4000004, 3000009, 1.05);
 
 INSERT INTO "half-stuff_or_finished_product"
-("id", "id_type_of_material_value", "id_technological_stage", "name", "id_technical_normative_legal_act", "id_conductor_metal", "id_ number_of_conductors", "id_nominal_cross_section", "id_type_conductor", "id_type_material", "id_rated_voltage") VALUES
+(
+"id",
+"id_type_of_material_value",
+"id_technological_stages",
+"name",
+"id_technical_normative_legal_act",
+"id_conductor_metal",
+"id_number_of_conductors",
+"id_nominal_cross_section",
+"id_type_conductor",
+"id_type_material",
+"id_rated_voltage"
+) VALUES
 (20000001, 2, 1, 'проволока АТ 2,26', 1, 2, 1, 7, 2, 1, 1),
 (20000002, 2, 3, 'жила опрессованная АВ 4ок - 0,66 ЧЕР ГОСТ 16442-80', 1, 2, 2, 7, 2, 2, 3),
 (20000003, 1, 5, 'Кабель АВВГ 1х4ок - 0,66 ГОСТ 16442-80', 1, 2, 2, 7, 2, 2, 3),

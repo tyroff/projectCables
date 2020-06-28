@@ -1,9 +1,18 @@
+CREATE TABLE "cable_category" (
+	"id" SERIAL PRIMARY KEY,
+	"name" TEXT NOT NULL UNIQUE
+);
 CREATE TABLE "technical_normative_legal_act" (
 	"id" SERIAL PRIMARY KEY,
 	"code" TEXT NOT NULL UNIQUE,
 	"name" TEXT NOT NULL UNIQUE,
 	"date_start" DATE NOT NULL,
 	"date_end" DATE DEFAULT NULL
+);
+CREATE TABLE "technical_normative_legal_act_vs_cable_category" (
+	"id" SERIAL PRIMARY KEY,
+	"id_technical_normative_legal_act" SMALLINT NOT NULL REFERENCES "technical_normative_legal_act" ON DELETE RESTRICT,
+	"id_cable_category" SMALLINT NOT NULL REFERENCES "cable_category" ON DELETE RESTRICT
 );
 CREATE TABLE "technological_stage" (
 	"id" SMALLINT PRIMARY KEY CHECK ("id" IN (1, 2, 3, 4, 5)),

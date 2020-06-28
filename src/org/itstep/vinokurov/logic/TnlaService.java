@@ -9,4 +9,6 @@ public interface TnlaService {
 	List<Tnla> findAll() throws LogicException;
 	
 	void save(Tnla tnla) throws LogicException;
+	
+	void delete(Long id) throws LogicException;
 }

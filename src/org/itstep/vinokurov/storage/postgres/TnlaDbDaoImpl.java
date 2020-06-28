@@ -128,5 +128,22 @@ public class TnlaDbDaoImpl implements TnlaDao {
 			} catch(Exception e) {}
 		}
 	}
+
+	@Override
+	public void delete(Long id) throws DaoException {
+		String sqlRequest = "DELETE FROM \"technical_normative_legal_act\" WHERE \"id\" = ?";
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = connection.prepareStatement(sqlRequest);
+			preparedStatement.setLong(1, id);
+			preparedStatement.executeUpdate();
+		} catch(SQLException e) {
+			throw new DaoException(e);
+		} finally {
+			try {
+				preparedStatement.close();
+			} catch(Exception e) {}
+		}
+	}
 	
 }

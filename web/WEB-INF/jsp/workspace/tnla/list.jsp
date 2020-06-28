@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 
 <head>
@@ -11,64 +12,27 @@
   <style>
     <%@include file="/WEB-INF/css/style.css"%>
   </style>
-</head>
+</head> 
 
 <body>
   <div class="container">
-
     <header class="header">
-      <a href="index.html" class="logo">
-        <img src="images/logoCable.svg" alt="Logotype" class="logo">
-      </a>
+		<jsp:include page="/prototypes/logo.html"/>
       <div class="authentication">
-        <form action="user-input.html" class="authentication-form">
-          <div class="authentication-form-fieldset">
-            <h3>Винокуров К.А.</h3>
-          </div>
-          <div class="authentication-form-href">
-            <p><a href="output.html">Выход</a></p>
-          </div>
-        </form>
+		<jsp:include page="/prototypes/authentication_workspace.html"/>
       </div>
     </header>
 
     <div class="menu">
-      <div class="menu-hrefs">
-        <div class="menu-href">
-          <a href="TNLA.html" class="menu-href TNLA">ТНПА</a>
-        </div>
-        <div class="menu-href">
-          <a href="parameters.html" class="menu-href">Параметры</a>
-        </div>
-        <div class="menu-href">
-          <a href="formuls.html" class="menu-href">Формулы</a>
-        </div>
-        <div class="menu-href">
-          <a href="raw_materials.html" class="menu-href">Сырьё</a>
-        </div>
-      </div>
+		<jsp:include page="/prototypes/menu_hrefs_tnla.html"/>
     </div>
 
     <div class="container-main">
       <div class="left_pannel">
-        <form action="AU_TNLA.html" class="left_pannel-search">
-          <button class="button left_pannel-button button_add">
-            <span class="button-text">Добавить</span>
-          </button>
-        </form>
-        <form action="AU_TNLA.html" class="left_pannel-search">
-          <button class="button left_pannel-button button_update">
-            <span class="button-text">Изменить</span>
-          </button>
-        </form>
-        <form action="tablesTNLA.html" class="left_pannel-search">
-          <button class="button left_pannel-button button_tables">
-            <span class="button-text">Таблицы</span>
-          </button>
-        </form>
+		<jsp:include page="/prototypes/left_pannel_tnla.html"/>
       </div>
       <div class="main main-workspace">
-        <table>
+        <table cellspacing=0 border=1 width="100%" cellpadding="5">
           <tr>
             <th>id</th>
             <th>Код ТНПА</th>
@@ -81,8 +45,8 @@
 				<td><input name="tableTNLA" type="radio" value="tableTNLA"></td>
 				<td>${tnla.codTnla}</td>
 				<td>${tnla.nameTnla}</td>
-				<td>${tnla.dateStartTnla}"</td>
-				<td>${tnla.dateEndTnla}"</td>
+				<td><fmt:formatDate value="${tnla.dateStartTnla}" pattern="dd.MM.yyyy"/></td>
+				<td><fmt:formatDate value="${tnla.dateEndTnla}" pattern="dd.MM.yyyy"/></td>
 			</tr>
 			</c:forEach>
 		</table>

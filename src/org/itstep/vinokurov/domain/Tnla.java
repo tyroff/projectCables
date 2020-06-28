@@ -6,11 +6,20 @@ import java.util.Date;
 public class Tnla extends Entity {
 	public static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 	
-	public String codTnla;
-	public String nameTnla;
-	public Date dateStartTnla;
-	public Date dateEndTnla;
+	private String codTnla;
+	private String nameTnla;
+	private Date dateStartTnla;
+	private Date dateEndTnla;
+	private CableCategory category; 
 		
+	public CableCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(CableCategory category) {
+		this.category = category;
+	}
+
 	public String getCodTnla() {
 		return codTnla;
 	}
@@ -47,6 +56,7 @@ public class Tnla extends Entity {
 	public String toString() {
 		return  codTnla + "| \"" + nameTnla 
 				+ "\" | с " + FORMAT.format(dateStartTnla)
-				+ " | по " + FORMAT.format(dateEndTnla);
+				+ " | по " + FORMAT.format(dateEndTnla)
+				+ " " + category;
 	}
 }
