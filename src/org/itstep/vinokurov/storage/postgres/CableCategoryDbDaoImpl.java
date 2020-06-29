@@ -25,7 +25,7 @@ public class CableCategoryDbDaoImpl implements CableCategoryDao {
 		this.connection = connection;
 	}
 	
-	private Map<Long, CableCategory> mapCableCategory = new HashMap<>();
+	private Map<Long, CableCategory> cache = new HashMap<>();
 
 	@Override
 	public Long create(CableCategory cableCategory) throws DaoException {
@@ -34,11 +34,11 @@ public class CableCategoryDbDaoImpl implements CableCategoryDao {
 		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(sqlRequest, PreparedStatement.RETURN_GENERATED_KEYS);
-			preparedStatement.setString(1, cableCategory.getNameCategory());
+			preparedStatement.setString(1, cableCategory.getName());
 			preparedStatement.executeUpdate();
 			resultSet = preparedStatement.getGeneratedKeys();
 			resultSet.next();
-			mapCableCategory.clear();
+			cache.clear();
 			return resultSet.getLong(1);
 		} catch (SQLException e) {
 			throw new DaoException(e);
@@ -54,26 +54,97 @@ public class CableCategoryDbDaoImpl implements CableCategoryDao {
 
 	@Override
 	public CableCategory read(Long id) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		String sqlRequest = "SELECT \"name\" FORM \"cable_category\" WHERE \"id\" = ?";
+		CableCategory cableCategory = cache.get(id);
+		if(cableCategory == null) {
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
+			try {
+				preparedStatement = connection.prepareStatement(sqlRequest);
+				preparedStatement.setLong(1, id);
+				resultSet = preparedStatement.executeQuery();
+				if(resultSet.next()) {
+					cableCategory = new CableCategory();
+					cableCategory.setId(id);
+					cableCategory.setName(resultSet.getString("name"));
+					cache.put(id, cableCategory);
+				}
+			} catch (SQLException e) {
+				throw new DaoException(e);
+			} finally {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {}
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {}
+			}
+		}
+		return cableCategory;
 	}
 
 	@Override
-	public void update(CableCategory entity) throws DaoException {
-		// TODO Auto-generated method stub
-		
+	public void update(CableCategory cableCategory) throws DaoException {
+		String sqlRequest = "UPDATE \"cable_category\" SET \"name\" = ? WHERE \"id\" = ?";
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = connection.prepareStatement(sqlRequest);
+			preparedStatement.setString(1, cableCategory.getName());
+			preparedStatement.setLong(2, cableCategory.getId());
+			preparedStatement.executeUpdate();
+			cache.clear();
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		} finally {
+			try {
+				preparedStatement.close();
+			} catch (SQLException e) {}
+		}
 	}
 
 	@Override
 	public void delete(Long id) throws DaoException {
-		// TODO Auto-generated method stub
-		
+		String sqlRequest = "DELETE FORM \"cable_category\" WHERE \"id\" = ?";
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = connection.prepareStatement(sqlRequest);
+			preparedStatement.setLong(1, id);
+			preparedStatement.executeUpdate();
+			cache.clear();
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		} finally {
+			try {
+				preparedStatement.close();
+			} catch (SQLException e) {}
+		}
 	}
 
 	@Override
 	public List<CableCategory> read() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		String sqlRequest = "SELECT \"id\", \"name\" FORM \"cable_category\"";
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(sqlRequest);
+			List<CableCategory> cableCategores = new ArrayList<>();
+			while(resultSet.next()) {
+				CableCategory cableCategory = new CableCategory();
+				cableCategory.setId(resultSet.getLong("id"));
+				cableCategory.setName(resultSet.getString("name"));
+				cableCategores.add(cableCategory);
+			}
+			return cableCategores;
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		} finally {
+			try {
+				resultSet.close();
+			} catch (SQLException e) {}
+			try {
+				statement.close();
+			} catch (SQLException e) {}
+		}
 	}
-
 }

@@ -6,10 +6,10 @@ import java.util.Date;
 public class Tnla extends Entity {
 	public static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 	
-	private String codTnla;
-	private String nameTnla;
-	private Date dateStartTnla;
-	private Date dateEndTnla;
+	private String cod;
+	private String name;
+	private Date dateStart;
+	private Date dateEnd;
 	private CableCategory category; 
 		
 	public CableCategory getCategory() {
@@ -21,42 +21,42 @@ public class Tnla extends Entity {
 	}
 
 	public String getCodTnla() {
-		return codTnla;
+		return cod;
 	}
 
 	public void setCodTnla(String codTnla) {
-		this.codTnla = codTnla;
+		this.cod = codTnla;
 	}
 
 	public String getNameTnla() {
-		return nameTnla;
+		return name;
 	}
 
 	public void setNameTnla(String nameTnla) {
-		this.nameTnla = nameTnla;
+		this.name = nameTnla;
 	}
 
 	public Date getDateStartTnla() {
-		return dateStartTnla;
+		return dateStart;
 	}
 
 	public void setDateStartTnla(Date dateStartTnla) {
-		this.dateStartTnla = dateStartTnla;
+		this.dateStart = dateStartTnla;
 	}
 
 	public Date getDateEndTnla() {
-		return dateEndTnla;
+		return dateEnd;
 	}
 
 	public void setDateEndTnla(Date dateEndTnla) {
-		this.dateEndTnla = dateEndTnla;
+		this.dateEnd = dateEndTnla;
 	}
 
 	@Override
 	public String toString() {
-		return  codTnla + "| \"" + nameTnla 
-				+ "\" | с " + FORMAT.format(dateStartTnla)
-				+ " | по " + FORMAT.format(dateEndTnla)
+		return  cod + "| \"" + name 
+				+ "\" | с " + FORMAT.format(dateStart)
+				+ " | по " + FORMAT.format(dateEnd)
 				+ " " + category;
 	}
 }
