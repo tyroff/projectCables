@@ -122,7 +122,7 @@ public class CableCategoryDbDaoImpl implements CableCategoryDao {
 
 	@Override
 	public List<CableCategory> read() throws DaoException {
-		String sqlRequest = "SELECT \"id\", \"name\" FORM \"cable_category\"";
+		String sqlRequest = "SELECT \"id\", \"name\" FROM \"cable_category\"";
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
@@ -137,14 +137,15 @@ public class CableCategoryDbDaoImpl implements CableCategoryDao {
 			}
 			return cableCategores;
 		} catch (SQLException e) {
+			//e.printStackTrace();
 			throw new DaoException(e);
 		} finally {
 			try {
 				resultSet.close();
-			} catch (SQLException e) {}
+			} catch (Exception e) {}
 			try {
 				statement.close();
-			} catch (SQLException e) {}
+			} catch (Exception e) {}
 		}
 	}
 }

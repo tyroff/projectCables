@@ -10,53 +10,43 @@ public class Tnla extends Entity {
 	private String name;
 	private Date dateStart;
 	private Date dateEnd;
-	private CableCategory category; 
-		
-	public CableCategory getCategory() {
-		return category;
-	}
 
-	public void setCategory(CableCategory category) {
-		this.category = category;
-	}
-
-	public String getCodTnla() {
+	public String getCod() {
 		return cod;
 	}
 
-	public void setCodTnla(String codTnla) {
-		this.cod = codTnla;
+	public void setCod(String cod) {
+		this.cod = cod;
 	}
 
-	public String getNameTnla() {
+	public String getName() {
 		return name;
 	}
 
-	public void setNameTnla(String nameTnla) {
-		this.name = nameTnla;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Date getDateStartTnla() {
+	public Date getDateStart() {
 		return dateStart;
 	}
 
-	public void setDateStartTnla(Date dateStartTnla) {
-		this.dateStart = dateStartTnla;
+	public void setDateStart(Date dateStart) {
+		this.dateStart = dateStart;
 	}
 
-	public Date getDateEndTnla() {
+	public Date getDateEnd() {
 		return dateEnd;
 	}
 
-	public void setDateEndTnla(Date dateEndTnla) {
-		this.dateEnd = dateEndTnla;
+	public void setDateEnd(Date dateEnd) {
+		this.dateEnd = dateEnd;
 	}
 
 	@Override
 	public String toString() {
 		return  cod + "| \"" + name 
 				+ "\" | с " + FORMAT.format(dateStart)
-				+ " | по " + FORMAT.format(dateEnd)
-				+ " " + category;
+				+ " | по " + FORMAT.format(dateEnd);
 	}
 }
