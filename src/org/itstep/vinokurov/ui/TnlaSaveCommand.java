@@ -18,16 +18,16 @@ public class TnlaSaveCommand extends TnlaCommand {
 					bias = 1;
 				}
 				try {
-					tnla.setCodTnla(args[bias]);
+					tnla.setCode(args[bias]);
 					try {
-						tnla.setNameTnla(args[1 + bias]);
+						tnla.setName(args[1 + bias]);
 						try {
-							tnla.setDateStartTnla(Tnla.FORMAT.parse(args[2 + bias]));
+							tnla.setDateStart(Tnla.FORMAT.parse(args[2 + bias]));
 							try {
 								if(args[3 + bias] == null || args[3 + bias].equals(" ")) {
-									tnla.setDateEndTnla(null);
+									tnla.setDateEnd(null);
 								} else {
-									tnla.setDateEndTnla(Tnla.FORMAT.parse(args[3 + bias]));
+									tnla.setDateEnd(Tnla.FORMAT.parse(args[3 + bias]));
 								}
 								getTnlaService().save(tnla);
 								System.out.println("Данные успешно сохранены (id = " + tnla.getId() + ")");

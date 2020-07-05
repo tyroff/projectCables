@@ -5,17 +5,18 @@
 <html lang="ru">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>добавить ТНПА</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/prototypes/images/icon.png" type="image/x-icon">
+	<title>добавить ТНПА</title>
 </head> 
 
 <body>
-	<form action="save.html" method="get">
+	<form action="save.html" method="post">
 		<br>
 		<label for="code">Код</label>
 		<br>
-		<input type="text" id="cod" name="cod">
+		<input type="text" id="code" name="code">
 		<br>
 		<br>
 		<label for="name">Название</label>
@@ -32,10 +33,6 @@
 		<br>
 		<input type="date" id="dateEnd" name="dateEnd">
 		<br>
-		<br>
-	 	<c:forEach var="cableCategory" items="${cableCategores}">
-	 		<input type="checkbox" name="cableCategory" value="${cableCategory.id}">${cableCategory.name}<Br>
-	 	</c:forEach>
 		<br>
 		<br>
 		<button type="submit">Сохранить</button>

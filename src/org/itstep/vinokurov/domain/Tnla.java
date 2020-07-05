@@ -6,17 +6,17 @@ import java.util.Date;
 public class Tnla extends Entity {
 	public static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 	
-	private String cod;
+	private String code;
 	private String name;
 	private Date dateStart;
 	private Date dateEnd;
 
-	public String getCod() {
-		return cod;
+	public String getCode() {
+		return code;
 	}
 
-	public void setCod(String cod) {
-		this.cod = cod;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getName() {
@@ -45,7 +45,7 @@ public class Tnla extends Entity {
 
 	@Override
 	public String toString() {
-		return  cod + "| \"" + name 
+		return  code + "| \"" + name 
 				+ "\" | с " + FORMAT.format(dateStart)
 				+ " | по " + FORMAT.format(dateEnd);
 	}
