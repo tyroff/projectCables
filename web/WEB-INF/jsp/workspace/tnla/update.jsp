@@ -15,35 +15,36 @@
 <body>
 <h2>Редактировать ТНПА</h2>
 	<form action="save.html" method="post">
-		<label for="code">id</label>
-		<br>
-		<input type="text" id="id" name="id" value="${tnla.id}" disabled>
-		<br>
+		<input type="hidden" name="id" value="${tnla.id}">
 		<br>
 		<label for="code">Код</label>
 		<br>
-		<input type="text" id="code" name="code" value="${tnla.code}">
+		<input type="text" name="code" value="${tnla.code}">
 		<br>
 		<br>
 		<label for="name">Название</label>
 		<br>
-		<input type="text" id="name" name="name" value="${tnla.name}">
+		<input type="text" name="name" value="${tnla.name}">
 		<br>
 		<br>
 		<label for="dateStart">Дата начала </label>
 		<br>
 		<fmt:formatDate var="dateStart" value="${tnla.dateStart}" pattern="yyyy-MM-dd"/>
-		<input type="date" id="dateStart" name="dateStart" value="${dateStart}">
+		<input type="date" name="dateStart" value="${dateStart}">
 		<br>
 		<br>
 		<label for="dateEnd">Дата конца</label>
 		<br>
 		<fmt:formatDate var="dateEnd" value="${tnla.dateEnd}" pattern="yyyy-MM-dd"/>
-		<input type="date" id="dateEnd" name="dateEnd" value="${dateEnd}"/>
+		<input type="date" name="dateEnd" value="${dateEnd}"/>
 		<br>
 		<br>
 		<br>
 		<button type="submit">Сохранить</button>
+	</form>
+		<br>
+	<form action="../tnla.html">
+		<button type="submit">Отмена</button>
 	</form>
 </body>
 

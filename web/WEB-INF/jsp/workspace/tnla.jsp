@@ -16,7 +16,7 @@
 <body>
  	<div class="container">
 	    <header class="header">
-			<a href="../../index.html" class="logo">
+			<a href="../../cables/" class="logo">
 				<img src="${pageContext.request.contextPath}/prototypes/images/logoCable.svg" alt="Logotype" class="logo" />
 			</a>
 	     	<div class="authentication">

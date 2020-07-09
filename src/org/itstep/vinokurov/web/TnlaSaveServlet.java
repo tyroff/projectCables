@@ -42,14 +42,14 @@ public class TnlaSaveServlet extends HttpServlet{
 			Date startDate = null;
 			try {
 				startDate = dateFormat.parse(dateStart);
-			} catch (ParseException e2) {
+			} catch (ParseException e) {
 				throw new IllegalArgumentException();
 			}
 			Date endDate = null;
 			if(!dateEnd.isBlank()) {
 				try {
 					endDate = dateFormat.parse(dateEnd);
-				} catch (ParseException e2) {
+				} catch (ParseException e) {
 					throw new IllegalArgumentException();
 				}
 				if(startDate.compareTo(endDate) > 0) {

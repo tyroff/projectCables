@@ -17,26 +17,30 @@
 		<br>
 		<label for="code">Код</label>
 		<br>
-		<input type="text" id="code" name="code">
+		<input type="text" name="code">
 		<br>
 		<br>
 		<label for="name">Название</label>
 		<br>
-		<input type="text" id="name" name="name">
+		<input type="text" name="name">
 		<br>
 		<br>
 		<label for="dateStart">Дата начала</label>
 		<br>
-		<input type="date" id="dateStart" name="dateStart">
+		<input type="date" name="dateStart">
 		<br>
 		<br>
 		<label for="dateEnd">Дата конца</label>
 		<br>
-		<input type="date" id="dateEnd" name="dateEnd">
+		<input type="date" name="dateEnd">
 		<br>
 		<br>
 		<br>
 		<button type="submit">Сохранить</button>
+	</form>
+			<br>
+	<form action="../tnla.html">
+		<button type="submit">Отмена</button>
 	</form>
 </body>
 

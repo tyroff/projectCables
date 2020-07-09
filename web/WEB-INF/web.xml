@@ -77,6 +77,16 @@
         <servlet-name>TnlaSaveServlet</servlet-name>
         <url-pattern>/workspace/tnla/save.html</url-pattern>
     </servlet-mapping>
+        
+    <servlet>
+      <servlet-name>TnlaDeleteServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.TnlaDeleteServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>TnlaDeleteServlet</servlet-name>
+        <url-pattern>/workspace/tnla/delete.html</url-pattern>
+    </servlet-mapping>
     
     <filter>
     	<filter-name>EncodingFilterServlet</filter-name>

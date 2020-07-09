@@ -25,7 +25,7 @@ public class TnlaDelegateServlet extends HttpServlet{
 		} else if ("update".equals(action)) {
 			req.getRequestDispatcher("update.html").forward(req, resp);
 		} else if ("delete".equals(action)) {
-		    // Submit button pressed.
+			req.getRequestDispatcher("delete.html").forward(req, resp);
 		} else if ("tables".equals(action)) {
 		    // Submit button pressed.
 		} else if ("categories".equals(action)) {

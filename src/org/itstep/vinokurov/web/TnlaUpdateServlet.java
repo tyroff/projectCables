@@ -19,21 +19,22 @@ public class TnlaUpdateServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try(Factory factory = new Factory()) {
-			String id = req.getParameter("id");
-			if(id != null) {
+		String id = req.getParameter("id");
+		if(id != null) {
+			try(Factory factory = new Factory()) {
 				TnlaService tnlaService = factory.getTnlaService();
 				Tnla tnla = tnlaService.findById(Long.parseLong(id));
-				System.out.println(tnla);
-				if(tnla == null) {
+				if(tnla == null || id == null) {
 					throw new IllegalArgumentException();
 				}
 				req.setAttribute("tnla", tnla);
+				req.getRequestDispatcher("/WEB-INF/jsp/workspace/tnla/update.jsp").forward(req, resp);
+			} catch(LogicException e) {
+				throw new ServletException(e);
+			} catch(IllegalArgumentException e) {
+				resp.sendError(404);
 			}
-			req.getRequestDispatcher("/WEB-INF/jsp/workspace/tnla/update.jsp").forward(req, resp);
-		} catch(LogicException e) {
-			throw new ServletException(e);
-		} catch(IllegalArgumentException e) {
+		} else {
 			resp.sendError(404);
 		}
 	}
