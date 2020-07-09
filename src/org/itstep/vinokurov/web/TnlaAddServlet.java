@@ -19,13 +19,6 @@ public class TnlaAddServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try(Factory factory = new Factory()){
-			CableCategoryService service = factory.getCableCategoryService();
-			List<CableCategory> cableCategores = service.findAll();
-			req.setAttribute("cableCategores", cableCategores);
 			req.getRequestDispatcher("/WEB-INF/jsp/workspace/tnla/add.jsp").forward(req, resp);
-		} catch (LogicException e) {
-			throw new ServletException(e); 
-		}
 	}
 }

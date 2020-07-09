@@ -66,8 +66,8 @@ public class TnlaDbDaoImpl implements TnlaDao {
 				tnla.setId(id);
 				tnla.setCode(result.getString("code"));
 				tnla.setName(result.getString("name"));
-				tnla.setDateStart(new java.util.Date(result.getDate("date_end").getTime()));
-				tnla.setDateEnd(new java.util.Date(result.getDate("date_start").getTime()));
+				tnla.setDateStart(new java.util.Date(result.getDate("date_start").getTime()));
+				tnla.setDateEnd(new java.util.Date(result.getDate("date_end").getTime()));
 			}
 			return tnla;
 		} catch (SQLException e) {

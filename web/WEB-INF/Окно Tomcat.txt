@@ -1,0 +1,101 @@
+NOTE: Picked up JDK_JAVA_OPTIONS:  --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+08-Jul-2020 21:23:34.343 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.34
+08-Jul-2020 21:23:34.349 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Apr 3 2020 12:02:52 UTC
+08-Jul-2020 21:23:34.349 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.34.0
+08-Jul-2020 21:23:34.350 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+08-Jul-2020 21:23:34.350 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+08-Jul-2020 21:23:34.350 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+08-Jul-2020 21:23:34.350 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             c:\Program Files\Java\jdk-13.0.2
+08-Jul-2020 21:23:34.350 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           13.0.2+8
+08-Jul-2020 21:23:34.351 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+08-Jul-2020 21:23:34.351 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         D:\Tyroff\IT\portable\tomcat
+08-Jul-2020 21:23:34.351 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         D:\Tyroff\IT\portable\tomcat
+08-Jul-2020 21:23:34.364 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+08-Jul-2020 21:23:34.365 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+08-Jul-2020 21:23:34.365 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+08-Jul-2020 21:23:34.365 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=D:\Tyroff\IT\portable\tomcat\conf\logging.properties
+08-Jul-2020 21:23:34.365 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+08-Jul-2020 21:23:34.366 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+08-Jul-2020 21:23:34.367 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+08-Jul-2020 21:23:34.367 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+08-Jul-2020 21:23:34.368 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=D:\Tyroff\IT\portable\tomcat
+08-Jul-2020 21:23:34.370 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=D:\Tyroff\IT\portable\tomcat
+08-Jul-2020 21:23:34.373 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=D:\Tyroff\IT\portable\tomcat\temp
+08-Jul-2020 21:23:34.373 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [c:\Program Files\Java\jdk-13.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Common Files\Acronis\SnapAPI\;C:\Program Files\Git\cmd;C:\Users\╨Ъ╨╕╤А╨╕╨╗╨╗\AppData\Local\Microsoft\WindowsApps;;C:\Users\╨Ъ╨╕╤А╨╕╨╗╨╗\AppData\Local\Programs\Microsoft VS Code\bin;.]
+08-Jul-2020 21:23:34.602 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-80"]
+08-Jul-2020 21:23:34.951 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [794] milliseconds
+08-Jul-2020 21:23:34.982 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+08-Jul-2020 21:23:34.982 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.34]
+08-Jul-2020 21:23:34.992 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [D:\Tyroff\IT\portable\tomcat\conf\Catalina\localhost\cables.xml]
+08-Jul-2020 21:23:35.004 WARNING [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [/cables] in deployment descriptor [D:\Tyroff\IT\portable\tomcat\conf\Catalina\localhost\cables.xml] has been ignored
+08-Jul-2020 21:23:35.018 WARNING [main] org.apache.catalina.startup.SetContextPropertiesRule.begin [SetContextPropertiesRule]{Context} Setting property 'disableURLRewritting' to 'true' did not find a matching property.
+08-Jul-2020 21:23:35.399 SEVERE [main] org.apache.catalina.startup.HostConfig.deployDescriptor Error deploying deployment descriptor [D:\Tyroff\IT\portable\tomcat\conf\Catalina\localhost\cables.xml]
+        java.lang.IllegalStateException: Error starting child
+                at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:720)
+                at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:690)
+                at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:705)
+                at org.apache.catalina.startup.HostConfig.deployDescriptor(HostConfig.java:631)
+                at org.apache.catalina.startup.HostConfig$DeployDescriptor.run(HostConfig.java:1831)
+                at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+                at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+                at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+                at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:118)
+                at org.apache.catalina.startup.HostConfig.deployDescriptors(HostConfig.java:526)
+                at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:425)
+                at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1576)
+                at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:309)
+                at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+                at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:423)
+                at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:366)
+                at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:936)
+                at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:841)
+                at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+                at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384)
+                at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374)
+                at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+                at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+                at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+                at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909)
+                at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+                at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+                at org.apache.catalina.core.StandardService.startInternal(StandardService.java:421)
+                at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+                at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930)
+                at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+                at org.apache.catalina.startup.Catalina.start(Catalina.java:633)
+                at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+                at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+                at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+                at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+                at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:343)
+                at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:474)
+        Caused by: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/cables]]
+                at org.apache.catalina.util.LifecycleBase.handleSubClassException(LifecycleBase.java:440)
+                at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:198)
+                at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:717)
+                ... 37 more
+        Caused by: java.lang.IllegalArgumentException: Servlet mapping specifies an unknown servlet name [TnlaAddServlet]
+                at org.apache.catalina.core.StandardContext.addServletMappingDecoded(StandardContext.java:3179)
+                at org.apache.catalina.Context.addServletMappingDecoded(Context.java:881)
+                at org.apache.catalina.startup.ContextConfig.configureContext(ContextConfig.java:1391)
+                at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1174)
+                at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:774)
+                at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:301)
+                at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+                at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5056)
+                at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+                ... 38 more
+08-Jul-2020 21:23:35.402 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [D:\Tyroff\IT\portable\tomcat\conf\Catalina\localhost\cables.xml] has finished in [410] ms
+08-Jul-2020 21:23:35.405 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory ╨г╤Б╤В╨░╨╜╨╛╨▓╨║╨░ ╨▓╨╡╨▒ ╨┐╤А╨╕╨╗╨╛╨╢╨╡╨╜╨╕╤П ╨▓ ╨┐╨░╨┐╨║╤Г [D:\Tyroff\IT\portable\tomcat\webapps\docs]
+08-Jul-2020 21:23:35.616 WARNING [main] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [150] milliseconds.
+08-Jul-2020 21:23:35.633 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Tyroff\IT\portable\tomcat\webapps\docs] has finished in [228] ms
+08-Jul-2020 21:23:35.634 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory ╨г╤Б╤В╨░╨╜╨╛╨▓╨║╨░ ╨▓╨╡╨▒ ╨┐╤А╨╕╨╗╨╛╨╢╨╡╨╜╨╕╤П ╨▓ ╨┐╨░╨┐╨║╤Г [D:\Tyroff\IT\portable\tomcat\webapps\examples]
+08-Jul-2020 21:23:36.039 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Tyroff\IT\portable\tomcat\webapps\examples] has finished in [406] ms
+08-Jul-2020 21:23:36.039 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory ╨г╤Б╤В╨░╨╜╨╛╨▓╨║╨░ ╨▓╨╡╨▒ ╨┐╤А╨╕╨╗╨╛╨╢╨╡╨╜╨╕╤П ╨▓ ╨┐╨░╨┐╨║╤Г [D:\Tyroff\IT\portable\tomcat\webapps\host-manager]
+08-Jul-2020 21:23:36.076 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Tyroff\IT\portable\tomcat\webapps\host-manager] has finished in [37] ms
+08-Jul-2020 21:23:36.077 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory ╨г╤Б╤В╨░╨╜╨╛╨▓╨║╨░ ╨▓╨╡╨▒ ╨┐╤А╨╕╨╗╨╛╨╢╨╡╨╜╨╕╤П ╨▓ ╨┐╨░╨┐╨║╤Г [D:\Tyroff\IT\portable\tomcat\webapps\manager]
+08-Jul-2020 21:23:36.121 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Tyroff\IT\portable\tomcat\webapps\manager] has finished in [44] ms
+08-Jul-2020 21:23:36.122 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory ╨г╤Б╤В╨░╨╜╨╛╨▓╨║╨░ ╨▓╨╡╨▒ ╨┐╤А╨╕╨╗╨╛╨╢╨╡╨╜╨╕╤П ╨▓ ╨┐╨░╨┐╨║╤Г [D:\Tyroff\IT\portable\tomcat\webapps\ROOT]
+08-Jul-2020 21:23:36.146 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Tyroff\IT\portable\tomcat\webapps\ROOT] has finished in [24] ms
+08-Jul-2020 21:23:36.150 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-80"]
+08-Jul-2020 21:23:36.163 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [1┬а210] milliseconds

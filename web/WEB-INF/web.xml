@@ -39,6 +39,16 @@
     </servlet-mapping>
     
     <servlet>
+      <servlet-name>TnlaDelegateServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.TnlaDelegateServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>TnlaDelegateServlet</servlet-name>
+        <url-pattern>/workspace/tnla/delegate.html</url-pattern>
+    </servlet-mapping>
+        
+    <servlet>
       <servlet-name>TnlaAddServlet</servlet-name>
       <servlet-class>org.itstep.vinokurov.web.TnlaAddServlet</servlet-class>
     </servlet>
@@ -46,6 +56,16 @@
     <servlet-mapping>
         <servlet-name>TnlaAddServlet</servlet-name>
         <url-pattern>/workspace/tnla/add.html</url-pattern>
+    </servlet-mapping>
+            
+    <servlet>
+      <servlet-name>TnlaUpdateServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.TnlaUpdateServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>TnlaUpdateServlet</servlet-name>
+        <url-pattern>/workspace/tnla/update.html</url-pattern>
     </servlet-mapping>
     
     <servlet>

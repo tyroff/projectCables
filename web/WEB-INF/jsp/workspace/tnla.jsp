@@ -35,31 +35,33 @@
 		    </div>
 		</div>
 	
-	    <div class="container-main">
-	     	<div class="left_pannel">
-				<jsp:include page="/prototypes/left_pannel_tnla.html"/>
-	      	</div>
-	      	<div class="main main-workspace">
-		        <table cellspacing=0 border=1 width="100%" cellpadding="5">
-		          	<tr>
-		            	<th>id</th>
-		            	<th>Код ТНПА</th>
-		            	<th>Наименование ТНПА</th>
-		            	<th>Дата от</th>
-		           		<th>Дата до</th>
-		          	</tr>
-					<c:forEach var="tnla" items="${tnlas}">
-					<tr>
-						<td><input name="tableTNLA" type="radio" value="tableTNLA" id="${tnla.id}"></td>
-						<td>${tnla.code}</td>
-						<td>${tnla.name}</td>
-						<td><fmt:formatDate value="${tnla.dateStart}" pattern="dd.MM.yyyy"/></td>
-						<td><fmt:formatDate value="${tnla.dateEnd}" pattern="dd.MM.yyyy"/></td>
-					</tr>
-					</c:forEach>
-				</table>
-	     	</div>
-	    </div>
+	    <form action="tnla/delegate.html" method="post">
+		    <div class="container-main">
+				<div class="left_pannel">
+					<jsp:include page="/prototypes/left_pannel_tnla.html"/>
+		      	</div>
+		      	<div class="main main-workspace">
+			        <table cellspacing=0 border=1 width="100%" cellpadding="5">
+			          	<tr>
+			            	<th>id</th>
+			            	<th>Код ТНПА</th>
+			            	<th>Наименование ТНПА</th>
+			            	<th>Дата от</th>
+			           		<th>Дата до</th>
+			          	</tr>
+						<c:forEach var="tnla" items="${tnlas}">
+						<tr>
+							<td><input type="radio" name="id" value="${tnla.id}"></td>
+							<td>${tnla.code}</td>
+							<td>${tnla.name}</td>
+							<td><fmt:formatDate value="${tnla.dateStart}" pattern="dd.MM.yyyy"/></td>
+							<td><fmt:formatDate value="${tnla.dateEnd}" pattern="dd.MM.yyyy"/></td>
+						</tr>
+						</c:forEach>
+					</table>
+		     	</div>
+		    </div>
+	    </form>
 	 </div>
 </body>
 

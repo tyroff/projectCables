@@ -20,6 +20,7 @@ public class TnlaSaveServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			String id = req.getParameter("id");
 			String code = req.getParameter("code");
 			if(code == null || code.isBlank()) {
 				throw new IllegalArgumentException();
@@ -56,6 +57,9 @@ public class TnlaSaveServlet extends HttpServlet{
 				}
 			}
 			Tnla tnla = new Tnla();
+			if(id != null) {
+				tnla.setId(Long.parseLong(id));
+			}
 			tnla.setCode(code);
 			tnla.setName(name);
 			tnla.setDateStart(startDate);
