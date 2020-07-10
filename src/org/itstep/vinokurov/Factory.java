@@ -4,10 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.itstep.vinokurov.logic.CableCategoryService;
+import org.itstep.vinokurov.logic.CableCategoryServiceImpl;
 import org.itstep.vinokurov.logic.LogicException;
 import org.itstep.vinokurov.logic.TnlaService;
 import org.itstep.vinokurov.logic.TnlaServiceImpl;
+import org.itstep.vinokurov.storage.CableCategoryDao;
 import org.itstep.vinokurov.storage.TnlaDao;
+import org.itstep.vinokurov.storage.postgres.CableCategoryDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.TnlaDbDaoImpl;
 import org.itstep.vinokurov.ui.Command;
 import org.itstep.vinokurov.ui.TnlaDeleteCommand;
@@ -46,6 +50,18 @@ public class Factory implements AutoCloseable{
 		return tnlaSaveCommand;
 	}
 	
+	private CableCategoryService cableCategoryService = null;
+	public CableCategoryService getCableCategoryService() throws LogicException {
+		if(cableCategoryService == null) {
+			if(cableCategoryService == null) {
+				CableCategoryServiceImpl service = new CableCategoryServiceImpl();
+				cableCategoryService = service;
+				service.setCableCategoryDao(getCableCategoryDao());
+			}
+		}
+		return cableCategoryService;
+	}
+	
 	private TnlaService tnlaService = null;
 	public TnlaService getTnlaService() throws LogicException {
 		if(tnlaService == null) {
@@ -56,6 +72,16 @@ public class Factory implements AutoCloseable{
 			}
 		}
 		return tnlaService;
+	}
+
+	private CableCategoryDao cableCategoryDao = null;
+	public CableCategoryDao getCableCategoryDao() throws LogicException{
+		if(cableCategoryDao == null) {
+			CableCategoryDbDaoImpl cableCategoryDbDaoImpl = new CableCategoryDbDaoImpl();
+			cableCategoryDao = cableCategoryDbDaoImpl;
+			cableCategoryDbDaoImpl.setConnection(getConnection());
+		}
+		return cableCategoryDao;
 	}
 	
 	private TnlaDao tnlaDao = null;

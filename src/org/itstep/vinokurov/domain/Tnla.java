@@ -6,57 +6,47 @@ import java.util.Date;
 public class Tnla extends Entity {
 	public static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 	
-	private String codTnla;
-	private String nameTnla;
-	private Date dateStartTnla;
-	private Date dateEndTnla;
-	private CableCategory category; 
-		
-	public CableCategory getCategory() {
-		return category;
+	private String code;
+	private String name;
+	private Date dateStart;
+	private Date dateEnd;
+
+	public String getCode() {
+		return code;
 	}
 
-	public void setCategory(CableCategory category) {
-		this.category = category;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public String getCodTnla() {
-		return codTnla;
+	public String getName() {
+		return name;
 	}
 
-	public void setCodTnla(String codTnla) {
-		this.codTnla = codTnla;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getNameTnla() {
-		return nameTnla;
+	public Date getDateStart() {
+		return dateStart;
 	}
 
-	public void setNameTnla(String nameTnla) {
-		this.nameTnla = nameTnla;
+	public void setDateStart(Date dateStart) {
+		this.dateStart = dateStart;
 	}
 
-	public Date getDateStartTnla() {
-		return dateStartTnla;
+	public Date getDateEnd() {
+		return dateEnd;
 	}
 
-	public void setDateStartTnla(Date dateStartTnla) {
-		this.dateStartTnla = dateStartTnla;
-	}
-
-	public Date getDateEndTnla() {
-		return dateEndTnla;
-	}
-
-	public void setDateEndTnla(Date dateEndTnla) {
-		this.dateEndTnla = dateEndTnla;
+	public void setDateEnd(Date dateEnd) {
+		this.dateEnd = dateEnd;
 	}
 
 	@Override
 	public String toString() {
-		return  codTnla + "| \"" + nameTnla 
-				+ "\" | с " + FORMAT.format(dateStartTnla)
-				+ " | по " + FORMAT.format(dateEndTnla)
-				+ " " + category;
+		return  getId() + "| "+ code + "| \"" + name 
+				+ "\" | с " + FORMAT.format(dateStart)
+				+ " | по " + FORMAT.format(dateEnd);
 	}
 }

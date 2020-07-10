@@ -47,4 +47,12 @@ public class TnlaServiceImpl implements TnlaService {
 		
 	}
 
+	@Override
+	public Tnla findById(Long id) throws LogicException {
+		try {
+			return tnlaDao.read(id);
+		} catch (DaoException e) {
+			throw new LogicException(e);
+		}
+	}
 }

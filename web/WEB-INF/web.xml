@@ -25,19 +25,29 @@
  
     <servlet-mapping>
         <servlet-name>WorkspaceServlet</servlet-name>
-        <url-pattern>/workspace/workspace.html</url-pattern>
+        <url-pattern>/workspace.html</url-pattern>
     </servlet-mapping>
     
 	<servlet>
-      <servlet-name>TnlaListServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.TnlaListServlet</servlet-class>
+      <servlet-name>TnlaServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.TnlaServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
-        <servlet-name>TnlaListServlet</servlet-name>
-        <url-pattern>/workspace/tnla/list.html</url-pattern>
+        <servlet-name>TnlaServlet</servlet-name>
+        <url-pattern>/workspace/tnla.html</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+      <servlet-name>TnlaDelegateServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.TnlaDelegateServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>TnlaDelegateServlet</servlet-name>
+        <url-pattern>/workspace/tnla/delegate.html</url-pattern>
+    </servlet-mapping>
+        
     <servlet>
       <servlet-name>TnlaAddServlet</servlet-name>
       <servlet-class>org.itstep.vinokurov.web.TnlaAddServlet</servlet-class>
@@ -47,7 +57,51 @@
         <servlet-name>TnlaAddServlet</servlet-name>
         <url-pattern>/workspace/tnla/add.html</url-pattern>
     </servlet-mapping>
-
+            
+    <servlet>
+      <servlet-name>TnlaUpdateServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.TnlaUpdateServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>TnlaUpdateServlet</servlet-name>
+        <url-pattern>/workspace/tnla/update.html</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>TnlaSaveServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.TnlaSaveServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>TnlaSaveServlet</servlet-name>
+        <url-pattern>/workspace/tnla/save.html</url-pattern>
+    </servlet-mapping>
+        
+    <servlet>
+      <servlet-name>TnlaDeleteServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.TnlaDeleteServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>TnlaDeleteServlet</servlet-name>
+        <url-pattern>/workspace/tnla/delete.html</url-pattern>
+    </servlet-mapping>
+    
+    <filter>
+    	<filter-name>EncodingFilterServlet</filter-name>
+    	<filter-class>org.itstep.vinokurov.web.EncodingFilterServlet</filter-class>
+    </filter>
+	
+	<filter-mapping>
+		<filter-name>EncodingFilterServlet</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+	
+	<listener>
+		<listener-class>org.itstep.vinokurov.web.ApplicationInitializer</listener-class>
+	</listener>
+	
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
 	</welcome-file-list>

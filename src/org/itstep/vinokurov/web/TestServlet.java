@@ -15,7 +15,7 @@ public class TestServlet extends HttpServlet{
  		PrintWriter pw = resp.getWriter();
 		pw.print("<p style=\"color: green\">start_testSERVLET</p>");
 		pw.print("<ul>");
-		pw.print("<li><a href=\"workspace/tnla/list.html\">TNLAs list</a></li>");
+		pw.print("<li><a href=\"workspace.html\">Workspace</a></li>");
 		pw.print("</ul>");
 	}
 

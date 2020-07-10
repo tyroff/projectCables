@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.itstep.vinokurov.domain.Tnla;
@@ -26,10 +27,14 @@ public class TnlaDbDaoImpl implements TnlaDao {
 		ResultSet result = null;
 		try {
 			statement = connection.prepareStatement(sqlRequest, Statement.RETURN_GENERATED_KEYS);
-			statement.setString(1, tnla.getCodTnla());
-			statement.setString(2, tnla.getNameTnla());
-			statement.setDate(3, new java.sql.Date(tnla.getDateStartTnla().getTime()));
-			statement.setDate(4, new java.sql.Date(tnla.getDateEndTnla().getTime()));
+			statement.setString(1, tnla.getCode());
+			statement.setString(2, tnla.getName());
+			statement.setDate(3, new java.sql.Date(tnla.getDateStart().getTime()));
+			if(tnla.getDateEnd() == null) {
+				statement.setDate(4, null);
+			} else {
+				statement.setDate(4, new java.sql.Date(tnla.getDateEnd().getTime()));
+			}
 			statement.executeUpdate();
 			result = statement.getGeneratedKeys();
 			result.next();
@@ -59,10 +64,10 @@ public class TnlaDbDaoImpl implements TnlaDao {
 			if (result.next()) {
 				tnla = new Tnla();
 				tnla.setId(id);
-				tnla.setCodTnla(result.getString("code"));
-				tnla.setNameTnla(result.getString("name"));
-				tnla.setDateEndTnla(new java.util.Date(result.getDate("date_start").getTime()));
-				tnla.setDateStartTnla(new java.util.Date(result.getDate("date_end").getTime()));
+				tnla.setCode(result.getString("code"));
+				tnla.setName(result.getString("name"));
+				tnla.setDateStart(new java.util.Date(result.getDate("date_start").getTime()));
+				tnla.setDateEnd(new java.util.Date(result.getDate("date_end").getTime()));
 			}
 			return tnla;
 		} catch (SQLException e) {
@@ -83,10 +88,15 @@ public class TnlaDbDaoImpl implements TnlaDao {
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(sqlRequest);
-			statement.setString(1, tnla.getCodTnla());
-			statement.setString(2, tnla.getNameTnla());
-			statement.setDate(3, new java.sql.Date(tnla.getDateStartTnla().getTime()));
-			statement.setDate(4, new java.sql.Date(tnla.getDateEndTnla().getTime()));
+			statement.setString(1, tnla.getCode());
+			statement.setString(2, tnla.getName());
+			statement.setDate(3, new java.sql.Date(tnla.getDateStart().getTime()));
+			statement.setDate(4, new java.sql.Date(tnla.getDateEnd().getTime()));
+			if(tnla.getDateEnd() == null) {
+				statement.setDate(4, null);
+			} else {
+				statement.setDate(4, new java.sql.Date(tnla.getDateEnd().getTime()));
+			}
 			statement.setLong(5, tnla.getId());
 			statement.executeUpdate();
 		} catch(SQLException e) {
@@ -100,7 +110,7 @@ public class TnlaDbDaoImpl implements TnlaDao {
 
 	@Override
 	public List<Tnla> read() throws DaoException {
-		String sqlRequest = "SELECT \"id\", \"code\", \"name\", \"date_start\", \"date_end\" FROM \"technical_normative_legal_act\"";
+		String sqlRequest = "SELECT \"id\", \"code\", \"name\", \"date_start\", \"date_end\" FROM \"technical_normative_legal_act\" ORDER BY \"code\"";
 		Statement statement = null;
 		ResultSet result = null;
 		try {
@@ -110,10 +120,15 @@ public class TnlaDbDaoImpl implements TnlaDao {
 			while(result.next()) {
 				Tnla tnla = new Tnla();
 				tnla.setId(result.getLong("id"));
-				tnla.setCodTnla(result.getString("code"));
-				tnla.setNameTnla(result.getString("name"));
-				tnla.setDateStartTnla(new java.util.Date(result.getDate("date_start").getTime()));
-				tnla.setDateEndTnla(new java.util.Date(result.getDate("date_end").getTime()));
+				tnla.setCode(result.getString("code"));
+				tnla.setName(result.getString("name"));
+				tnla.setDateStart(new java.util.Date(result.getDate("date_start").getTime()));
+				Date endDate = result.getDate("date_end");
+				if(endDate == null) {
+					tnla.setDateEnd(null);
+				} else {
+					tnla.setDateEnd(new java.util.Date(endDate.getTime()));
+				}
 				tnlas.add(tnla);
 			}
 			return tnlas;
