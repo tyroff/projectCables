@@ -2,18 +2,18 @@ package org.itstep.vinokurov.domain;
 
 public class CableCategory extends Entity {
 	
-	private String nameCategory;
+	private String name;
 		
 	public String getNameCategory() {
-		return nameCategory;
+		return name;
 	}
 
-	public void setNameCategory(String nameCategory) {
-		this.nameCategory = nameCategory;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
 	public String toString() {
-		return  getId() + ". " +  nameCategory;
+		return  getId() + ". " +  name;
 	}
 }
