@@ -11,12 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.itstep.vinokurov.domain.CableCategory;
-import org.itstep.vinokurov.domain.Tnla;
 import org.itstep.vinokurov.storage.CableCategoryDao;
 import org.itstep.vinokurov.storage.DaoException;
-import org.itstep.vinokurov.storage.TnlaDao;
-
-import com.sun.net.httpserver.Authenticator.Result;
 
 public class CableCategoryDbDaoImpl implements CableCategoryDao {
 	private Connection connection;
@@ -54,7 +50,7 @@ public class CableCategoryDbDaoImpl implements CableCategoryDao {
 
 	@Override
 	public CableCategory read(Long id) throws DaoException {
-		String sqlRequest = "SELECT \"name\" FORM \"cable_category\" WHERE \"id\" = ?";
+		String sqlRequest = "SELECT \"name\" FROM \"cable_category\" WHERE \"id\" = ?";
 		CableCategory cableCategory = cache.get(id);
 		if(cableCategory == null) {
 			PreparedStatement preparedStatement = null;
@@ -104,7 +100,7 @@ public class CableCategoryDbDaoImpl implements CableCategoryDao {
 
 	@Override
 	public void delete(Long id) throws DaoException {
-		String sqlRequest = "DELETE FORM \"cable_category\" WHERE \"id\" = ?";
+		String sqlRequest = "DELETE FROM \"cable_category\" WHERE \"id\" = ?";
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = connection.prepareStatement(sqlRequest);
@@ -122,22 +118,21 @@ public class CableCategoryDbDaoImpl implements CableCategoryDao {
 
 	@Override
 	public List<CableCategory> read() throws DaoException {
-		String sqlRequest = "SELECT \"id\", \"name\" FROM \"cable_category\"";
+		String sqlRequest = "SELECT \"id\", \"name\" FROM \"cable_category\" ORDER BY \"name\"";
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(sqlRequest);
-			List<CableCategory> cableCategores = new ArrayList<>();
+			List<CableCategory> cableCategories = new ArrayList<>();
 			while(resultSet.next()) {
 				CableCategory cableCategory = new CableCategory();
 				cableCategory.setId(resultSet.getLong("id"));
 				cableCategory.setName(resultSet.getString("name"));
-				cableCategores.add(cableCategory);
+				cableCategories.add(cableCategory);
 			}
-			return cableCategores;
+			return cableCategories;
 		} catch (SQLException e) {
-			//e.printStackTrace();
 			throw new DaoException(e);
 		} finally {
 			try {

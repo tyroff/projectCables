@@ -67,7 +67,11 @@ public class TnlaDbDaoImpl implements TnlaDao {
 				tnla.setCode(result.getString("code"));
 				tnla.setName(result.getString("name"));
 				tnla.setDateStart(new java.util.Date(result.getDate("date_start").getTime()));
-				tnla.setDateEnd(new java.util.Date(result.getDate("date_end").getTime()));
+				if(result.getDate("date_end") == null) {
+					tnla.setDateEnd(null);
+				} else {
+					tnla.setDateEnd(new java.util.Date(result.getDate("date_end").getTime()));
+				}
 			}
 			return tnla;
 		} catch (SQLException e) {
@@ -91,7 +95,6 @@ public class TnlaDbDaoImpl implements TnlaDao {
 			statement.setString(1, tnla.getCode());
 			statement.setString(2, tnla.getName());
 			statement.setDate(3, new java.sql.Date(tnla.getDateStart().getTime()));
-			statement.setDate(4, new java.sql.Date(tnla.getDateEnd().getTime()));
 			if(tnla.getDateEnd() == null) {
 				statement.setDate(4, null);
 			} else {

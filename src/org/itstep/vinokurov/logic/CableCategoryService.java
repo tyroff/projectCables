@@ -12,4 +12,6 @@ public interface CableCategoryService {
 
 	void delete(Long id) throws LogicException;
 
+	CableCategory findById(Long id) throws LogicException;
+
 }

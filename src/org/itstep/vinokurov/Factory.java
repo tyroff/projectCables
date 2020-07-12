@@ -13,42 +13,8 @@ import org.itstep.vinokurov.storage.CableCategoryDao;
 import org.itstep.vinokurov.storage.TnlaDao;
 import org.itstep.vinokurov.storage.postgres.CableCategoryDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.TnlaDbDaoImpl;
-import org.itstep.vinokurov.ui.Command;
-import org.itstep.vinokurov.ui.TnlaDeleteCommand;
-import org.itstep.vinokurov.ui.TnlaListCommand;
-import org.itstep.vinokurov.ui.TnlaSaveCommand;
 
 public class Factory implements AutoCloseable{
-	
-	private Command tnlaDeleteCommand = null;
-	public Command getTnlaDeleteCommand() throws LogicException {
-		if(tnlaDeleteCommand == null) {
-			TnlaDeleteCommand command = new TnlaDeleteCommand();
-			tnlaDeleteCommand = command;
-			command.setTnlaService(getTnlaService());
-		}
-		return tnlaDeleteCommand;
-	}
-	
-	private Command tnlaListCommand = null;
-	public Command getTnlaListCommand() throws LogicException {
-		if (tnlaListCommand == null) {
-			TnlaListCommand command = new TnlaListCommand();
-			tnlaListCommand = command;
-			command.setTnlaService(getTnlaService());
-		}
-		return tnlaListCommand;
-	}
-	
-	private Command tnlaSaveCommand = null;
-	public Command getTnlaSaveCommand() throws LogicException {
-		if(tnlaSaveCommand == null) {
-			TnlaSaveCommand command = new TnlaSaveCommand();
-			tnlaSaveCommand = command;
-			command.setTnlaService(getTnlaService());
-		}
-		return tnlaSaveCommand;
-	}
 	
 	private CableCategoryService cableCategoryService = null;
 	public CableCategoryService getCableCategoryService() throws LogicException {

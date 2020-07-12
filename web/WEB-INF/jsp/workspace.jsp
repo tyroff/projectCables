@@ -16,9 +16,9 @@
 	<body>
 	 	<div class="container">
 		    <header class="header">
-				<a href="../cables/" class="logo">
+				<div class="logo">
 					<img src="${pageContext.request.contextPath}/prototypes/images/logoCable.svg" alt="Logotype" class="logo" />
-				</a>
+				</div>
 		     	<div class="authentication">
 					<jsp:include page="/prototypes/authentication_workspace.html"/>
 		      	</div>

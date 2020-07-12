@@ -8,7 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ТНПА</title>
+	<title>Категории кабелей</title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/prototypes/images/icon.png" type="image/x-icon">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/prototypes/css/style.css">
 </head> 
@@ -31,31 +31,25 @@
 						<img src="${pageContext.request.contextPath}/prototypes/images/home.png" alt="home" />
 					</a>
 				</div>
-				<jsp:include page="/prototypes/menu_hrefs_tnla.html"/>
+				<jsp:include page="/prototypes/menu_hrefs_cableCategory.html"/>
 		    </div>
 		</div>
 	
-	    <form action="tnla/delegate.html" method="post">
+	    <form action="cableCategory/delegate.html" method="post">
 		    <div class="container-main">
 				<div class="left_pannel">
-					<jsp:include page="/prototypes/left_pannel_tnla.html"/>
+					<jsp:include page="/prototypes/left_pannel_cableCategory.html"/>
 		      	</div>
 		      	<div class="main main-workspace">
 			        <table cellspacing=0 border=1 width="100%" cellpadding="5">
 			          	<tr>
 			            	<th>id</th>
-			            	<th>Код ТНПА</th>
-			            	<th>Наименование ТНПА</th>
-			            	<th>Дата от</th>
-			           		<th>Дата до</th>
+			            	<th>Наименование категории кабелей</th>
 			          	</tr>
-						<c:forEach var="tnla" items="${tnlas}">
+						<c:forEach var="cableCategory" items="${cableCategories}">
 						<tr>
-							<td><input type="radio" name="id" value="${tnla.id}"></td>
-							<td>${tnla.code}</td>
-							<td>${tnla.name}</td>
-							<td><fmt:formatDate value="${tnla.dateStart}" pattern="dd.MM.yyyy"/></td>
-							<td><fmt:formatDate value="${tnla.dateEnd}" pattern="dd.MM.yyyy"/></td>
+							<td><input type="radio" name="id" value="${cableCategory.id}"></td>
+							<td>${cableCategory.name}</td>
 						</tr>
 						</c:forEach>
 					</table>

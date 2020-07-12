@@ -88,6 +88,86 @@
         <url-pattern>/workspace/tnla/delete.html</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+      <servlet-name>TnlaDeleteImplementServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.TnlaDeleteImplementServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>TnlaDeleteImplementServlet</servlet-name>
+        <url-pattern>/workspace/tnla/deleteImplement.html</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>CableCategoryServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.CableCategoryServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>CableCategoryServlet</servlet-name>
+        <url-pattern>/workspace/cableCategory.html</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>CableCategoryDelegateServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.CableCategoryDelegateServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>CableCategoryDelegateServlet</servlet-name>
+        <url-pattern>/workspace/cableCategory/delegate.html</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>CableCategoryAddServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.CableCategoryAddServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>CableCategoryAddServlet</servlet-name>
+        <url-pattern>/workspace/cableCategory/add.html</url-pattern>
+    </servlet-mapping>
+            
+    <servlet>
+      <servlet-name>CableCategoryUpdateServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.CableCategoryUpdateServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>CableCategoryUpdateServlet</servlet-name>
+        <url-pattern>/workspace/cableCategory/update.html</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>CableCategorySaveServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.CableCategorySaveServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>CableCategorySaveServlet</servlet-name>
+        <url-pattern>/workspace/cableCategory/save.html</url-pattern>
+    </servlet-mapping>
+        
+    <servlet>
+      <servlet-name>CableCategoryDeleteServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.CableCategoryDeleteServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>CableCategoryDeleteServlet</servlet-name>
+        <url-pattern>/workspace/cableCategory/delete.html</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>CableCategoryDeleteImplementServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.CableCategoryDeleteImplementServlet</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>CableCategoryDeleteImplementServlet</servlet-name>
+        <url-pattern>/workspace/cableCategory/deleteImplement.html</url-pattern>
+    </servlet-mapping>
+    
     <filter>
     	<filter-name>EncodingFilterServlet</filter-name>
     	<filter-class>org.itstep.vinokurov.web.EncodingFilterServlet</filter-class>

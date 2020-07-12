@@ -3,6 +3,7 @@ package org.itstep.vinokurov.logic;
 import java.util.List;
 
 import org.itstep.vinokurov.domain.CableCategory;
+import org.itstep.vinokurov.domain.Tnla;
 import org.itstep.vinokurov.storage.CableCategoryDao;
 import org.itstep.vinokurov.storage.DaoException;
 
@@ -16,7 +17,7 @@ public class CableCategoryServiceImpl implements CableCategoryService {
 	@Override
 	public List<CableCategory> findAll() throws LogicException {
 		try {
-			return cableCategoryDao.read();
+		return cableCategoryDao.read();
 		} catch(DaoException e) {
 			throw new LogicException(e);
 		}
@@ -45,5 +46,13 @@ public class CableCategoryServiceImpl implements CableCategoryService {
 		}
 		
 	}
-
+	
+	@Override
+	public CableCategory findById(Long id) throws LogicException {
+		try {
+			return cableCategoryDao.read(id);
+		} catch (DaoException e) {
+			throw new LogicException(e);
+		}
+	}
 }
