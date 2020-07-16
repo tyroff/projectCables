@@ -9,12 +9,12 @@
     <display-name>Web-Application "Cables"</display-name>
 
     <servlet>
-      <servlet-name>TestServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.TestServlet</servlet-class>
+      <servlet-name>IndexServlet</servlet-name>
+      <servlet-class>org.itstep.vinokurov.web.IndexServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
-        <servlet-name>TestServlet</servlet-name>
+        <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/index.html</url-pattern>
     </servlet-mapping>
     
