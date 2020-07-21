@@ -1,3 +1,10 @@
+CREATE TABLE "user" (
+	"id" SERIAL PRIMARY KEY,
+	"login" TEXT NOT NULL UNIQUE,
+	"password" TEXT NOT NULL,
+	"role" INT NOT NULL CHECK ("role" IN (0, 1, 2, 3, 4))
+);
+
 CREATE TABLE "cable_category" (
 	"id" SERIAL PRIMARY KEY,
 	"name" TEXT NOT NULL UNIQUE

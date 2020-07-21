@@ -8,7 +8,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>${title}</title>
-		<c:url var="css" value="../css/style.css"/>
+		<c:url var="css" value="/css/style.css"/>
 		<link rel="stylesheet" href="${css}" type="text/css">
 	</head>
 		<jsp:doBody/>

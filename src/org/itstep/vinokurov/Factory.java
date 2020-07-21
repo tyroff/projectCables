@@ -9,10 +9,14 @@ import org.itstep.vinokurov.logic.CableCategoryServiceImpl;
 import org.itstep.vinokurov.logic.LogicException;
 import org.itstep.vinokurov.logic.TnlaService;
 import org.itstep.vinokurov.logic.TnlaServiceImpl;
+import org.itstep.vinokurov.logic.UserService;
+import org.itstep.vinokurov.logic.UserServiceImpl;
 import org.itstep.vinokurov.storage.CableCategoryDao;
 import org.itstep.vinokurov.storage.TnlaDao;
+import org.itstep.vinokurov.storage.UserDao;
 import org.itstep.vinokurov.storage.postgres.CableCategoryDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.TnlaDbDaoImpl;
+import org.itstep.vinokurov.storage.postgres.UserDbDaoImpl;
 
 public class Factory implements AutoCloseable{
 	
@@ -39,6 +43,18 @@ public class Factory implements AutoCloseable{
 		}
 		return tnlaService;
 	}
+	
+	private UserService userService = null;
+	public UserService getUserService() throws LogicException {
+		if(userService == null) {
+			if(userService == null) {
+				UserServiceImpl service = new UserServiceImpl();
+				userService = service;
+				service.setUserDao(getUserDao());
+			}
+		}
+		return userService;
+	}
 
 	private CableCategoryDao cableCategoryDao = null;
 	public CableCategoryDao getCableCategoryDao() throws LogicException{
@@ -58,6 +74,16 @@ public class Factory implements AutoCloseable{
 			tnlaDbDaoImpl.setConnection(getConnection());
 		}
 		return tnlaDao;
+	}
+	
+	private UserDao userDao = null;
+	public UserDao getUserDao() throws LogicException{
+		if(userDao == null) {
+			UserDbDaoImpl userDbDaoImpl = new UserDbDaoImpl();
+			userDao = userDbDaoImpl;
+			userDbDaoImpl.setConnection(getConnection());
+		}
+		return userDao;
 	}
 
 	private Connection connection = null;
