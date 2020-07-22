@@ -10,6 +10,7 @@
 		<title>${title}</title>
 		<c:url var="css" value="/css/style.css"/>
 		<link rel="stylesheet" href="${css}" type="text/css">
+		<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/icon.png" type="image/x-icon">
 	</head>
 		<jsp:doBody/>
 </html>

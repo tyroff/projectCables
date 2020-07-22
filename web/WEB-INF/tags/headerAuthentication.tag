@@ -1,7 +1,7 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 
 <div class="authentication">
-	<form action="workspace.html" class="authentication-form">
+	<form action="workspace.html" class="authentication-form" method="post">
     	<div class="authentication-form-fieldset">
 			<fieldset title="Введите логин">
 				<legend>логин</legend>
