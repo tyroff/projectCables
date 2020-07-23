@@ -10,8 +10,7 @@ INSERT INTO "user"
 /*
 0 -	org.itstep.vinokurov.domain.Role.ADMIN,
 1 -	org.itstep.vinokurov.domain.Role.TECHNOLOGIST,
-2 -	org.itstep.vinokurov.domain.Role.ECONOMIST,
-3 -	org.itstep.vinokurov.domain.Role.CLIENT
+2 -	org.itstep.vinokurov.domain.Role.ECONOMIST
 */
 
 INSERT INTO "cable_category"

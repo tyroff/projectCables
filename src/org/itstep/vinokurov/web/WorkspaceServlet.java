@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 public class WorkspaceServlet extends HttpServlet{
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("/WEB-INF/jsp/workspace.jsp").forward(req, resp);
 	}
 }

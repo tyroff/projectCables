@@ -1,11 +1,11 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 
 <div class="authentication">
-	<form action="workspace.html" class="authentication-form" method="post">
+	<form action="authorization.html" class="authentication-form" method="post">
     	<div class="authentication-form-fieldset">
 			<fieldset title="Введите логин">
 				<legend>логин</legend>
-				<input type="login" name="login" required>
+				<input type="text" name="login" required>
 			</fieldset>
 			<fieldset title="Введите пароль">
 				<legend>пароль</legend>
