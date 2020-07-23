@@ -9,8 +9,8 @@
     <display-name>Web-Application "Cables"</display-name>
 
     <servlet>
-      <servlet-name>IndexServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.IndexServlet</servlet-class>
+		<servlet-name>IndexServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.IndexServlet</servlet-class>
     </servlet>
  
 	<servlet-mapping>
@@ -19,18 +19,18 @@
 	</servlet-mapping>
     
 	<servlet>
-      <servlet-name>AuthorizationServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.AuthorizationServlet</servlet-class>
-    </servlet>
+		<servlet-name>AuthorizationServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.AuthorizationServlet</servlet-class>
+	</servlet>
  
-    <servlet-mapping>
+	<servlet-mapping>
         <servlet-name>AuthorizationServlet</servlet-name>
         <url-pattern>/authorization.html</url-pattern>
     </servlet-mapping>
     
 	<servlet>
-      <servlet-name>WorkspaceServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.WorkspaceServlet</servlet-class>
+		<servlet-name>WorkspaceServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.WorkspaceServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -39,8 +39,8 @@
     </servlet-mapping>
     
 	<servlet>
-      <servlet-name>TnlaServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.TnlaServlet</servlet-class>
+		<servlet-name>TnlaServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.TnlaServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -49,8 +49,8 @@
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>TnlaDelegateServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.TnlaDelegateServlet</servlet-class>
+		<servlet-name>TnlaDelegateServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.TnlaDelegateServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -59,8 +59,8 @@
     </servlet-mapping>
         
     <servlet>
-      <servlet-name>TnlaAddServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.TnlaAddServlet</servlet-class>
+		<servlet-name>TnlaAddServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.TnlaAddServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -69,8 +69,8 @@
     </servlet-mapping>
             
     <servlet>
-      <servlet-name>TnlaUpdateServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.TnlaUpdateServlet</servlet-class>
+		<servlet-name>TnlaUpdateServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.TnlaUpdateServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -79,8 +79,8 @@
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>TnlaSaveServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.TnlaSaveServlet</servlet-class>
+		<servlet-name>TnlaSaveServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.TnlaSaveServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -89,8 +89,8 @@
     </servlet-mapping>
         
     <servlet>
-      <servlet-name>TnlaDeleteServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.TnlaDeleteServlet</servlet-class>
+		<servlet-name>TnlaDeleteServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.TnlaDeleteServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -99,8 +99,8 @@
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>TnlaDeleteImplementServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.TnlaDeleteImplementServlet</servlet-class>
+		<servlet-name>TnlaDeleteImplementServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.TnlaDeleteImplementServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -109,8 +109,8 @@
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>CableCategoryServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.CableCategoryServlet</servlet-class>
+		<servlet-name>CableCategoryServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.CableCategoryServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -119,8 +119,8 @@
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>CableCategoryDelegateServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.CableCategoryDelegateServlet</servlet-class>
+		<servlet-name>CableCategoryDelegateServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.CableCategoryDelegateServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -129,8 +129,8 @@
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>CableCategoryAddServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.CableCategoryAddServlet</servlet-class>
+		<servlet-name>CableCategoryAddServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.CableCategoryAddServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -139,8 +139,8 @@
     </servlet-mapping>
             
     <servlet>
-      <servlet-name>CableCategoryUpdateServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.CableCategoryUpdateServlet</servlet-class>
+		<servlet-name>CableCategoryUpdateServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.CableCategoryUpdateServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -149,8 +149,8 @@
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>CableCategorySaveServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.CableCategorySaveServlet</servlet-class>
+		<servlet-name>CableCategorySaveServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.CableCategorySaveServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -159,8 +159,8 @@
     </servlet-mapping>
         
     <servlet>
-      <servlet-name>CableCategoryDeleteServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.CableCategoryDeleteServlet</servlet-class>
+		<servlet-name>CableCategoryDeleteServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.CableCategoryDeleteServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>
@@ -169,8 +169,8 @@
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>CableCategoryDeleteImplementServlet</servlet-name>
-      <servlet-class>org.itstep.vinokurov.web.CableCategoryDeleteImplementServlet</servlet-class>
+		<servlet-name>CableCategoryDeleteImplementServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.CableCategoryDeleteImplementServlet</servlet-class>
     </servlet>
  
     <servlet-mapping>

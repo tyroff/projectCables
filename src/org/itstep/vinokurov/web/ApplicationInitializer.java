@@ -10,7 +10,6 @@ public class ApplicationInitializer implements ServletContextListener{
 		try {
 			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
-System.out.println("hello2");
 			e.printStackTrace();
 		}
 	}
