@@ -25,6 +25,7 @@ public class SequrityFilterServlet implements Filter{
 	static {
 		whiteURLs.add("/");
 		whiteURLs.add("/index.html");
+		whiteURLs.add("/authorization.html");
 	}
 	
 	private static Map<Role, Set<String>> accessUrl = new HashMap<>();
@@ -44,6 +45,10 @@ public class SequrityFilterServlet implements Filter{
 		technologistURLs.add("/workspace/cableCategory/update.html");
 		technologistURLs.add("/workspace/cableCategory/delete.html");
 		accessUrl.put(Role.TECHNOLOGIST, technologistURLs);
+		
+		for(Set<String> userURLs : accessUrl.values()) {
+			userURLs.add("/logout.html");
+		}
 	}
 	
 	@Override
@@ -57,9 +62,11 @@ public class SequrityFilterServlet implements Filter{
 			HttpSession session = request.getSession(false);
 			if(session != null) {
 				User user = (User)session.getAttribute("authorizedUser");
-				Set<String> urls = accessUrl.get(user.getRole());
-				if(urls.contains(uri)) {
-					isAccess = true;
+				if(user != null) {
+					Set<String> urls = accessUrl.get(user.getRole());
+					if(urls.contains(uri)) {
+						isAccess = true;
+					}
 				}
 			}
 		} else {
@@ -68,7 +75,7 @@ public class SequrityFilterServlet implements Filter{
 		if(isAccess) {
 			chain.doFilter(req, resp);
 		} else {
-			response.sendRedirect(request.getContextPath() + "/index.html?message=" + URLEncoder.encode("Доступ запрещён!", "UTF-8"));
+			response.sendRedirect(request.getContextPath() + "/index.html?message=" + URLEncoder.encode(String.format("Доступ к [%s] запрещён!", uri), "UTF-8"));
 		}
 	}
 }

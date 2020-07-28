@@ -26,6 +26,15 @@
         <url-pattern>/authorization.html</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+		<servlet-name>LogoutServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.LogoutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout.html</url-pattern>
+    </servlet-mapping>
+    
 	<servlet>
 		<servlet-name>WorkspaceServlet</servlet-name>
 		<servlet-class>org.itstep.vinokurov.web.WorkspaceServlet</servlet-class>
