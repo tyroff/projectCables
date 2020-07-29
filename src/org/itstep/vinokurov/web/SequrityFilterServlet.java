@@ -37,6 +37,7 @@ public class SequrityFilterServlet implements Filter{
 		Set<String> technologistURLs = new HashSet<>();
 		technologistURLs.add("/workspace.html");
 		technologistURLs.add("/workspace/tnla.html");
+		technologistURLs.add("/workspace/tnla.delegate.html");
 		technologistURLs.add("/workspace/tnla/add.html");
 		technologistURLs.add("/workspace/tnla/update.html");
 		technologistURLs.add("/workspace/tnla/delete.html");

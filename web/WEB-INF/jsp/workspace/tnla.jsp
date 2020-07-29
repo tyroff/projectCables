@@ -1,46 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="u" %>
 
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ТНПА</title>
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/prototypes/images/icon.png" type="image/x-icon">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/prototypes/css/style.css">
-</head> 
-
-<body>
- 	<div class="container">
-	    <header class="header">
-			<div class="logo">
-				<img src="${pageContext.request.contextPath}/prototypes/images/logoCable.svg" alt="Logotype" class="logo" />
-			</div>
-	     	<div class="authentication">
-				<jsp:include page="/prototypes/authentication_workspace.html"/>
-	      	</div>
-	    </header>
-	
-	    <div class="menu">
-		    <div class="menu-hrefs">
-				<div class="menu-hrefs-home">
-					<a href="../workspace.html">
-						<img src="${pageContext.request.contextPath}/prototypes/images/home.png" alt="home" />
-					</a>
-				</div>
-				<jsp:include page="/prototypes/menu_hrefs_tnla.html"/>
-		    </div>
-		</div>
-	
-	    <form action="tnla/delegate.html" method="post">
-		    <div class="container-main">
-				<div class="left_pannel">
-					<jsp:include page="/prototypes/left_pannel_tnla.html"/>
-		      	</div>
-		      	<div class="main main-workspace">
+<u:head title="ТНПА">
+	<u:body>
+		<u:header>
+			<u:headerAuthenticationWorkspace/>
+		</u:header>
+		<u:menu>
+			<u:menuWorkspaceTnla/>
+		</u:menu>
+		<u:containerMainWorkspace>
+			<u:leftPannelWorkspaceTnla>
+				<u:leftPannelWorkspaceTnla/>
+			</u:leftPannelWorkspaceTnla>
+			<u:main>
+				<u:mainWorkspace>
 			        <table cellspacing=0 border=1 width="100%" cellpadding="5">
 			          	<tr>
 			            	<th>id</th>
@@ -59,10 +35,8 @@
 						</tr>
 						</c:forEach>
 					</table>
-		     	</div>
-		    </div>
-	    </form>
-	 </div>
-</body>
-
-</html>
+				</u:mainWorkspace>
+			</u:main>
+		</u:containerMainWorkspace>
+	</u:body>
+</u:head>

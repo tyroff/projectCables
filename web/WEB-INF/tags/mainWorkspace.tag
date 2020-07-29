@@ -1,6 +1,5 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 
-<div class="container-main">
+<div class="main main-workspace">
 	<jsp:doBody/>
 </div>
-
