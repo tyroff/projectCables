@@ -12,9 +12,9 @@
 			<u:menuWorkspaceTnla/>
 		</u:menu>
 		<u:containerMainWorkspace>
-			<u:leftPannelWorkspaceTnla>
+			<u:leftPannel>
 				<u:leftPannelWorkspaceTnla/>
-			</u:leftPannelWorkspaceTnla>
+			</u:leftPannel>
 			<u:main>
 				<u:mainWorkspace>
 			        <table cellspacing=0 border=1 width="100%" cellpadding="5">

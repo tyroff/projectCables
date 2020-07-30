@@ -20,7 +20,7 @@ public class CableCategorySaveServlet extends HttpServlet{
 			String id = req.getParameter("id");
 
 			String name = req.getParameter("name");
-			if(name == null || name.isBlank()) {
+			if(name == null || name.isEmpty()) {
 				throw new IllegalArgumentException();
 			}
 			

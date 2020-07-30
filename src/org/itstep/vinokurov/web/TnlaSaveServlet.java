@@ -22,17 +22,17 @@ public class TnlaSaveServlet extends HttpServlet{
 		try {
 			String id = req.getParameter("id");
 			String code = req.getParameter("code");
-			if(code == null || code.isBlank()) {
+			if(code == null || code.isEmpty()) {
 				throw new IllegalArgumentException();
 			}
 			
 			String name = req.getParameter("name");
-			if(name == null || name.isBlank()) {
+			if(name == null || name.isEmpty()) {
 				throw new IllegalArgumentException();
 			}
 			
 			String dateStart = req.getParameter("dateStart");
-			if(dateStart == null || dateStart.isBlank()) {
+			if(dateStart == null || dateStart.isEmpty()) {
 				throw new IllegalArgumentException();
 			}
 			
@@ -46,7 +46,7 @@ public class TnlaSaveServlet extends HttpServlet{
 				throw new IllegalArgumentException();
 			}
 			Date endDate = null;
-			if(!dateEnd.isBlank()) {
+			if(!dateEnd.isEmpty()) {
 				try {
 					endDate = dateFormat.parse(dateEnd);
 				} catch (ParseException e) {

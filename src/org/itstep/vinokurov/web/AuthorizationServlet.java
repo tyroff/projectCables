@@ -26,7 +26,7 @@ public class AuthorizationServlet extends HttpServlet{
 		try {
 			String login = req.getParameter("login");
 			String password = req.getParameter("password");
-			if(login == null || login.isBlank() || password == null) {
+			if(login == null || login.isEmpty() || password == null) {
 				throw new IllegalArgumentException();
 			}
 			try(Factory factory = new Factory()){
