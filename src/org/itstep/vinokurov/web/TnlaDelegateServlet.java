@@ -1,19 +1,11 @@
 package org.itstep.vinokurov.web;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.itstep.vinokurov.Factory;
-import org.itstep.vinokurov.domain.CableCategory;
-import org.itstep.vinokurov.domain.Tnla;
-import org.itstep.vinokurov.logic.CableCategoryService;
-import org.itstep.vinokurov.logic.LogicException;
-import org.itstep.vinokurov.logic.TnlaService;
 
 public class TnlaDelegateServlet extends HttpServlet{
 

@@ -8,7 +8,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/prototypes/images/icon.png" type="image/x-icon">
-	<title>редактор категорию кабелей</title>
+	<title>редакток категории кабелей</title>
 </head> 
 
 <body>

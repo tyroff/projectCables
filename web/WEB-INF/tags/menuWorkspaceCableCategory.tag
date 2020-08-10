@@ -7,10 +7,10 @@
 	</a>
 </div>
 <div class="menu-href">
-	<a href="tnla.html" class="menu-href mark">ТНПА</a>
+	<a href="tnla.html" class="menu-href">ТНПА</a>
 </div>
 <div class="menu-href">
-	<a href="cableCategory.html" class="menu-href">Категории</a>
+	<a href="cableCategory.html" class="menu-href mark">Категории</a>
 </div>
 <div class="menu-href">
 	<a href="parameters.html" class="menu-href">Параметры</a>

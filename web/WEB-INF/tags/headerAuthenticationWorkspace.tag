@@ -5,6 +5,6 @@
 		<h3>${authorizedUser.login}</h3>
 	</div>
 	<div class="authentication-form-href">
-		<p><a href="logout.html">Выход</a></p>
+		<p><a href="${pageContext.request.contextPath}/logout.html">Выход</a></p>
 	</div>
 </div>

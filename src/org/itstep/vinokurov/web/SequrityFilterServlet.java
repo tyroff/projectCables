@@ -33,18 +33,23 @@ public class SequrityFilterServlet implements Filter{
 		Set<String> adminURLs = new HashSet<>();
 		adminURLs.add("/workspace.html");
 		accessUrl.put(Role.ADMIN, adminURLs);
-
+		
 		Set<String> technologistURLs = new HashSet<>();
 		technologistURLs.add("/workspace.html");
 		technologistURLs.add("/workspace/tnla.html");
-		technologistURLs.add("/workspace/tnla.delegate.html");
+		technologistURLs.add("/workspace/tnla/delegate.html");
 		technologistURLs.add("/workspace/tnla/add.html");
 		technologistURLs.add("/workspace/tnla/update.html");
+		technologistURLs.add("/workspace/tnla/save.html");
 		technologistURLs.add("/workspace/tnla/delete.html");
+		technologistURLs.add("/workspace/tnla/deleteImplement.html");
 		technologistURLs.add("/workspace/cableCategory.html");
+		technologistURLs.add("/workspace/cableCategory/delegate.html");
 		technologistURLs.add("/workspace/cableCategory/add.html");
 		technologistURLs.add("/workspace/cableCategory/update.html");
-		technologistURLs.add("/workspace/cableCategory/delete.html");
+		technologistURLs.add("/workspace/cableCategory/save.html");
+ 		technologistURLs.add("/workspace/cableCategory/delete.html");
+		technologistURLs.add("/workspace/cableCategory/deleteImplement.html");
 		accessUrl.put(Role.TECHNOLOGIST, technologistURLs);
 		
 		for(Set<String> userURLs : accessUrl.values()) {

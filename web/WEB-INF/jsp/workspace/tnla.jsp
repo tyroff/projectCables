@@ -11,8 +11,10 @@
 		<u:menu>
 			<u:menuWorkspaceTnla/>
 		</u:menu>
-		<u:containerMainWorkspace>
+		<form action="tnla/delegate.html" method="post">
+			<div class="container-main">
 			<u:leftPannel>
+				<u:leftPannelWorkspaceCUD/>
 				<u:leftPannelWorkspaceTnla/>
 			</u:leftPannel>
 			<u:main>
@@ -37,6 +39,7 @@
 					</table>
 				</u:mainWorkspace>
 			</u:main>
-		</u:containerMainWorkspace>
+			</div>
+		</form>
 	</u:body>
 </u:head>
