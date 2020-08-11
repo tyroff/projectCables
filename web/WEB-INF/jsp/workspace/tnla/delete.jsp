@@ -1,39 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="u" %>
 
-<!DOCTYPE html>
-<html lang="ru">
+<u:head title="Удалить ТНПА">
+	<u:body>
+		<u:header>
+			<u:headerAuthenticationWorkspace/>
+		</u:header>
+		<u:menu>
+			<h2>Удалить ТНПА?</h2>
+		</u:menu>
+			<div class="container-main">
+			<u:leftPannel/>
+			<u:main>
+				<u:mainWorkspace>
+					<div>
+						<form action="deleteImplement.html" method="post">
+							<br>
+							<input type="hidden" name="id" value="${tnla.id}">
+							<label for="code">Код ТНПА</label>
+							<br>
+							<input type="text" name="code" value="${tnla.code}" disabled>
+							<br>
+							<br>
+							<label for="name">Наименование ТНПА</label>
+							<br>
+							<input type="text" name="name" value="${tnla.name}" disabled>
+							<br>
+							<br>
+							<br>
+							<button type="submit" class="button button_add">
+								<span class="button-text">Да</span>
+							</button>
+						</form>
+								<br>
+						<form action="../tnla.html">
+							<button type="submit" class="button button_del">
+								<span class="button-text">Нет</span>
+							</button>
+						</form>
+					</div>
+				</u:mainWorkspace>
+			</u:main>
+		</div>
+	</u:body>
+</u:head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/prototypes/images/icon.png" type="image/x-icon">
-	<title> ТНПА</title>
-</head> 
-
-<body>
-<h2>Удалить ТНПА?</h2>
-	<form action="deleteImplement.html" method="post">
-		<br>
-		<input type="hidden" name="id" value="${tnla.id}">
-		<label for="code">Код</label>
-		<br>
-		<input type="text" name="code" value="${tnla.code}" disabled>
-		<br>
-		<br>
-		<label for="name">Название</label>
-		<br>
-		<input type="text" name="name" value="${tnla.name}" disabled>
-		<br>
-		<br>
-		<br>
-		<button type="submit">Да</button>
-	</form>
-		<br>
-	<form action="../tnla.html">
-		<button type="submit">Нет</button>
-	</form>
-</body>
-
-</html>
  

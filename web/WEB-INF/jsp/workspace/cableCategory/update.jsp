@@ -1,33 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="u" %>
 
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/prototypes/images/icon.png" type="image/x-icon">
-	<title>редакток категории кабелей</title>
-</head> 
-
-<body>
-<h2>Редактировать категорию кабелей</h2>
-	<form action="save.html" method="post">
-		<input type="hidden" name="id" value="${cableCategory.id}">
-		<br>
-		<label for="name">Название</label>
-		<br>
-		<input type="text" name="name" value="${cableCategory.name}">
-		<br>
-		<br>
-		<button type="submit">Сохранить</button>
-	</form>
-		<br>
-	<form action="../cableCategory.html">
-		<button type="submit">Отмена</button>
-	</form>
-</body>
-
-</html>
+<u:head title="Редактировать категорию кабеля">
+	<u:body>
+		<u:header>
+			<u:headerAuthenticationWorkspace/>
+		</u:header>
+		<u:menu>
+			<h2>Редактировать категорию кабеля</h2>
+		</u:menu>
+			<div class="container-main">
+			<u:leftPannel/>
+			<u:main>
+				<u:mainWorkspace>
+					<div>
+						<form action="save.html" method="post">
+							<input type="hidden" name="id" value="${cableCategory.id}">
+							<br>
+							<label for="name">Название</label>
+							<br>
+							<input type="text" name="name" value="${cableCategory.name}">
+							<br>
+							<br>
+							<button type="submit" class="button button_add">
+								<span class="button-text">Сохранить</span>
+							</button>
+						</form>
+							<br>
+						<form action="../cableCategory.html">
+							<button type="submit" class="button button_del">
+								<span class="button-text">Отмена</span>
+							</button>
+						</form>
+					</div>
+				</u:mainWorkspace>
+			</u:main>
+		</div>
+	</u:body>
+</u:head>
  

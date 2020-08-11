@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="u" %>
 
-<u:head title="ТНПА">
+<u:head title="Добавить ТНПА">
 	<u:body>
 		<u:header>
 			<u:headerAuthenticationWorkspace/>
@@ -15,38 +15,44 @@
 			<u:leftPannel/>
 			<u:main>
 				<u:mainWorkspace>
-					<form action="save.html" method="post">
-						<br>
-						<label for="code">Код</label>
-						<br>
-						<input type="text" name="code">
-						<br>
-						<br>
-						<label for="name">Название</label>
-						<br>
-						<input type="text" name="name">
-						<br>
-						<br>
-						<label for="dateStart">Дата начала</label>
-						<br>
-						<input type="date" name="dateStart">
-						<br>
-						<br>
-						<label for="dateEnd">Дата конца</label>
-						<br>
-						<input type="date" name="dateEnd">
-						<br>
-						<br>
-						<br>
-						<button type="submit">Сохранить</button>
-					</form>
+					<div>
+						<form action="save.html" method="post">
 							<br>
-					<form action="../tnla.html">
-						<button type="submit">Отмена</button>
-					</form>
-					</u:mainWorkspace>
-				</u:main>
-			</div>
+							<label for="code">Код ТНПА</label>
+							<br>
+							<input type="text" name="code">
+							<br>
+							<br>
+							<label for="name">Наименование ТНПА</label>
+							<br>
+							<input type="text" name="name">
+							<br>
+							<br>
+							<label for="dateStart">Дата начала действия ТНПА</label>
+							<br>
+							<input type="date" name="dateStart">
+							<br>
+							<br>
+							<label for="dateEnd">Дата конца действия ТНПА</label>
+							<br>
+							<input type="date" name="dateEnd">
+							<br>
+							<br>
+							<br>
+							<button type="submit" class="button button_add">
+								<span class="button-text">Сохранить</span>
+							</button>
+						</form>
+							<br>
+						<form action="../tnla.html">
+							<button type="submit" class="button button_del">
+								<span class="button-text">Отмена</span>
+							</button>
+						</form>
+					</div>
+				</u:mainWorkspace>
+			</u:main>
+		</div>
 	</u:body>
 </u:head>
  
