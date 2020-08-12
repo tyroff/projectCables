@@ -45,13 +45,23 @@
 	</servlet-mapping>
     
 	<servlet>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<servlet-class>org.itstep.vinokurov.web.DispatcherServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/workspace/tnla.html</url-pattern>
+	</servlet-mapping>
+    
+	<!--servlet>
 		<servlet-name>TnlaServlet</servlet-name>
 		<servlet-class>org.itstep.vinokurov.web.TnlaServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TnlaServlet</servlet-name>
 		<url-pattern>/workspace/tnla.html</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping-->
     
 	<servlet>
 		<servlet-name>TnlaDelegateServlet</servlet-name>

@@ -24,13 +24,17 @@ import org.itstep.vinokurov.web.action.workspace.tnla.TnlaAction;
 
 public class Factory implements AutoCloseable{
 	
-	private Map<String, Action> actions = new HashMap<>();
-	public Factory() throws LogicException {
-		actions.put("workspace/tnla", getTnlaAction());
+	private Map<String, ActionFactory> actions = new HashMap<>();
+	{
+		actions.put("workspace/tnla", () -> getTnlaAction());
 	}
+	
 	public Action getAction(String url) throws LogicException {
+		ActionFactory factory = actions.get(url);
+		if(factory != null) {
+			return factory.getInstance();
+		}
 		return null;
-		
 	}
 	
 	private Action tnlaAction = null;
@@ -130,14 +134,5 @@ public class Factory implements AutoCloseable{
 	
 	private static interface ActionFactory {
 		Action getInstance() throws LogicException;
-	}
-	
-	private class TnlaActionFactory implements ActionFactory {
-
-		@Override
-		public Action getInstance() throws LogicException {
-			return getTnlaAction();
-		}
-		
 	}
 }
