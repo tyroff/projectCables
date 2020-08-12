@@ -3,6 +3,8 @@ package org.itstep.vinokurov;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.itstep.vinokurov.logic.CableCategoryService;
 import org.itstep.vinokurov.logic.CableCategoryServiceImpl;
@@ -17,8 +19,29 @@ import org.itstep.vinokurov.storage.UserDao;
 import org.itstep.vinokurov.storage.postgres.CableCategoryDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.TnlaDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.UserDbDaoImpl;
+import org.itstep.vinokurov.web.action.Action;
+import org.itstep.vinokurov.web.action.workspace.tnla.TnlaAction;
 
 public class Factory implements AutoCloseable{
+	
+	private Map<String, Action> actions = new HashMap<>();
+	public Factory() throws LogicException {
+		actions.put("workspace/tnla", getTnlaAction());
+	}
+	public Action getAction(String url) throws LogicException {
+		return null;
+		
+	}
+	
+	private Action tnlaAction = null;
+	public Action getTnlaAction() throws LogicException {
+		if(tnlaAction == null) {
+			TnlaAction tnlaActionImpl = new TnlaAction();
+			tnlaAction = tnlaActionImpl;
+			tnlaActionImpl.setTnlaService(getTnlaService());
+		}
+		return tnlaAction;
+	}
 	
 	private CableCategoryService cableCategoryService = null;
 	public CableCategoryService getCableCategoryService() throws LogicException {
@@ -105,4 +128,16 @@ public class Factory implements AutoCloseable{
 		} catch(Exception e) {}
 	}
 	
+	private static interface ActionFactory {
+		Action getInstance() throws LogicException;
+	}
+	
+	private class TnlaActionFactory implements ActionFactory {
+
+		@Override
+		public Action getInstance() throws LogicException {
+			return getTnlaAction();
+		}
+		
+	}
 }
