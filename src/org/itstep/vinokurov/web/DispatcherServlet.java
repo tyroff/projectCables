@@ -26,22 +26,22 @@ public class DispatcherServlet extends HttpServlet{
 	}
 
 	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String uri = req.getRequestURI();
-		uri = uri.substring(req.getContextPath().length());
-		if(uri.endsWith(".html")) {
-			uri = uri.substring(0, uri.length() - ".html".length());
+		String url = req.getRequestURI();
+		url = url.substring(req.getContextPath().length());
+		if(url.endsWith(".html")) {
+			url = url.substring(0, url.length() - ".html".length());
 		}
 		try(Factory factory = new Factory()) {
-			Action action = factory.getAction(uri);
+			Action action = factory.getAction(url);
 			Result result = null;
 			if(action != null) {
 				result = action.exec(req, resp);
 			}
 			if(result == null || result.getType() == ResultType.FORWARD) {
 				if(result != null) {
-					uri = result.getUrl();
+					url = result.getUrl();
 				}
-				req.getRequestDispatcher("/WEB-INF/jsp" + uri + ".jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/jsp" + url + ".jsp").forward(req, resp);
 			} else {
 				resp.sendRedirect(req.getContextPath() + result.getUrl());
 			}

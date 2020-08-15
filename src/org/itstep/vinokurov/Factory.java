@@ -26,7 +26,7 @@ public class Factory implements AutoCloseable{
 	
 	private Map<String, ActionFactory> actions = new HashMap<>();
 	{
-		actions.put("workspace/tnla", () -> getTnlaAction());
+		actions.put("/workspace/tnla", () -> getTnlaAction());
 	}
 	
 	public Action getAction(String url) throws LogicException {

@@ -14,7 +14,6 @@ public class TnlaAction extends BaseTnlaAction{
 	public Result exec(HttpServletRequest req, HttpServletResponse resp) throws LogicException {
 			List<Tnla> tnlas = getTnlaService().findAll();
 			req.setAttribute("tnlas", tnlas);
-//			req.getRequestDispatcher("/WEB-INF/jsp/workspace/tnla.jsp").forward(req, resp);
 			return null;
 	}
 }
