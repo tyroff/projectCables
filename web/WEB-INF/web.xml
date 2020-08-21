@@ -53,6 +53,22 @@
 		<servlet-name>DispatcherServlet</servlet-name>
 		<url-pattern>/workspace/tnla.html</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/workspace/tnla/delegate.html</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/workspace/tnla/add.html</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/workspace/tnla/save.html</url-pattern>
+	</servlet-mapping>
     
 	<!--servlet>
 		<servlet-name>TnlaServlet</servlet-name>
@@ -61,7 +77,7 @@
 	<servlet-mapping>
 		<servlet-name>TnlaServlet</servlet-name>
 		<url-pattern>/workspace/tnla.html</url-pattern>
-	</servlet-mapping-->
+	</servlet-mapping>
     
 	<servlet>
 		<servlet-name>TnlaDelegateServlet</servlet-name>
@@ -79,7 +95,7 @@
 	<servlet-mapping>
 		<servlet-name>TnlaAddServlet</servlet-name>
 		<url-pattern>/workspace/tnla/add.html</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping-->
             
 	<servlet>
 		<servlet-name>TnlaUpdateServlet</servlet-name>

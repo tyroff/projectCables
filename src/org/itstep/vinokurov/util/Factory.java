@@ -1,4 +1,4 @@
-package org.itstep.vinokurov;
+package org.itstep.vinokurov.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,12 +21,18 @@ import org.itstep.vinokurov.storage.postgres.TnlaDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.UserDbDaoImpl;
 import org.itstep.vinokurov.web.action.Action;
 import org.itstep.vinokurov.web.action.workspace.tnla.TnlaAction;
+import org.itstep.vinokurov.web.action.workspace.tnla.TnlaAddAction;
+import org.itstep.vinokurov.web.action.workspace.tnla.TnlaDelegateAction;
 
 public class Factory implements AutoCloseable{
 	
 	private Map<String, ActionFactory> actions = new HashMap<>();
 	{
+		ActionFactory mainActionFactory = () -> getMainAction();
 		actions.put("/workspace/tnla", () -> getTnlaAction());
+		actions.put("/workspace/tnla/delegate", () -> getTnlaDelegateAction());
+		actions.put("/workspace/tnla/add", () -> getTnlaAddAction());
+		//actions.put("/workspace/tnla/save", () -> getTnlaSeveAction());
 	}
 	
 	public Action getAction(String url) throws LogicException {
@@ -37,6 +43,14 @@ public class Factory implements AutoCloseable{
 		return null;
 	}
 	
+	private Action mainAction = null;
+	public Action getMainAction() throws LogicException {
+		if(mainAction == null) {
+			mainAction = new MainAction();
+		}
+		return mainAction;
+	}
+	
 	private Action tnlaAction = null;
 	public Action getTnlaAction() throws LogicException {
 		if(tnlaAction == null) {
@@ -45,7 +59,37 @@ public class Factory implements AutoCloseable{
 			tnlaActionImpl.setTnlaService(getTnlaService());
 		}
 		return tnlaAction;
+	}	
+	
+	private Action tnlaDelegateAction = null;
+	public Action getTnlaDelegateAction() throws LogicException {
+		if(tnlaDelegateAction == null) {
+			TnlaDelegateAction tnlaDelegateActionImpl = new TnlaDelegateAction();
+			tnlaDelegateAction = tnlaDelegateActionImpl;
+		}
+		return tnlaDelegateAction;
 	}
+
+	private Action tnlaAddAction = null;
+	public Action getTnlaAddAction() throws LogicException {
+		if(tnlaAddAction == null) {
+			TnlaAddAction tnlaAddActionImpl = new TnlaAddAction();
+			tnlaAddAction = tnlaAddActionImpl;
+		}
+		return tnlaAddAction;
+	}	
+	
+/*	private Action tnlaSaveAction = null;
+	public Action getTnlaSaveAction() throws LogicException {
+		if(tnlaSaveAction == null) {
+			TnlaSaveAction tnlaSaveActionImpl = new TnlaSaveAction();
+			tnlaSaveAction = tnlaSaveActionImpl;
+			tnlaSaveActionImpl.setTnlaService(getTnlaService());
+		}
+		return tnlaSaveAction;
+	}*/
+	
+	
 	
 	private CableCategoryService cableCategoryService = null;
 	public CableCategoryService getCableCategoryService() throws LogicException {

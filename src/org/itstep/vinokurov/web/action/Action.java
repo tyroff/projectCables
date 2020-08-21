@@ -17,8 +17,8 @@ public interface Action {
 		}
 		
 		public Result(String url, ResultType type) {
-			this.type = type;
 			this.url = url;
+			this.type = type;
 		}
 
 		public String getUrl() {
