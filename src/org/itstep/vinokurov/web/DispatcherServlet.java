@@ -12,6 +12,7 @@ import org.itstep.vinokurov.logic.LogicException;
 import org.itstep.vinokurov.web.action.Action;
 import org.itstep.vinokurov.web.action.Action.Result;
 import org.itstep.vinokurov.web.action.Action.ResultType;
+import org.itstep.vinokurov.web.action.ActionException;
 
 public class DispatcherServlet extends HttpServlet{
 
@@ -26,27 +27,41 @@ public class DispatcherServlet extends HttpServlet{
 	}
 
 	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String url = req.getRequestURI();
-		url = url.substring(req.getContextPath().length());
-		if(url.endsWith(".html")) {
-			url = url.substring(0, url.length() - ".html".length());
+		String uri = req.getRequestURI();
+System.out.println("PROCESS URI " + uri);
+		uri = uri.substring(req.getContextPath().length());
+		if(uri.endsWith(".html")) {
+			uri = uri.substring(0, uri.length() - ".html".length());
 		}
+System.out.println("PROCESSED URI " + uri);
 		try(Factory factory = new Factory()) {
-			Action action = factory.getAction(url);
+			Action action = factory.getAction(uri);
 			Result result = null;
 			if(action != null) {
 				result = action.exec(req, resp);
 			}
 			if(result == null || result.getType() == ResultType.FORWARD) {
 				if(result != null) {
-					url = result.getUrl();
+					uri = result.getUrl();
 				}
-				req.getRequestDispatcher("/WEB-INF/jsp" + url + ".jsp").forward(req, resp);
+				if(uri.equals("/")) {
+					req.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
+				} else {
+					req.getRequestDispatcher("/WEB-INF/jsp" + uri + ".jsp").forward(req, resp);
+				}
 			} else {
-				resp.sendRedirect(req.getContextPath() + result.getUrl());
+				uri = req.getContextPath() + result.getUrl() + ".html";
+				String params = result.getParameters();
+				if(!params.isEmpty()) {
+					uri += "?" + params;
+				}
+System.out.println("REDIRECTED URI " + uri);
+				resp.sendRedirect(uri);
 			}
+		} catch(ActionException e) {
+			resp.sendError(e.getCode());
 		} catch(LogicException e) {
-			throw new ServletException();
+			throw new ServletException(e);
 		}
 	}
 }

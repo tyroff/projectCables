@@ -81,6 +81,37 @@ public class UserDbDaoImpl implements UserDao {
 	}
 
 	@Override
+	public User read(String login, String password) throws DaoException {
+		String sqlRequest = "SELECT \"id\", \"role\" FROM \"user\" WHERE \"login\" = ? AND \"password\" = ?";
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			preparedStatement = connection.prepareStatement(sqlRequest);
+			preparedStatement.setString(1, login);
+			preparedStatement.setString(2, password);
+			resultSet = preparedStatement.executeQuery();
+			User user = null;
+			if(resultSet.next()) {
+				user = new User();
+				user.setId(resultSet.getLong("id"));
+				user.setLogin(login);
+				user.setPassword(password);
+				user.setRole(Role.values()[resultSet.getInt("role")]);
+			}
+			return user;
+		} catch(SQLException e) {
+			throw new DaoException(e);
+		} finally {
+			try {
+				resultSet.close();
+			} catch (SQLException e) {}
+			try {
+				preparedStatement.close();
+			} catch (SQLException e) {}
+		}
+	}
+	
+	@Override
 	public void update(User user) throws DaoException {
 		String sqlRequest = "UPDATE \"user\" SET \"login\" = ?, \"password\" = ?, \"role\" = ? WHERE \"id\" = ?";
 		PreparedStatement statement = null;
@@ -114,37 +145,6 @@ public class UserDbDaoImpl implements UserDao {
 			try {
 				preparedStatement.close();
 			} catch(Exception e) {}
-		}
-	}
-
-	@Override
-	public User read(String login, String password) throws DaoException {
-		String sqlRequest = "SELECT \"id\", \"role\" FROM \"user\" WHERE \"login\" = ? AND \"password\" = ?";
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		try {
-			preparedStatement = connection.prepareStatement(sqlRequest);
-			preparedStatement.setString(1, login);
-			preparedStatement.setString(2, password);
-			resultSet = preparedStatement.executeQuery();
-			User user = null;
-			if(resultSet.next()) {
-				user = new User();
-				user.setId(resultSet.getLong("id"));
-				user.setLogin(login);
-				user.setPassword(password);
-				user.setRole(Role.values()[resultSet.getInt("role")]);
-			}
-			return user;
-		} catch(SQLException e) {
-			throw new DaoException(e);
-		} finally {
-			try {
-				resultSet.close();
-			} catch (SQLException e) {}
-			try {
-				preparedStatement.close();
-			} catch (SQLException e) {}
 		}
 	}
 }

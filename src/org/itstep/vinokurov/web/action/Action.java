@@ -1,5 +1,11 @@
 package org.itstep.vinokurov.web.action;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,6 +17,7 @@ public interface Action {
 	public static class Result {
 		private final String url;
 		private final ResultType type;
+		private final List<Pair> parameters = new ArrayList<>();
 		
 		public Result(String url) {
 			this(url, ResultType.REDIRECT);
@@ -27,6 +34,36 @@ public interface Action {
 
 		public ResultType getType() {
 			return type;
+		}
+		
+		public String getParameters() {
+			return parameters.stream().map((parameter) -> parameter.toString()).collect(Collectors.joining("&"));
+		}
+		
+		public Result add(String name, String value) {
+			parameters.add(new Pair(name, value));
+			return this;
+		}
+
+		private static class Pair {
+			private final String name;
+			private final String value;
+			
+			public Pair(String name, String value) {
+				this.name = name;
+				this.value = value;
+			}
+
+			@Override
+			public String toString() {
+				String encodedValue = null;
+				try {
+					encodedValue = URLEncoder.encode(value, "UTF-8");
+				} catch(UnsupportedEncodingException e) {
+					encodedValue = value;
+				}
+				return String.join("=", name, encodedValue);
+			}
 		}
 	}
 	

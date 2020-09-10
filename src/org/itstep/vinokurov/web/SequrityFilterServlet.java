@@ -25,7 +25,7 @@ public class SequrityFilterServlet implements Filter{
 	static {
 		whiteURLs.add("/");
 		whiteURLs.add("/index.html");
-		whiteURLs.add("/authorization.html");
+		whiteURLs.add("/login.html");
 	}
 	
 	private static Map<Role, Set<String>> accessUrl = new HashMap<>();
@@ -43,6 +43,7 @@ public class SequrityFilterServlet implements Filter{
 		technologistURLs.add("/workspace/tnla/save.html");
 		technologistURLs.add("/workspace/tnla/delete.html");
 		technologistURLs.add("/workspace/tnla/deleteImplement.html");
+		
 		technologistURLs.add("/workspace/cableCategory.html");
 		technologistURLs.add("/workspace/cableCategory/delegate.html");
 		technologistURLs.add("/workspace/cableCategory/add.html");
@@ -67,7 +68,7 @@ public class SequrityFilterServlet implements Filter{
 		if(!whiteURLs.contains(uri)) {
 			HttpSession session = request.getSession(false);
 			if(session != null) {
-				User user = (User)session.getAttribute("authorizedUser");
+				User user = (User)session.getAttribute("userSession");
 				if(user != null) {
 					Set<String> urls = accessUrl.get(user.getRole());
 					if(urls.contains(uri)) {
@@ -81,7 +82,11 @@ public class SequrityFilterServlet implements Filter{
 		if(isAccess) {
 			chain.doFilter(req, resp);
 		} else {
+			//TODO: it is need to delete!
+			System.out.println(uri);
+			//
 			response.sendRedirect(request.getContextPath() + "/index.html?message=" + URLEncoder.encode(String.format("Доступ к [%s] запрещён!", uri), "UTF-8"));
+			//TODO: it is need to creat a massage "Доступ запрещён для не авторизированным пользователям."
 		}
 	}
 }
