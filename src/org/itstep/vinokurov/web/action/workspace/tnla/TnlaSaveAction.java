@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.itstep.vinokurov.domain.Tnla;
 import org.itstep.vinokurov.logic.LogicException;
 import org.itstep.vinokurov.logic.TnlaService;
-import org.itstep.vinokurov.util.Factory;
 import org.itstep.vinokurov.web.action.Action;
 
 public class TnlaSaveAction implements Action{
@@ -68,9 +67,8 @@ public class TnlaSaveAction implements Action{
 		tnla.setDateStart(startDate);
 		tnla.setDateEnd(endDate);
 		
-		try(Factory factory = new Factory()) {
-			TnlaService service = factory.getTnlaService();
-			service.save(tnla);
+		try {
+			tnlaService.save(tnla);
 			return new Result("/workspace/tnla");
 		} catch (LogicException e) {
 			return null;

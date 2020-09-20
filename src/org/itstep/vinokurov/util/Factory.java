@@ -33,6 +33,7 @@ import org.itstep.vinokurov.web.action.workspace.cableCategory.CableCategorySave
 import org.itstep.vinokurov.web.action.workspace.cableCategory.CableCategoryUpdateAction;
 import org.itstep.vinokurov.web.action.workspace.tnla.TnlaAction;
 import org.itstep.vinokurov.web.action.workspace.tnla.TnlaAddAction;
+import org.itstep.vinokurov.web.action.workspace.tnla.TnlaAndCableCategoryAction;
 import org.itstep.vinokurov.web.action.workspace.tnla.TnlaDelegateAction;
 import org.itstep.vinokurov.web.action.workspace.tnla.TnlaDeleteAction;
 import org.itstep.vinokurov.web.action.workspace.tnla.TnlaDeleteImplementAction;
@@ -56,6 +57,7 @@ public class Factory implements AutoCloseable{
 		actions.put("/workspace/tnla/update", () -> getTnlaUpdateAction());
 		actions.put("/workspace/tnla/delete", () -> getTnlaDeleteAction());
 		actions.put("/workspace/tnla/deleteImplement", () -> getTnlaDeleteImplementAction());
+		actions.put("/workspace/tnla/tnlaAndCableCategory", () -> getTnlaAndCableCategoryAction());
 		
 		actions.put("/workspace/cableCategory", () -> getCableCategoryAction());
 		actions.put("/workspace/cableCategory/delegate", () -> getCableCategoryDelegateAction());
@@ -172,6 +174,16 @@ public class Factory implements AutoCloseable{
 			TnlaDeleteImplementAction tnlaDeleteImplementActionImpl = new TnlaDeleteImplementAction();
 			tnlaDeleteImplementAction = tnlaDeleteImplementActionImpl;
 			tnlaDeleteImplementActionImpl.setTnlaService(getTnlaService());
+		}
+		return tnlaDeleteImplementAction;
+	}
+	
+	private Action tnlaAndCableCategoryAction = null;
+	public Action getTnlaAndCableCategoryAction() throws LogicException {
+		if(tnlaAndCableCategoryAction == null) {
+			TnlaAndCableCategoryAction tnlaAndCableCategoryActionImpl = new TnlaAndCableCategoryAction();
+			tnlaAndCableCategoryAction = tnlaAndCableCategoryActionImpl;
+			tnlaAndCableCategoryActionImpl.setTnlaService(getTnlaService());
 		}
 		return tnlaDeleteImplementAction;
 	}

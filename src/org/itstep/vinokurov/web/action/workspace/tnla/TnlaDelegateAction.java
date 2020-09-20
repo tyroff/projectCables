@@ -19,8 +19,8 @@ public class TnlaDelegateAction implements Action{
 			return new Result("/workspace/tnla/delete").add("id", req.getParameter("id"));
 		} else if ("tables".equals(action)) {
 		    // Submit button pressed.
-		} else if ("categories".equals(action)) {
-		    // Submit button pressed.
+		} else if ("tnlaAndCableCategory".equals(action)) {
+			return new Result("/workspace/tnla/tnlaAndCableCategory").add("id", req.getParameter("id"));
 		} else {
 			throw new IllegalArgumentException();
 		}
