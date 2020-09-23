@@ -36,14 +36,13 @@ INSERT INTO "technical_normative_legal_act"
 
 INSERT INTO "technical_normative_legal_act_vs_cable_category"
 (
-"id",
 "id_technical_normative_legal_act",
 "id_cable_category"
 ) VALUES
-(1, 1, 1),
-(2, 2, 3),
-(3, 3, 1),
-(4, 3, 3);
+(1, 1),
+(2, 3),
+(3, 1),
+(3, 3);
 
 
 

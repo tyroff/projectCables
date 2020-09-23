@@ -6,15 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.itstep.vinokurov.domain.Tnla;
+import org.itstep.vinokurov.domain.TnlaAndCableCategory;
 import org.itstep.vinokurov.storage.DaoException;
-import org.itstep.vinokurov.storage.TnlaAndCableCategoryDao;
-import org.itstep.vinokurov.storage.TnlaDao;
+import org.itstep.vinokurov.storage.DeleteDao;
+import org.itstep.vinokurov.storage.ReadAllDao;
+import org.itstep.vinokurov.storage.ReadDao;
 
-public class TnlaAndCableCategoryDaoImpl implements TnlaAndCableCategoryDao {
+public class TnlaAndCableCategoryDaoImpl implements DeleteDao<Short>, ReadDao<Set<Short>, Short>, ReadAllDao<TnlaAndCableCategory> {
 	private Connection connection;
 
 	public void setConnection(Connection connection) {
@@ -22,139 +24,13 @@ public class TnlaAndCableCategoryDaoImpl implements TnlaAndCableCategoryDao {
 	}
 
 	@Override
-	public Long create(Tnla tnla) throws DaoException {
-		/*String sqlRequest = "INSERT INTO \"technical_normative_legal_act\"(\"code\", \"name\", \"date_start\", \"date_end\") VALUES(?, ?, ?, ?)";
-		PreparedStatement statement = null;
-		ResultSet result = null;
-		try {
-			statement = connection.prepareStatement(sqlRequest, Statement.RETURN_GENERATED_KEYS);
-			statement.setString(1, tnla.getCode());
-			statement.setString(2, tnla.getName());
-			statement.setDate(3, new java.sql.Date(tnla.getDateStart().getTime()));
-			if(tnla.getDateEnd() == null) {
-				statement.setDate(4, null);
-			} else {
-				statement.setDate(4, new java.sql.Date(tnla.getDateEnd().getTime()));
-			}
-			statement.executeUpdate();
-			result = statement.getGeneratedKeys();
-			result.next();
-			return result.getLong(1);
-		} catch(SQLException e) {
-			throw new DaoException(e);
-		} finally {
-			try {
-				statement.close();
-			} catch(Exception e) {}
-			try {
-				result.close();
-			} catch(Exception e) {}
-		}*/
-	}
-
-	@Override
-	public Tnla read(Long id) throws DaoException {
-		/*String sqlRequest = "SELECT \"code\", \"name\", \"date_start\", \"date_end\" FROM \"technical_normative_legal_act\" WHERE \"id\" = ?";
-		PreparedStatement statement= null;
-		ResultSet result = null;
-		try {
-			statement = connection.prepareStatement(sqlRequest);
-			statement.setLong(1, id);
-			result = statement.executeQuery();
-			Tnla tnla = null;
-			if (result.next()) {
-				tnla = new Tnla();
-				tnla.setId(id);
-				tnla.setCode(result.getString("code"));
-				tnla.setName(result.getString("name"));
-				tnla.setDateStart(new java.util.Date(result.getDate("date_start").getTime()));
-				if(result.getDate("date_end") == null) {
-					tnla.setDateEnd(null);
-				} else {
-					tnla.setDateEnd(new java.util.Date(result.getDate("date_end").getTime()));
-				}
-			}
-			return tnla;
-		} catch (SQLException e) {
-			throw new DaoException(e);
-		} finally {
-			try {
-				result.close();
-			} catch(Exception e) {}
-			try {
-				statement.close();
-			} catch(Exception e) {}
-		}*/
-	}
-
-	@Override
-	public void update(Tnla tnla) throws DaoException {
-		/*String sqlRequest = "UPDATE \"technical_normative_legal_act\" SET \"code\" = ?, \"name\" = ?, \"date_start\" = ?, \"date_end\" = ? WHERE \"id\" = ?";
-		PreparedStatement statement = null;
-		try {
-			statement = connection.prepareStatement(sqlRequest);
-			statement.setString(1, tnla.getCode());
-			statement.setString(2, tnla.getName());
-			statement.setDate(3, new java.sql.Date(tnla.getDateStart().getTime()));
-			if(tnla.getDateEnd() == null) {
-				statement.setDate(4, null);
-			} else {
-				statement.setDate(4, new java.sql.Date(tnla.getDateEnd().getTime()));
-			}
-			statement.setLong(5, tnla.getId());
-			statement.executeUpdate();
-		} catch(SQLException e) {
-			throw new DaoException(e);
-		} finally {
-			try {
-				statement.close();
-			} catch(Exception e) {}
-		}*/
-	}
-
-	@Override
-	public List<Tnla> read() throws DaoException {
-		/*String sqlRequest = "SELECT \"id\", \"code\", \"name\", \"date_start\", \"date_end\" FROM \"technical_normative_legal_act\" ORDER BY \"code\"";
-		Statement statement = null;
-		ResultSet result = null;
-		try {
-			statement = connection.createStatement();
-			result = statement.executeQuery(sqlRequest);
-			List<Tnla> tnlas = new ArrayList<>();
-			while(result.next()) {
-				Tnla tnla = new Tnla();
-				tnla.setId(result.getLong("id"));
-				tnla.setCode(result.getString("code"));
-				tnla.setName(result.getString("name"));
-				tnla.setDateStart(new java.util.Date(result.getDate("date_start").getTime()));
-				Date endDate = result.getDate("date_end");
-				if(endDate == null) {
-					tnla.setDateEnd(null);
-				} else {
-					tnla.setDateEnd(new java.util.Date(endDate.getTime()));
-				}
-				tnlas.add(tnla);
-			}
-			return tnlas;
-		} catch(SQLException e) {
-			throw new DaoException(e);
-		} finally {
-			try {
-				result.close();
-			} catch(Exception e) {}
-			try {
-				statement.close();
-			} catch(Exception e) {}
-		}*/
-	}
-
-	@Override
-	public void delete(Long id) throws DaoException {
-		/*String sqlRequest = "DELETE FROM \"technical_normative_legal_act\" WHERE \"id\" = ?";
+	public void delete(Short... idTnla) throws DaoException {
+		String sqlRequest = "DELETE FROM \"technical_normative_legal_act_vs_cable_category\" WHERE \"id_technical_normative_legal_act\" = ? AND \"id_cable_category\" = ?";
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = connection.prepareStatement(sqlRequest);
-			preparedStatement.setLong(1, id);
+			preparedStatement.setShort(1, idTnla[0]);
+			preparedStatement.setShort(2, idTnla[1]);
 			preparedStatement.executeUpdate();
 		} catch(SQLException e) {
 			throw new DaoException(e);
@@ -162,6 +38,71 @@ public class TnlaAndCableCategoryDaoImpl implements TnlaAndCableCategoryDao {
 			try {
 				preparedStatement.close();
 			} catch(Exception e) {}
-		}*/
+		}
+	}
+
+	@Override
+	public Set<Short> read(Short... idTnla) throws DaoException {
+		Set<Short> idCableCategories = new HashSet<Short>();
+		String sqlRequst = "SELECT \"id_cable_category\" FROM \"technical_normative_legal_act_vs_cable_category\" WHERE \"id_technical_normative_legal_act\" = ?";
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		try {
+			statement = connection.prepareStatement(sqlRequst);
+			statement.setShort(1, idTnla[0]);
+			result = statement.executeQuery();
+			while(result.next()) {
+				idCableCategories.add(result.getShort("id_cable_category"));
+			}
+		} catch (SQLException e) {
+			throw new DaoException(e);
+		} finally {
+			try{
+				result.close();
+			} catch(Exception e) {}
+			try {
+				statement.close();
+			} catch (Exception e) {}
+		}
+		return idCableCategories;
+	}
+
+	@Override
+	public List<TnlaAndCableCategory> readAll() throws DaoException {
+		String sqlRequest = "SELECT \"id_technical_normative_legal_act\", \"id_cable_category\" FROM \"technical_normative_legal_act_vs_cable_category\" ORDER BY \"id_technical_normative_legal_act\"";
+		Statement statement = null;
+		ResultSet result = null;
+		try {
+			statement = connection.createStatement();
+			result = statement.executeQuery(sqlRequest);
+			TnlaAndCableCategory tnlaAndCableCategory = null;
+			Short bufIdTnla = null;
+			List<TnlaAndCableCategory> TnlaAndCableCategories = new ArrayList<>();
+			Set<Short> idCableCategoies = new HashSet<>();
+			while(result.next()) {
+				Short idTnla = result.getShort("id_technical_normative_legal_act");
+				if(idTnla == bufIdTnla) {
+					idCableCategoies.add(result.getShort("id_cable_category"));
+				} else if(tnlaAndCableCategory == null) {
+					tnlaAndCableCategory = new TnlaAndCableCategory();
+					tnlaAndCableCategory.setIdTnla(idTnla);
+					bufIdTnla = idTnla;
+					idCableCategoies.add(result.getShort("id_cable_category"));
+				} else if(idTnla != bufIdTnla) {
+					tnlaAndCableCategory.setIdesOfCableCategory(idCableCategoies);
+					TnlaAndCableCategories.add(tnlaAndCableCategory);
+					idCableCategoies.clear();
+					idCableCategoies.add(result.getShort("id_cable_category"));
+					tnlaAndCableCategory = new TnlaAndCableCategory();
+					tnlaAndCableCategory.setIdTnla(idTnla);
+					bufIdTnla = idTnla;
+				} else {
+					
+				}
+			}
+			return TnlaAndCableCategories;
+		} catch(SQLException e) {
+			throw new DaoException(e);
+		}
 	}
 }

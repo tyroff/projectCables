@@ -43,6 +43,7 @@ public class SequrityFilterServlet implements Filter{
 		technologistURLs.add("/workspace/tnla/save.html");
 		technologistURLs.add("/workspace/tnla/delete.html");
 		technologistURLs.add("/workspace/tnla/deleteImplement.html");
+		technologistURLs.add("/workspace/tnla/tnlaAndCableCategory.html");
 		
 		technologistURLs.add("/workspace/cableCategory.html");
 		technologistURLs.add("/workspace/cableCategory/delegate.html");

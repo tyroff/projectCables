@@ -184,8 +184,9 @@ public class Factory implements AutoCloseable{
 			TnlaAndCableCategoryAction tnlaAndCableCategoryActionImpl = new TnlaAndCableCategoryAction();
 			tnlaAndCableCategoryAction = tnlaAndCableCategoryActionImpl;
 			tnlaAndCableCategoryActionImpl.setTnlaService(getTnlaService());
+			tnlaAndCableCategoryActionImpl.setCableCategoryService(getCableCategoryService());
 		}
-		return tnlaDeleteImplementAction;
+		return tnlaAndCableCategoryAction;
 	}
 	
 	private Action cableCategoryAction = null;

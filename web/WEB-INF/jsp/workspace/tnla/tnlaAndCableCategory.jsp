@@ -21,19 +21,26 @@
 							<br>
 							<label for="code">Код ТНПА</label>
 							<br>
-							<input type="text" name="code" value="${tnla.code}">
+							<input type="text" name="code" value="${tnla.code}" disabled>
 							<br>
 							<br>
 							<label for="name">Наименование ТНПА</label>
 							<br>
-							<input type="text" name="name" value="${tnla.name}">
+							<input type="text" name="name" value="${tnla.name}" disabled>
 							<br>
-							<c:forEach var="cableCategory" items="${cableCategories}">
-								<tr>
-									<td><input type="checkbox" name="id" value="${cableCategory.id}"></td>
-									<td>${cableCategory.name}</td>
-								</tr>
-							</c:forEach>
+							<br>
+					        <table cellspacing=0 border=1 width="100%" cellpadding="5">
+					          	<tr>
+					            	<th>id</th>
+					            	<th>Наименование категории кабелей</th>
+					          	</tr>
+								<c:forEach var="cableCategory" items="${cableCategories}">
+									<tr>
+										<td><input type="checkbox" name="id" value="${cableCategory.id}"></td>
+										<td>${cableCategory.name}</td>
+									</tr>
+								</c:forEach>
+							</table>
 							<br>
 							<br>
 							<button type="submit" class="button button_add">

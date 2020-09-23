@@ -10,8 +10,9 @@ import org.itstep.vinokurov.domain.Tnla;
 import org.itstep.vinokurov.logic.CableCategoryService;
 import org.itstep.vinokurov.logic.LogicException;
 import org.itstep.vinokurov.logic.TnlaService;
+import org.itstep.vinokurov.web.action.Action;
 
-public class TnlaAndCableCategoryAction extends BaseTnlaAction{
+public class TnlaAndCableCategoryAction extends BaseTnlaAndCableCategoryAction{
 	private TnlaService tnlaService;
 	private CableCategoryService cableCategoryService;
 	
@@ -33,9 +34,8 @@ public class TnlaAndCableCategoryAction extends BaseTnlaAction{
 				throw new IllegalArgumentException();
 			}
 			List<CableCategory> cableCategories = cableCategoryService.findAll();
-			
-			req.setAttribute("cableCategories", cableCategories);
 			req.setAttribute("tnla", tnla);
+			req.setAttribute("cableCategories", cableCategories);
 			return null;
 		}
 		return null;
