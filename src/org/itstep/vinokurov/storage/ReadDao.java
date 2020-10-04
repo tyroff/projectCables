@@ -1,5 +1,5 @@
 package org.itstep.vinokurov.storage;
 
-public interface ReadDao<T, S>{
-	T read(S... id) throws DaoException;
+public interface ReadDao<E, T>{
+	E read(T id) throws DaoException;
 }

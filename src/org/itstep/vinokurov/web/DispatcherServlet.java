@@ -28,12 +28,12 @@ public class DispatcherServlet extends HttpServlet{
 
 	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String uri = req.getRequestURI();
-System.out.println("PROCESS URI " + uri);
+System.out.println("PROCESS URI " + uri);//TODO: it is need delete
 		uri = uri.substring(req.getContextPath().length());
 		if(uri.endsWith(".html")) {
 			uri = uri.substring(0, uri.length() - ".html".length());
 		}
-System.out.println("PROCESSED URI " + uri);
+System.out.println("PROCESSED URI " + uri);//TODO: it is need delete
 		try(Factory factory = new Factory()) {
 			Action action = factory.getAction(uri);
 			Result result = null;
@@ -55,7 +55,7 @@ System.out.println("PROCESSED URI " + uri);
 				if(!params.isEmpty()) {
 					uri += "?" + params;
 				}
-System.out.println("REDIRECTED URI " + uri);
+System.out.println("REDIRECTED URI " + uri);//TODO: it is need delete
 				resp.sendRedirect(uri);
 			}
 		} catch(ActionException e) {

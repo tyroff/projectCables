@@ -6,17 +6,22 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.itstep.vinokurov.domain.TnlaAndCableCategory;
 import org.itstep.vinokurov.logic.CableCategoryService;
 import org.itstep.vinokurov.logic.CableCategoryServiceImpl;
 import org.itstep.vinokurov.logic.LogicException;
+import org.itstep.vinokurov.logic.TnlaAndCableCategoryService;
+import org.itstep.vinokurov.logic.TnlaAndCableCategoryServiceImpl;
 import org.itstep.vinokurov.logic.TnlaService;
 import org.itstep.vinokurov.logic.TnlaServiceImpl;
 import org.itstep.vinokurov.logic.UserService;
 import org.itstep.vinokurov.logic.UserServiceImpl;
 import org.itstep.vinokurov.storage.CableCategoryDao;
+import org.itstep.vinokurov.storage.TnlaAndCableCategoryDao;
 import org.itstep.vinokurov.storage.TnlaDao;
 import org.itstep.vinokurov.storage.UserDao;
 import org.itstep.vinokurov.storage.postgres.CableCategoryDbDaoImpl;
+import org.itstep.vinokurov.storage.postgres.TnlaAndCableCategoryDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.TnlaDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.UserDbDaoImpl;
 import org.itstep.vinokurov.web.action.Action;
@@ -58,6 +63,7 @@ public class Factory implements AutoCloseable{
 		actions.put("/workspace/tnla/delete", () -> getTnlaDeleteAction());
 		actions.put("/workspace/tnla/deleteImplement", () -> getTnlaDeleteImplementAction());
 		actions.put("/workspace/tnla/tnlaAndCableCategory", () -> getTnlaAndCableCategoryAction());
+		actions.put("/workspace/tnla/tnlaAndCableCategorySave", () -> getTnlaAndCableCategorySaveAction());		
 		
 		actions.put("/workspace/cableCategory", () -> getCableCategoryAction());
 		actions.put("/workspace/cableCategory/delegate", () -> getCableCategoryDelegateAction());
@@ -185,6 +191,7 @@ public class Factory implements AutoCloseable{
 			tnlaAndCableCategoryAction = tnlaAndCableCategoryActionImpl;
 			tnlaAndCableCategoryActionImpl.setTnlaService(getTnlaService());
 			tnlaAndCableCategoryActionImpl.setCableCategoryService(getCableCategoryService());
+			tnlaAndCableCategoryActionImpl.setTnlaAndCableCategoryService(getTnlaAndCableCategory());
 		}
 		return tnlaAndCableCategoryAction;
 	}
@@ -279,6 +286,18 @@ public class Factory implements AutoCloseable{
 		}
 		return cableCategoryService;
 	}
+
+	private TnlaAndCableCategoryService<TnlaAndCableCategory, Long> tnlaAndCableCategoryService = null;
+	public TnlaAndCableCategoryService<TnlaAndCableCategory, Long> getTnlaAndCableCategory() throws LogicException {
+		if(tnlaAndCableCategoryService == null) {
+			if(tnlaAndCableCategoryService == null) {
+				TnlaAndCableCategoryServiceImpl service = new TnlaAndCableCategoryServiceImpl();
+				tnlaAndCableCategoryService = service;
+				service.setTnlaAndCableCategoryDao(getTnlaAndCableCategoryDao());
+			}
+		}
+		return tnlaAndCableCategoryService;
+	}
 	
 	private UserService userService = null;
 	public UserService getUserService() throws LogicException {
@@ -310,6 +329,16 @@ public class Factory implements AutoCloseable{
 			cableCategoryDbDaoImpl.setConnection(getConnection());
 		}
 		return cableCategoryDao;
+	}
+	
+	private TnlaAndCableCategoryDao<TnlaAndCableCategory, Long> tnlaAndCableCategoryDao = null;
+	public TnlaAndCableCategoryDao<TnlaAndCableCategory, Long> getTnlaAndCableCategoryDao() throws LogicException{
+		if(tnlaAndCableCategoryDao == null) {
+			TnlaAndCableCategoryDbDaoImpl tnlaAndCableCategoryDbDaoImpl = new TnlaAndCableCategoryDbDaoImpl();
+			tnlaAndCableCategoryDao = tnlaAndCableCategoryDbDaoImpl;
+			tnlaAndCableCategoryDbDaoImpl.setConnection(getConnection());
+		}
+		return tnlaAndCableCategoryDao;
 	}
 	
 	private UserDao userDao = null;

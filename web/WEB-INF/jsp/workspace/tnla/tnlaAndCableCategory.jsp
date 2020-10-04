@@ -16,8 +16,8 @@
 			<u:main>
 				<u:mainWorkspace>
 					<div>
-						<form action="save.html" method="post">
-							<input type="hidden" name="id" value="${tnla.id}">
+						<form action="tnlaAndCableCategorySave.html" method="post">
+							<input type="hidden" name="idTnla" value="${tnla.id}">
 							<br>
 							<label for="code">Код ТНПА</label>
 							<br>
@@ -29,25 +29,48 @@
 							<input type="text" name="name" value="${tnla.name}" disabled>
 							<br>
 							<br>
-					        <table cellspacing=0 border=1 width="100%" cellpadding="5">
-					          	<tr>
-					            	<th>id</th>
-					            	<th>Наименование категории кабелей</th>
-					          	</tr>
-								<c:forEach var="cableCategory" items="${cableCategories}">
-									<tr>
-										<td><input type="checkbox" name="id" value="${cableCategory.id}"></td>
-										<td>${cableCategory.name}</td>
-									</tr>
-								</c:forEach>
-							</table>
+							<c:if test="${cableCategoryChecked == null}">
+						        <table cellspacing=0 border=1 width="100%" cellpadding="5">
+						          	<tr>
+						            	<th>id</th>
+						            	<th>Наименование категории кабелей</th>
+						          	</tr>
+									<c:forEach var="cableCategory" items="${cableCategories}">
+										<tr>
+											<td><input type="checkbox" name="idCableCategory" value="${cableCategory.id}"></td>
+											<td>${cableCategory.name}</td>
+										</tr>
+									</c:forEach>
+								</table>
+							</c:if>
+							<c:if test="${cableCategoryChecked != null}">
+								<table cellspacing=0 border=1 width="100%" cellpadding="5">
+						          	<tr>
+						            	<th>id</th>
+						            	<th>Наименование категории кабелей</th>
+						          	</tr>
+									<c:forEach var="cableCategory" items="${cableCategories}">
+										<tr>
+											<c:choose>
+												<c:when test="${cableCategoryChecked.get(cableCategory.id)}">
+													<td><input type="checkbox" name="idCableCategory" value="${cableCategory.id}" checked></td>
+												</c:when>
+												<c:otherwise>
+													<td><input type="checkbox" name="idCableCategory" value="${cableCategory.id}"></td>
+												</c:otherwise>
+											</c:choose>
+											<td>${cableCategory.name}</td>
+										</tr>
+									</c:forEach>
+								</table>
+							</c:if>
 							<br>
 							<br>
 							<button type="submit" class="button button_add">
 								<span class="button-text">Сохранить</span>
 							</button>
 						</form>
-								<br>
+						<br>
 						<form action="../tnla.html">
 							<button type="submit" class="button button_del">
 								<span class="button-text">Отмена</span>
