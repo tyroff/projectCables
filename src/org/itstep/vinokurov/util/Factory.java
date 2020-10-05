@@ -39,6 +39,7 @@ import org.itstep.vinokurov.web.action.workspace.cableCategory.CableCategoryUpda
 import org.itstep.vinokurov.web.action.workspace.tnla.TnlaAction;
 import org.itstep.vinokurov.web.action.workspace.tnla.TnlaAddAction;
 import org.itstep.vinokurov.web.action.workspace.tnla.TnlaAndCableCategoryAction;
+import org.itstep.vinokurov.web.action.workspace.tnla.TnlaAndCableCategorySaveAction;
 import org.itstep.vinokurov.web.action.workspace.tnla.TnlaDelegateAction;
 import org.itstep.vinokurov.web.action.workspace.tnla.TnlaDeleteAction;
 import org.itstep.vinokurov.web.action.workspace.tnla.TnlaDeleteImplementAction;
@@ -191,9 +192,19 @@ public class Factory implements AutoCloseable{
 			tnlaAndCableCategoryAction = tnlaAndCableCategoryActionImpl;
 			tnlaAndCableCategoryActionImpl.setTnlaService(getTnlaService());
 			tnlaAndCableCategoryActionImpl.setCableCategoryService(getCableCategoryService());
-			tnlaAndCableCategoryActionImpl.setTnlaAndCableCategoryService(getTnlaAndCableCategory());
+			tnlaAndCableCategoryActionImpl.setTnlaAndCableCategoryService(getTnlaAndCableCategoryService());
 		}
 		return tnlaAndCableCategoryAction;
+	}
+	
+	private Action tnlaAndCableCategorySaveAction = null;
+	public Action getTnlaAndCableCategorySaveAction() throws LogicException {
+		if(tnlaAndCableCategorySaveAction == null) {
+			TnlaAndCableCategorySaveAction tnlaAndCableCategorySaveActionImpl = new TnlaAndCableCategorySaveAction();
+			tnlaAndCableCategorySaveAction = tnlaAndCableCategorySaveActionImpl;
+			tnlaAndCableCategorySaveActionImpl.setTnlaAndCableCategoryService(getTnlaAndCableCategoryService());
+		}
+		return tnlaAndCableCategorySaveAction;
 	}
 	
 	private Action cableCategoryAction = null;
@@ -288,7 +299,7 @@ public class Factory implements AutoCloseable{
 	}
 
 	private TnlaAndCableCategoryService<TnlaAndCableCategory, Long> tnlaAndCableCategoryService = null;
-	public TnlaAndCableCategoryService<TnlaAndCableCategory, Long> getTnlaAndCableCategory() throws LogicException {
+	public TnlaAndCableCategoryService<TnlaAndCableCategory, Long> getTnlaAndCableCategoryService() throws LogicException {
 		if(tnlaAndCableCategoryService == null) {
 			if(tnlaAndCableCategoryService == null) {
 				TnlaAndCableCategoryServiceImpl service = new TnlaAndCableCategoryServiceImpl();

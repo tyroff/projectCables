@@ -1,19 +1,14 @@
 package org.itstep.vinokurov.web.action.workspace.tnla;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.itstep.vinokurov.domain.Tnla;
 import org.itstep.vinokurov.domain.TnlaAndCableCategory;
-import org.itstep.vinokurov.logic.CableCategoryService;
 import org.itstep.vinokurov.logic.LogicException;
 import org.itstep.vinokurov.logic.TnlaAndCableCategoryService;
-import org.itstep.vinokurov.logic.TnlaService;
 import org.itstep.vinokurov.web.action.Action;
 
 public class TnlaAndCableCategorySaveAction implements Action{
@@ -25,18 +20,24 @@ public class TnlaAndCableCategorySaveAction implements Action{
 
 	@Override
 	public Result exec(HttpServletRequest req, HttpServletResponse resp) throws LogicException {
-		String idTnla = req.getParameter("idTnla");
-		if(idTnla == null || idTnla.isBlank()) {
-			throw new IllegalArgumentException();
+		Long idTnla = Long.parseLong(req.getParameter("idTnla"));
+		Set<Long> idCheckedCableCategories = tnlaAndCableCategory.findById(idTnla);
+		Set<Long> newIdCheckedCableCategories = new HashSet<>();
+		Long idChecked = 0L;
+		if(req.getParameterValues("idCableCategory") != null) {
+			for(String value : req.getParameterValues("idCableCategory")){
+				idChecked = Long.parseLong(value);
+				newIdCheckedCableCategories.add(idChecked);
+				if(!idCheckedCableCategories.contains(idChecked)) {
+					tnlaAndCableCategory.save(idTnla, idChecked);
+				}
+			}
 		}
-		Set<Long> idCableCategories = tnlaAndCableCategory.findById(Long.parseLong(idTnla));
-		Set<Long> newIdCableCategories = HZ;
-		
-		try {
-			tnlaService.save(tnla);
-			return new Result("/workspace/tnla");
-		} catch (LogicException e) {
-			return null;
-		}
+			for(Long idUnchecked : idCheckedCableCategories) {
+				if(!newIdCheckedCableCategories.contains(idUnchecked)) {
+					tnlaAndCableCategory.delete(idTnla, idUnchecked);
+				}
+			}
+		return new Result("/workspace/tnla");
 	}
 }
