@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class TnlaAndCableCategory extends Entity{
 	private Long idTnla;
-	private Set<Long> idesOfCableCategory;
+	private Set<Long> idesCableCategory;
 	
 	public Long getIdTnla() {
 		return idTnla;
@@ -15,15 +15,15 @@ public class TnlaAndCableCategory extends Entity{
 	}
 	
 	public Set<Long> getIdesOfCableCategory() {
-		return idesOfCableCategory;
+		return idesCableCategory;
 	}
 	
 	public void setIdesOfCableCategory(Set<Long> idesCableCategory) {
-		this.idesOfCableCategory = idesCableCategory;
+		this.idesCableCategory = idesCableCategory;
 	}
 
 	@Override
 	public String toString() {
-		return "TnlaAndCableCategory [idTnla=" + idTnla + ", idesOfCableCategory=" + idesOfCableCategory + "]";
+		return "TnlaAndCableCategory [id=" + idTnla + ", ides=" + idesCableCategory + "]";
 	}
 }

@@ -3,7 +3,6 @@ package org.itstep.vinokurov.logic;
 import java.util.List;
 
 import org.itstep.vinokurov.domain.CableCategory;
-import org.itstep.vinokurov.domain.Tnla;
 import org.itstep.vinokurov.storage.CableCategoryDao;
 import org.itstep.vinokurov.storage.DaoException;
 
