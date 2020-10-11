@@ -42,21 +42,32 @@ public class WorkspaceAction implements Action{
 		List<TnlaAndCableCategory> tnlaAndCableCategories = tnlaAndCableCategory.findAll();
 		
 		for(CableCategory mapCableCategory : cableCategories) {
-			cableCategoryAndTnlas.put(mapCableCategory, null);
-		}
-		
-		Set<Long> cableCategory = new HashSet<>();
-		Set<Tnla> tnlas = new HashSet<>();
-		for(TnlaAndCableCategory tnlaAndCableCategory : tnlaAndCableCategories) {
-			Tnla tnla = tnlaService.findById(tnlaAndCableCategory.getIdTnla());
-			cableCategory = tnlaAndCableCategory.getIdesOfCableCategory();
-			for(Long idCableCategory : cableCategory) {
-				CableCategory key = cableCategoryService.findById(idCableCategory);
-				tnlas = cableCategoryAndTnlas.get(key);
-				tnlas.add(tnla);
-				cableCategoryAndTnlas.put(key, tnlas);
+			Set<Long> idesCableCategory = null;
+			Set<Tnla> tnlas = null;
+			CableCategory сableCategoryIsEmpty = mapCableCategory;
+			CableCategory cableCategory = null;
+			for(TnlaAndCableCategory tnlaAndCableCategory : tnlaAndCableCategories) {
+				Tnla tnla = tnlaService.findById(tnlaAndCableCategory.getIdTnla());
+				idesCableCategory = tnlaAndCableCategory.getIdesOfCableCategory();
+				if(!idesCableCategory.isEmpty()) {
+					for(Long idCableCategory : idesCableCategory) {
+						cableCategory = cableCategoryService.findById(idCableCategory);
+						System.out.println("cableCategoryAndTnlas.get(cableCategory) = " +cableCategoryAndTnlas.get(cableCategory));
+						if(cableCategoryAndTnlas.get(cableCategory) == null) {
+							tnlas = new HashSet<>();
+							tnlas.add(tnla);
+						} else {
+							tnlas = cableCategoryAndTnlas.get(cableCategory);
+							tnlas.add(tnla);
+						}
+					}
+					cableCategoryAndTnlas.put(cableCategory, tnlas);
+				} else {
+					cableCategoryAndTnlas.put(сableCategoryIsEmpty, null);
+				}
 			}
 		}
+System.out.println("cableCategoryAndTnlas = " + cableCategoryAndTnlas);
 		req.setAttribute("cableCategoryAndTnlas", cableCategoryAndTnlas);
 		return null;
 	}

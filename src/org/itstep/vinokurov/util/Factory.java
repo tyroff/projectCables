@@ -114,6 +114,9 @@ public class Factory implements AutoCloseable{
 		if(workspaceAction == null) {
 			WorkspaceAction workspaceActionImpl = new WorkspaceAction();
 			workspaceAction = workspaceActionImpl;
+			workspaceActionImpl.setTnlaService(getTnlaService());
+			workspaceActionImpl.setCableCategoryService(getCableCategoryService());
+			workspaceActionImpl.setTnlaAndCableCategoryService(getTnlaAndCableCategoryService());
 		}
 		return workspaceAction;
 	}

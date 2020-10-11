@@ -73,27 +73,24 @@ public class TnlaAndCableCategoryDbDaoImpl implements TnlaAndCableCategoryDao<Tn
 		try {
 			statement = connection.createStatement();
 			result = statement.executeQuery(sqlRequest);
+			Long bufIdTnla = null;
 			TnlaAndCableCategory tnlaAndCableCategory = null;
-			Long bufIdTnla = 0L;
+			Set<Long> idesCableCategory = null;
 			List<TnlaAndCableCategory> tnlaAndCableCategories = new ArrayList<>();
-			Set<Long> idCableCategoies = new HashSet<>();
 			while(result.next()) {
 				Long idTnla = result.getLong("id_technical_normative_legal_act");
-				if(idTnla == bufIdTnla) {
-					idCableCategoies.add(result.getLong("id_cable_category"));
-				} else if(idTnla != bufIdTnla) {
-					tnlaAndCableCategory.setIdesOfCableCategory(idCableCategoies);
+				if(idTnla != bufIdTnla || bufIdTnla == null) {
+					bufIdTnla = idTnla;
+					tnlaAndCableCategory = new TnlaAndCableCategory();
+					idesCableCategory = new HashSet<>();
+					idesCableCategory.add(result.getLong("id_cable_category"));
+					tnlaAndCableCategory.setIdTnla(bufIdTnla);
+					tnlaAndCableCategory.setIdesOfCableCategory(idesCableCategory);
 					tnlaAndCableCategories.add(tnlaAndCableCategory);
-					idCableCategoies.clear();
-					idCableCategoies.add(result.getLong("id_cable_category"));
-					tnlaAndCableCategory = new TnlaAndCableCategory();
-					tnlaAndCableCategory.setIdTnla(idTnla);
-					bufIdTnla = idTnla;
-				} else {
-					tnlaAndCableCategory = new TnlaAndCableCategory();
-					tnlaAndCableCategory.setIdTnla(idTnla);
-					idCableCategoies.add(result.getLong("id_cable_category"));
-					bufIdTnla = idTnla;
+				} else if(idTnla == bufIdTnla) {
+					Set<Long> bufIdesCableCategory = tnlaAndCableCategory.getIdesOfCableCategory();
+					bufIdesCableCategory.add(result.getLong("id_cable_category"));
+					tnlaAndCableCategory.setIdesOfCableCategory(bufIdesCableCategory);
 				}
 			}
 			return tnlaAndCableCategories;

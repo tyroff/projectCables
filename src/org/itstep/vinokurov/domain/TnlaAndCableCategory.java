@@ -24,6 +24,6 @@ public class TnlaAndCableCategory extends Entity{
 
 	@Override
 	public String toString() {
-		return "TnlaAndCableCategory [id=" + idTnla + ", ides=" + idesCableCategory + "]";
+		return "TnlaAndCableCategory [idTnla=" + idTnla + ", idesCableCategory=" + idesCableCategory + "]";
 	}
 }
