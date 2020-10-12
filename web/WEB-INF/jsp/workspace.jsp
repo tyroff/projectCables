@@ -18,13 +18,20 @@
 				<u:mainWorkspace>
 					<ul>
 						<c:forEach var="cableCategoryAndTnlas" items="${cableCategoryAndTnlas}">
-							<li><input name="idCableCategory" value="${cableCategoryAndTnlas.key.id}">${cableCategoryAndTnlas.key.name}"
+							<li value="${cableCategoryAndTnlas.key.id}">${cableCategoryAndTnlas.key.name}"
 								<ul>
-									<c:set var="tnlas" items="${cableCategoryAndTnlas.value}"/>
-									<c:forEach var="tnlas" items="${tnlas}">
-										<li><input type="radio" name="idTnla" value="${tnlas.id}">"${tnlas.code} + ${tnlas.name}"</li>
+									<c:forEach var="tnlas" items="${cableCategoryAndTnlas.value}">
+										<li style="list-style-type: none">
+										<table cellspacing=0 border=0 width="100%" cellpadding="5">
+											<tr>
+												<td style="width: 30px"><input type="radio" name="idTnla" value="${tnlas.id}" name="idCableCategory" value="${cableCategoryAndTnlas.key.id}"></td>
+												<td>${tnlas.code}  "${tnlas.name}"</td>
+											</tr>
+											</table>
+										</li>
 									</c:forEach>
 								</ul>
+								<br>
 							</li>
 						</c:forEach>
 					</ul>						
@@ -33,3 +40,12 @@
 		</u:containerMainWorkspace>
 	</u:body>
 </u:head>
+
+
+<tr>
+			            	<th>id</th>
+			            	<th>Код ТНПА</th>
+			            	<th>Наименование ТНПА</th>
+			            	<th>Дата от</th>
+			           		<th>Дата до</th>
+			          	</tr>

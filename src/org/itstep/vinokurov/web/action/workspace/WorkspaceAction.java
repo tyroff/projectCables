@@ -37,37 +37,30 @@ public class WorkspaceAction implements Action{
 	
 	@Override
 	public Result exec(HttpServletRequest req, HttpServletResponse resp) throws LogicException {
+		Set<Long> idesCableCategory = null;
+		Set<Tnla> tnlas = null;
+		CableCategory cableCategory = null;
+
 		Map<CableCategory, Set<Tnla>> cableCategoryAndTnlas = new HashMap<>();
-		List<CableCategory> cableCategories = cableCategoryService.findAll();
 		List<TnlaAndCableCategory> tnlaAndCableCategories = tnlaAndCableCategory.findAll();
-		
-		for(CableCategory mapCableCategory : cableCategories) {
-			Set<Long> idesCableCategory = null;
-			Set<Tnla> tnlas = null;
-			CableCategory сableCategoryIsEmpty = mapCableCategory;
-			CableCategory cableCategory = null;
-			for(TnlaAndCableCategory tnlaAndCableCategory : tnlaAndCableCategories) {
-				Tnla tnla = tnlaService.findById(tnlaAndCableCategory.getIdTnla());
-				idesCableCategory = tnlaAndCableCategory.getIdesOfCableCategory();
-				if(!idesCableCategory.isEmpty()) {
-					for(Long idCableCategory : idesCableCategory) {
-						cableCategory = cableCategoryService.findById(idCableCategory);
-						System.out.println("cableCategoryAndTnlas.get(cableCategory) = " +cableCategoryAndTnlas.get(cableCategory));
-						if(cableCategoryAndTnlas.get(cableCategory) == null) {
-							tnlas = new HashSet<>();
-							tnlas.add(tnla);
-						} else {
-							tnlas = cableCategoryAndTnlas.get(cableCategory);
-							tnlas.add(tnla);
-						}
+		for(TnlaAndCableCategory tnlaAndCableCategory : tnlaAndCableCategories) {
+			Tnla tnla = tnlaService.findById(tnlaAndCableCategory.getIdTnla());
+			idesCableCategory = tnlaAndCableCategory.getIdesOfCableCategory();
+			if(!idesCableCategory.isEmpty()) {
+				for(Long idCableCategory : idesCableCategory) {
+					cableCategory = cableCategoryService.findById(idCableCategory);
+					if(cableCategoryAndTnlas.get(cableCategory) == null) {
+						tnlas = new HashSet<>();
+						tnlas.add(tnla);
+					} else {
+						tnlas = cableCategoryAndTnlas.get(cableCategory);
+						tnlas.add(tnla);
 					}
-					cableCategoryAndTnlas.put(cableCategory, tnlas);
-				} else {
-					cableCategoryAndTnlas.put(сableCategoryIsEmpty, null);
 				}
+				cableCategoryAndTnlas.put(cableCategory, tnlas);
 			}
 		}
-System.out.println("cableCategoryAndTnlas = " + cableCategoryAndTnlas);
+		
 		req.setAttribute("cableCategoryAndTnlas", cableCategoryAndTnlas);
 		return null;
 	}
