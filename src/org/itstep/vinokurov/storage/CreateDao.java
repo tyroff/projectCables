@@ -1,5 +1,5 @@
 package org.itstep.vinokurov.storage;
 
-public interface CreateDao<T>{
-	void create(T... id) throws DaoException;
+public interface CreateDao<E, T>{
+	T create(Long id) throws DaoException;
 }

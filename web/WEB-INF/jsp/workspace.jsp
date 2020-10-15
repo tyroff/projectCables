@@ -18,7 +18,7 @@
 				<u:mainWorkspace>
 					<ul>
 						<c:forEach var="cableCategoryAndTnlas" items="${cableCategoryAndTnlas}">
-							<li value="${cableCategoryAndTnlas.key.id}">${cableCategoryAndTnlas.key.name}"
+							<li value="${cableCategoryAndTnlas.key.id}"><b>${cableCategoryAndTnlas.key.name}"</b>
 								<ul>
 									<c:forEach var="tnlas" items="${cableCategoryAndTnlas.value}">
 										<li style="list-style-type: none">

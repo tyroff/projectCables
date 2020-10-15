@@ -13,11 +13,6 @@
 	<a href="cableCategory.html" class="menu-href mark">Категории</a>
 </div>
 <div class="menu-href">
-	<a href="parameters.html" class="menu-href">Параметры</a>
+	<a href="parameters.html" class="menu-href">Марки</a>
 </div>
-<div class="menu-href">
-	<a href="formulas.html" class="menu-href">Формулы</a>
-</div>
-<div class="menu-href">
-	<a href="raw_materials.html" class="menu-href">Сырьё</a>
-</div>
+
