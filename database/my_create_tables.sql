@@ -9,6 +9,12 @@ CREATE TABLE "cable_category" (
 	"id" SERIAL PRIMARY KEY,
 	"name" TEXT NOT NULL UNIQUE
 );
+
+CREATE TABLE "brands" (
+	"id" SERIAL PRIMARY KEY,
+	"name" TEXT NOT NULL UNIQUE
+);
+
 CREATE TABLE "technical_normative_legal_act" (
 	"id" SERIAL PRIMARY KEY,
 	"code" TEXT NOT NULL UNIQUE,

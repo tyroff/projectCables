@@ -22,6 +22,15 @@ INSERT INTO "cable_category"
 (2, 'Провода бытового назначения'),
 (3, 'Кабели контрольные');
 
+INSERT INTO "brands"
+(
+"id",
+"name"
+) VALUES
+(1, 'АВВГ'),
+(2, 'ВВГ'),
+(3, 'АПвВГ');
+
 INSERT INTO "technical_normative_legal_act"
 (
 "id",
@@ -132,6 +141,17 @@ INSERT INTO "number_of_conductors"
 (
 "id",
 "id_parameter",
+"value"
+) VALUES
+(1,2,0),
+(2,2,1),
+(3,2,2),
+(4,2,3),
+(5,2,4),
+(6,2,5);
+INSERT INTO "number_of_conductors"
+(
+"id",
 "value"
 ) VALUES
 (1,2,0),

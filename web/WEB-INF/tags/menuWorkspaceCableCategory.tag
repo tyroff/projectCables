@@ -13,6 +13,6 @@
 	<a href="cableCategory.html" class="menu-href mark">Категории</a>
 </div>
 <div class="menu-href">
-	<a href="parameters.html" class="menu-href">Марки</a>
+	<a href="brands.html" class="menu-href">Марки</a>
 </div>
 

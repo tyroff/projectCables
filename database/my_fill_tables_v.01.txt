@@ -1,0 +1,93 @@
+INSERT INTO "user"
+("id","login","password","role") VALUES
+(1, 'admin', 'admin', 0),
+(2, 'VinokurovKA', 'hello', 1);
+/*
+0 -	org.itstep.vinokurov.domain.Role.ADMIN,
+1 -	org.itstep.vinokurov.domain.Role.TECHNOLOGIST,
+2 -	org.itstep.vinokurov.domain.Role.ECONOMIST
+*/
+
+INSERT INTO "cable_category"
+("id","name") VALUES
+(1, 'Силовые кабели на напряжение 0,66-6 кВ'),
+(2, 'Провода бытового назначения'),
+(3, 'Кабели контрольные');
+
+INSERT INTO "brands"
+("id","name") VALUES
+(1, 'АВВГ'),
+(2, 'ВВГ'),
+(3, 'АПвВГ');
+
+INSERT INTO "technical_normative_legal_act"
+("id","code","name","date_start","date_end") VALUES
+(1, 'ГОСТ 16442-80', 'Кабели силовые с пластмассовой изоляцией', '1980-05-22', '2020-12-31'),
+(2, 'ГОСТ 1508-78', 'Кабели контрольные с резиновой и пластмассовой изоляцией', '1980-01-01', '2020-12-31'),
+(3, 'Техническое соглашение №1', 'Кабели силовые и контольные с пластмассовой изоляцией по ТС№1', '2020-03-09', '2020-12-31');
+
+INSERT INTO "technical_normative_legal_act_vs_cable_category"
+("id_technical_normative_legal_act","id_cable_category") VALUES
+(1, 1),
+(2, 3),
+(3, 1),
+(3, 3);
+
+
+INSERT INTO "nominal_cross_section"
+("id","value") VALUES
+(1,'0,5'),
+(2,'0,75'),
+(3,'1'),
+(4,'1,5'),
+(5,'2,5'),
+(6,'4'),
+(7,'6'),
+(8,'10'),
+(9,'16'),
+(10,'25'),
+(11,'35'),
+(12,'50'),
+(13,'70'),
+(14,'95'),
+(15,'120'),
+(16,'150'),
+(17,'185'),
+(18,'240'),
+(19,'300'),
+(20,'400'),
+(21,'500'),
+(22,'630'),
+(23,'800');
+
+INSERT INTO "type_conductor"
+("id","value") VALUES
+(1,'ок'),
+(2,'мк'),
+(3,'ос'),
+(4,'мс');
+
+INSERT INTO "number_of_conductors"
+("id","value") VALUES
+(1,'1'),
+(2,'2'),
+(3,'3'),
+(4,'4'),
+(5,'5'),
+(6,'6'),
+(7,'7'),
+(8,'10'),
+(9,'14'),
+(10,'19'),
+(11,'27'),
+(12,'37'),
+(13,'52'),
+(14,'61');
+
+INSERT INTO "rated_voltage"
+("id","value") VALUES
+(1,'0,38'),
+(2,'0,66'),
+(3,'1'),
+(4,'3'),
+(5,'6');

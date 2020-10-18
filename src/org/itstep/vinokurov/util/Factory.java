@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.itstep.vinokurov.domain.Brands;
 import org.itstep.vinokurov.domain.TnlaAndCableCategory;
+import org.itstep.vinokurov.logic.BrandsService;
+import org.itstep.vinokurov.logic.BrandsServiceImpl;
 import org.itstep.vinokurov.logic.CableCategoryService;
 import org.itstep.vinokurov.logic.CableCategoryServiceImpl;
 import org.itstep.vinokurov.logic.LogicException;
@@ -16,10 +19,12 @@ import org.itstep.vinokurov.logic.TnlaService;
 import org.itstep.vinokurov.logic.TnlaServiceImpl;
 import org.itstep.vinokurov.logic.UserService;
 import org.itstep.vinokurov.logic.UserServiceImpl;
+import org.itstep.vinokurov.storage.BrandsDao;
 import org.itstep.vinokurov.storage.CableCategoryDao;
 import org.itstep.vinokurov.storage.TnlaAndCableCategoryDao;
 import org.itstep.vinokurov.storage.TnlaDao;
 import org.itstep.vinokurov.storage.UserDao;
+import org.itstep.vinokurov.storage.postgres.BrandsDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.CableCategoryDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.TnlaAndCableCategoryDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.TnlaDbDaoImpl;
@@ -29,6 +34,13 @@ import org.itstep.vinokurov.web.action.MainAction;
 import org.itstep.vinokurov.web.action.LoginAction;
 import org.itstep.vinokurov.web.action.workspace.LogoutAction;
 import org.itstep.vinokurov.web.action.workspace.WorkspaceAction;
+import org.itstep.vinokurov.web.action.workspace.brands.BrandsAction;
+import org.itstep.vinokurov.web.action.workspace.brands.BrandsAddAction;
+import org.itstep.vinokurov.web.action.workspace.brands.BrandsDelegateAction;
+import org.itstep.vinokurov.web.action.workspace.brands.BrandsDeleteAction;
+import org.itstep.vinokurov.web.action.workspace.brands.BrandsDeleteImplementAction;
+import org.itstep.vinokurov.web.action.workspace.brands.BrandsSaveAction;
+import org.itstep.vinokurov.web.action.workspace.brands.BrandsUpdateAction;
 import org.itstep.vinokurov.web.action.workspace.cableCategory.CableCategoryAction;
 import org.itstep.vinokurov.web.action.workspace.cableCategory.CableCategoryAddAction;
 import org.itstep.vinokurov.web.action.workspace.cableCategory.CableCategoryDelegateAction;
@@ -54,7 +66,10 @@ public class Factory implements AutoCloseable{
 		actions.put("/index", mainActionFactory);
 		actions.put("/login", () -> getLoginAction());
 		actions.put("/logout", () -> getLogoutAction());
+		
 		actions.put("/workspace", () -> getWorkspaceAction());
+		actions.put("/workspace/delegate", () -> getWorkspaceDelegateAction());
+		actions.put("/workspace/add", () -> getWorkspaceAddAction());
 		
 		actions.put("/workspace/tnla", () -> getTnlaAction());
 		actions.put("/workspace/tnla/delegate", () -> getTnlaDelegateAction());
@@ -116,7 +131,7 @@ public class Factory implements AutoCloseable{
 		}
 		return logoutAction;
 	}
-	
+//Workspace------------------------------------------------------------------------------------------------------------	
 	private Action workspaceAction = null;
 	public Action getWorkspaceAction() throws LogicException {
 		if(workspaceAction == null) {
@@ -129,6 +144,23 @@ public class Factory implements AutoCloseable{
 		return workspaceAction;
 	}
 	
+	private Action workspaceDelegateAction = null;
+	public Action getWorkspaceDelegateAction() {
+		if(workspaceDelegateAction == null) {
+			workspaceDelegateAction = new WorkspaceDelegateAction();
+		}
+		return workspaceDelegateAction;
+	}
+
+	private Action workspaceAddAction = null;
+	public Action getWorkspaceAddAction() throws LogicException {
+		if(workspaceAddAction == null) {
+			WorkspaceAddAction workspaceAddActionImpl = new WorkspaceAddAction();
+			workspaceAddAction = workspaceAddActionImpl;
+		}
+		return workspaceAddAction;
+	}	
+//TNLA------------------------------------------------------------------------------------------------------------	
 	private Action tnlaAction = null;
 	public Action getTnlaAction() throws LogicException {
 		if(tnlaAction == null) {
@@ -195,7 +227,7 @@ public class Factory implements AutoCloseable{
 		}
 		return tnlaDeleteImplementAction;
 	}
-	
+//TnlaAndCableCategory------------------------------------------------------------------------------------------	
 	private Action tnlaAndCableCategoryAction = null;
 	public Action getTnlaAndCableCategoryAction() throws LogicException {
 		if(tnlaAndCableCategoryAction == null) {
@@ -217,7 +249,7 @@ public class Factory implements AutoCloseable{
 		}
 		return tnlaAndCableCategorySaveAction;
 	}
-	
+//CableCategory--------------------------------------------------------------------------------------------------
 	private Action cableCategoryAction = null;
 	public Action getCableCategoryAction() throws LogicException {
 		if(cableCategoryAction == null) {
@@ -284,81 +316,74 @@ public class Factory implements AutoCloseable{
 		}
 		return cableCategoryDeleteImplementAction;
 	}
-	
-//-------------------------------------------------------------------------------------------------------------------------------	
-	
-	
-	
-	
-	private Action cableCategoryAction = null;
-	public Action getCableCategoryAction() throws LogicException {
-		if(cableCategoryAction == null) {
-			CableCategoryAction cableCategoryActionImpl = new CableCategoryAction();
-			cableCategoryAction = cableCategoryActionImpl;
-			cableCategoryActionImpl.setCableCategoryService(getCableCategoryService());
+//Brands------------------------------------------------------------------------------------------------------------
+	private Action brandsAction = null;
+	public Action getBrandsAction() throws LogicException {
+		if(brandsAction == null) {
+			BrandsAction brandsActionImpl = new BrandsAction();
+			brandsAction = brandsActionImpl;
+			brandsActionImpl.setBrandsService(getBrandsService());
 		}
-		return cableCategoryAction;
+		return brandsAction;
 	}	
 	
-	private Action cableCategoryDelegateAction = null;
-	public Action getCableCategoryDelegateAction() {
-		if(cableCategoryDelegateAction == null) {
-			cableCategoryDelegateAction = new CableCategoryDelegateAction();
+	private Action brandsDelegateAction = null;
+	public Action getBrandsDelegateAction() {
+		if(brandsDelegateAction == null) {
+			brandsDelegateAction = new BrandsDelegateAction();
 		}
-		return cableCategoryDelegateAction;
+		return brandsDelegateAction;
 	}
 
-	private Action cableCategoryAddAction = null;
-	public Action getCableCategoryAddAction() throws LogicException {
-		if(cableCategoryAddAction == null) {
-			CableCategoryAddAction cableCategoryAddActionImpl = new CableCategoryAddAction();
-			cableCategoryAddAction = cableCategoryAddActionImpl;
+	private Action brandsAddAction = null;
+	public Action getBrandsAddAction() throws LogicException {
+		if(brandsAddAction == null) {
+			BrandsAddAction brandsAddActionImpl = new BrandsAddAction();
+			brandsAddAction = brandsAddActionImpl;
 		}
-		return cableCategoryAddAction;
+		return brandsAddAction;
 	}	
 	
-	private Action cableCategorySaveAction = null;
-	public Action getCableCategorySeveAction() throws LogicException {
-		if(cableCategorySaveAction == null) {
-			CableCategorySaveAction cableCategorySaveActionImpl = new CableCategorySaveAction();
-			cableCategorySaveAction = cableCategorySaveActionImpl;
-			cableCategorySaveActionImpl.setCableCategoryService(getCableCategoryService());
+	private Action brandsSaveAction = null;
+	public Action getBrandsSeveAction() throws LogicException {
+		if(brandsSaveAction == null) {
+			BrandsSaveAction brandsSaveActionImpl = new BrandsSaveAction();
+			brandsSaveAction = brandsSaveActionImpl;
+			brandsSaveActionImpl.setBrandsService(getBrandsService());
 		}
-		return cableCategorySaveAction;
+		return brandsSaveAction;
 	}
 	
-	private Action cableCategoryUpdateAction = null;
-	public Action getCableCategoryUpdateAction() throws LogicException {
-		if(cableCategoryUpdateAction == null) {
-			CableCategoryUpdateAction cableCategoryUpdateActionImpl = new CableCategoryUpdateAction();
-			cableCategoryUpdateAction = cableCategoryUpdateActionImpl;
-			cableCategoryUpdateActionImpl.setCableCategoryService(getCableCategoryService());
+	private Action brandsUpdateAction = null;
+	public Action getBrandsUpdateAction() throws LogicException {
+		if(brandsUpdateAction == null) {
+			BrandsUpdateAction brandsUpdateActionImpl = new BrandsUpdateAction();
+			brandsUpdateAction = brandsUpdateActionImpl;
+			brandsUpdateActionImpl.setBrandsService(getBrandsService());
 		}
-		return cableCategoryUpdateAction;
+		return brandsUpdateAction;
 	}
 	
-	private Action cableCategoryDeleteAction = null;
-	public Action getCableCategoryDeleteAction() throws LogicException {
-		if(cableCategoryDeleteAction == null) {
-			CableCategoryDeleteAction cableCategoryDeleteActionImpl = new CableCategoryDeleteAction();
-			cableCategoryDeleteAction = cableCategoryDeleteActionImpl;
-			cableCategoryDeleteActionImpl.setCableCategoryService(getCableCategoryService());
+	private Action brandsDeleteAction = null;
+	public Action getBrandsDeleteAction() throws LogicException {
+		if(brandsDeleteAction == null) {
+			BrandsDeleteAction brandsDeleteActionImpl = new BrandsDeleteAction();
+			brandsDeleteAction = brandsDeleteActionImpl;
+			brandsDeleteActionImpl.setBrandsService(getBrandsService());
 		}
-		return cableCategoryDeleteAction;
+		return brandsDeleteAction;
 	}
 	
-	private Action cableCategoryDeleteImplementAction = null;
-	public Action getCableCategoryDeleteImplementAction() throws LogicException {
-		if(cableCategoryDeleteImplementAction == null) {
-			CableCategoryDeleteImplementAction cableCategoryDeleteImplementActionImpl = new CableCategoryDeleteImplementAction();
-			cableCategoryDeleteImplementAction = cableCategoryDeleteImplementActionImpl;
-			cableCategoryDeleteImplementActionImpl.setCableCategoryService(getCableCategoryService());
+	private Action brandsDeleteImplementAction = null;
+	public Action getBrandsDeleteImplementAction() throws LogicException {
+		if(brandsDeleteImplementAction == null) {
+			BrandsDeleteImplementAction brandsDeleteImplementActionImpl = new BrandsDeleteImplementAction();
+			brandsDeleteImplementAction = brandsDeleteImplementActionImpl;
+			brandsDeleteImplementActionImpl.setBrandsService(getBrandsService());
 		}
-		return cableCategoryDeleteImplementAction;
+		return brandsDeleteImplementAction;
 	}
-
-//-------------------------------------------------------------------------------------------------------------------------------	
-	
+//------------------------------------------------------------------------------------------------------------	
 	private TnlaService tnlaService = null;
 	public TnlaService getTnlaService() throws LogicException {
 		if(tnlaService == null) {
@@ -382,9 +407,9 @@ public class Factory implements AutoCloseable{
 		}
 		return cableCategoryService;
 	}
-	//-------------------------------------------------------------------------------------------------------------------------------
-	private BrandsService brandsService = null;
-	public BrandsService getBrandsService() throws LogicException {
+
+	private BrandsService<Brands, Long> brandsService = null;
+	public BrandsService<Brands, Long> getBrandsService() throws LogicException {
 		if(brandsService == null) {
 			if(brandsService == null) {
 				BrandsServiceImpl service = new BrandsServiceImpl();
@@ -392,9 +417,9 @@ public class Factory implements AutoCloseable{
 				service.setBrandsDao(getBrandsDao());
 			}
 		}
-		return cableCategoryService;
+		return brandsService;
 	}
-	//-------------------------------------------------------------------------------------------------------------------------------
+
 	private TnlaAndCableCategoryService<TnlaAndCableCategory, Long> tnlaAndCableCategoryService = null;
 	public TnlaAndCableCategoryService<TnlaAndCableCategory, Long> getTnlaAndCableCategoryService() throws LogicException {
 		if(tnlaAndCableCategoryService == null) {
@@ -449,17 +474,15 @@ public class Factory implements AutoCloseable{
 		return tnlaAndCableCategoryDao;
 	}
 	
-	//-------------------------------------------------------------------------------------------------------------------------------
-	private BrandsDao brandsDao = null;
-	public BrandsDao getBrandsDao() throws LogicException{
+	private BrandsDao<Brands, Long> brandsDao = null;
+	public BrandsDao<Brands, Long> getBrandsDao() throws LogicException{
 		if(brandsDao == null) {
 			BrandsDbDaoImpl brandsDbDaoImpl = new BrandsDbDaoImpl();
 			brandsDao = brandsDbDaoImpl;
 			brandsDbDaoImpl.setConnection(getConnection());
 		}
-		return cableCategoryDao;
+		return brandsDao;
 	}
-	//-------------------------------------------------------------------------------------------------------------------------------
 	
 	private UserDao userDao = null;
 	public UserDao getUserDao() throws LogicException{

@@ -7,12 +7,12 @@
 	</a>
 </div>
 <div class="menu-href">
-	<a href="tnla.html" class="menu-href mark">ТНПА</a>
+	<a href="tnla.html" class="menu-href">ТНПА</a>
 </div>
 <div class="menu-href">
 	<a href="cableCategory.html" class="menu-href">Категории</a>
 </div>
 <div class="menu-href">
-	<a href="brands.html" class="menu-href">Марки</a>
+	<a href="brands.html" class="menu-href" mark>Марки</a>
 </div>
 

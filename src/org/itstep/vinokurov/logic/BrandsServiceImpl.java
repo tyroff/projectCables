@@ -1,12 +1,9 @@
 package org.itstep.vinokurov.logic;
 
 import java.util.List;
-import java.util.Set;
 
 import org.itstep.vinokurov.domain.Brands;
-import org.itstep.vinokurov.domain.CableCategory;
 import org.itstep.vinokurov.storage.BrandsDao;
-import org.itstep.vinokurov.storage.CableCategoryDao;
 import org.itstep.vinokurov.storage.DaoException;
 
 public class BrandsServiceImpl implements BrandsService<Brands, Long> {
@@ -17,19 +14,22 @@ public class BrandsServiceImpl implements BrandsService<Brands, Long> {
 	}
 
 	@Override
-	public Set<Long> findById(Long... id) throws LogicException{
+	public Brands findById(Long id) throws LogicException{
 		try {
-			return brandsDao.read(id[0]);
+			return brandsDao.read(id);
 		} catch (DaoException e) {
 			throw new LogicException(e);
 		}
 	}
 
 	@Override
-	public void save(Long... id) throws LogicException{
+	public void save(Brands brand) throws LogicException{
 		try {
-			if(id != null) {
-				brandsDao.create(id[0]);
+			if(brand.getId() == null) {
+				Long id = brandsDao.create(brand);
+				brand.setId(id);
+			} else {
+				brandsDao.update(brand);
 			}
 		} catch(DaoException e) {
 			throw new LogicException(e);
@@ -49,7 +49,7 @@ public class BrandsServiceImpl implements BrandsService<Brands, Long> {
 	@Override
 	public List<Brands> findAll() throws LogicException {
 		try {
-		return brandsDao.readAll();
+			return brandsDao.readAll();
 		} catch(DaoException e) {
 			throw new LogicException(e);
 		}

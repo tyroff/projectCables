@@ -53,6 +53,14 @@ public class SequrityFilterServlet implements Filter{
 		technologistURLs.add("/workspace/cableCategory/save.html");
  		technologistURLs.add("/workspace/cableCategory/delete.html");
 		technologistURLs.add("/workspace/cableCategory/deleteImplement.html");
+		
+		technologistURLs.add("/workspace/brands.html");
+		technologistURLs.add("/workspace/brands/delegate.html");
+		technologistURLs.add("/workspace/brands/add.html");
+		technologistURLs.add("/workspace/brands/update.html");
+		technologistURLs.add("/workspace/brands/save.html");
+ 		technologistURLs.add("/workspace/brands/delete.html");
+		technologistURLs.add("/workspace/brands/deleteImplement.html");
 		accessUrl.put(Role.TECHNOLOGIST, technologistURLs);
 		
 		for(Set<String> userURLs : accessUrl.values()) {

@@ -1,5 +1,5 @@
 package org.itstep.vinokurov.logic;
 
-public interface SaveService<T> {
+public interface SaveByIdService<T> {
 	void save(T... id) throws LogicException;
 }

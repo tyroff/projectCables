@@ -42,7 +42,7 @@ public class TnlaAndCableCategoryAction extends BaseTnlaAndCableCategoryAction{
 				throw new IllegalArgumentException();
 			}
 			List<CableCategory> cableCategories = cableCategoryService.findAll();
-			Set<Long> idCableCategories = tnlaAndCableCategory.findById(Long.parseLong(id));
+			Set<Long> idCableCategories = tnlaAndCableCategory.findBySetIdes(Long.parseLong(id));
 			if(!idCableCategories.isEmpty()) {
 				Map<Long, Boolean> cableCategoryChecked = new HashMap<>();
 				for(int i = 0; i < cableCategories.size(); i++) {

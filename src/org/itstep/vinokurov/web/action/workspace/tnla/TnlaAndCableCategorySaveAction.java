@@ -21,7 +21,7 @@ public class TnlaAndCableCategorySaveAction implements Action{
 	@Override
 	public Result exec(HttpServletRequest req, HttpServletResponse resp) throws LogicException {
 		Long idTnla = Long.parseLong(req.getParameter("idTnla"));
-		Set<Long> idCheckedCableCategories = tnlaAndCableCategory.findById(idTnla);
+		Set<Long> idCheckedCableCategories = tnlaAndCableCategory.findBySetIdes(idTnla);
 		Set<Long> newIdCheckedCableCategories = new HashSet<>();
 		Long idChecked = 0L;
 		if(req.getParameterValues("idCableCategory") != null) {

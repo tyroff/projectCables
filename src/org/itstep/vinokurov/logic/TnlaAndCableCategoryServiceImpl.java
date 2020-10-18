@@ -25,7 +25,7 @@ public class TnlaAndCableCategoryServiceImpl implements TnlaAndCableCategoryServ
 	}
 
 	@Override
-	public Set<Long> findById(Long... id) throws LogicException {
+	public Set<Long> findBySetIdes(Long... id) throws LogicException {
 		try{
 			return tnlaAndCableCategoryDao.read(id[0]);
 		} catch (DaoException e) {

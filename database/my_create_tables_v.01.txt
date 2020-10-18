@@ -1,0 +1,42 @@
+CREATE TABLE "user" (
+	"id" SERIAL PRIMARY KEY,
+	"login" TEXT NOT NULL UNIQUE,
+	"password" TEXT NOT NULL,
+	"role" INT NOT NULL CHECK ("role" IN (0, 1, 2, 3, 4))
+);
+CREATE TABLE "cable_category" (
+	"id" SERIAL PRIMARY KEY,
+	"name" TEXT NOT NULL UNIQUE
+);
+CREATE TABLE "brands" (
+	"id" SERIAL PRIMARY KEY,
+	"name" TEXT NOT NULL UNIQUE
+);
+CREATE TABLE "technical_normative_legal_act" (
+	"id" SERIAL PRIMARY KEY,
+	"code" TEXT NOT NULL UNIQUE,
+	"name" TEXT NOT NULL UNIQUE,
+	"date_start" DATE NOT NULL,
+	"date_end" DATE DEFAULT NULL
+);
+CREATE TABLE "technical_normative_legal_act_vs_cable_category" (
+	"id_technical_normative_legal_act" SMALLINT NOT NULL REFERENCES "technical_normative_legal_act" ON DELETE RESTRICT,
+	"id_cable_category" SMALLINT NOT NULL REFERENCES "cable_category" ON DELETE RESTRICT,
+	PRIMARY KEY (id_technical_normative_legal_act, id_cable_category)
+);
+CREATE TABLE "number_of_conductors" (
+	"id" SERIAL PRIMARY KEY,
+	"value" SMALLINT NOT NULL
+);
+CREATE TABLE "nominal_cross_section" (
+	"id" SERIAL PRIMARY KEY,
+	"value" TEXT NOT NULL
+);
+CREATE TABLE "type_conductor" (
+	"id" SERIAL PRIMARY KEY,
+	"value" TEXT NOT NULL
+);
+CREATE TABLE "rated_voltage" (
+	"id" SERIAL PRIMARY KEY,
+	"value" TEXT NOT NULL
+);

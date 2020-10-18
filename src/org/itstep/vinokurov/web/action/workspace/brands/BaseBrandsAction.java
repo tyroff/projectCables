@@ -1,16 +1,17 @@
 package org.itstep.vinokurov.web.action.workspace.brands;
 
-import org.itstep.vinokurov.logic.CableCategoryService;
+import org.itstep.vinokurov.domain.Brands;
+import org.itstep.vinokurov.logic.BrandsService;
 import org.itstep.vinokurov.web.action.Action;
 
 public abstract class BaseBrandsAction implements Action{
-	private BrandsService brandsyService;
+	private BrandsService<Brands, Long> brandsService;
 
-	protected BrandsService getBrandsService() {
-		return brandsyService;
+	protected BrandsService<Brands, Long> getBrandsService() {
+		return brandsService;
 	}
 
-	public void setBrandsService(BrandsService brandsService) {
+	public void setBrandsService(BrandsService<Brands, Long> brandsService) {
 		this.brandsService = brandsService;
 	}
 }

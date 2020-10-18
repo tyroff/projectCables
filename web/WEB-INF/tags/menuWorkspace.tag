@@ -10,5 +10,5 @@
 	<a href="workspace/cableCategory.html" class="menu-href">Категории</a>
 </div>
 <div class="menu-href">
-	<a href="workspace/parameters.html" class="menu-href">Марки</a>
+	<a href="workspace/brands.html" class="menu-href">Марки</a>
 </div>

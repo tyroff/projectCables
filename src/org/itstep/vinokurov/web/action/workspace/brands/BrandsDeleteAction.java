@@ -3,14 +3,14 @@ package org.itstep.vinokurov.web.action.workspace.brands;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.itstep.vinokurov.domain.CableCategory;
-import org.itstep.vinokurov.logic.CableCategoryService;
+import org.itstep.vinokurov.domain.Brands;
+import org.itstep.vinokurov.logic.BrandsService;
 import org.itstep.vinokurov.logic.LogicException;
 
 public class BrandsDeleteAction extends BaseBrandsAction{
-	private BrandsService brandsService;
+	private BrandsService<Brands, Long> brandsService;
 	
-	public void setBrandsService(BrandsService brandsService) {
+	public void setBrandsService(BrandsService<Brands, Long> brandsService) {
 		this.brandsService = brandsService;
 	}
 
