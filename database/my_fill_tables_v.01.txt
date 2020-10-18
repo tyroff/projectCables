@@ -91,3 +91,15 @@ INSERT INTO "rated_voltage"
 (3,'1'),
 (4,'3'),
 (5,'6');
+
+INSERT INTO "cable_brands"
+("id_technical_normative_legal_act","id_cable_category","type_product","id_brands","id_number_of_conductors","id_nominal_cross_section","id_type_conductor","id_rated_voltage") VALUES
+(1, 1, 1, 1, 1, 4, 1, 2),
+(1, 1, 1, 1, 1, 5, 1, 2),
+(1, 1, 1, 1, 1, 6, 1, 2),
+(1, 1, 1, 1, 1, 7, 1, 2),
+(1, 1, 1, 1, 1, 8, 1, 2),
+(1, 1, 1, 1, 1, 9, 1, 2),
+(1, 1, 1, 1, 1, 10, 1, 2),
+(1, 1, 1, 1, 1, 11, 1, 2),
+(1, 1, 1, 1, 1, 12, 1, 2);

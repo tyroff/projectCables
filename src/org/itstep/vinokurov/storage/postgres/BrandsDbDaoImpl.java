@@ -26,21 +26,21 @@ public class BrandsDbDaoImpl implements BrandsDao<Brands, Long> {
 	private Map<Long, Brands> cache = new HashMap<>();
 
 	@Override
-	public Brands read(Long id) throws DaoException{
+	public Brands read(Long... id) throws DaoException{
 		String sqlRequest = "SELECT \"name\" FROM \"brands\" WHERE \"id\" = ?";
-		Brands brand = cache.get(id);
+		Brands brand = cache.get(id[0]);
 		if(brand == null) {
 			PreparedStatement preparedStatement = null;
 			ResultSet resultSet = null;
 			try {
 				preparedStatement = connection.prepareStatement(sqlRequest);
-				preparedStatement.setLong(1, id);
+				preparedStatement.setLong(1, id[0]);
 				resultSet = preparedStatement.executeQuery();
 				if(resultSet.next()) {
 					brand = new Brands();
-					brand.setId(id);
+					brand.setId(id[0]);
 					brand.setName(resultSet.getString("name"));
-					cache.put(id, brand);
+					cache.put(id[0], brand);
 				}
 			} catch (SQLException e) {
 				throw new DaoException(e);

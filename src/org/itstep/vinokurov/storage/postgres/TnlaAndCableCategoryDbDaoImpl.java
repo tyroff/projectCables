@@ -40,14 +40,14 @@ public class TnlaAndCableCategoryDbDaoImpl implements TnlaAndCableCategoryDao<Tn
 	}
 
 	@Override
-	public Set<Long> read(Long id) throws DaoException {
+	public Set<Long> read(Long... id) throws DaoException {
 		Set<Long> idCableCategories = new HashSet<>();
 		String sqlRequst = "SELECT \"id_cable_category\" FROM \"technical_normative_legal_act_vs_cable_category\" WHERE \"id_technical_normative_legal_act\" = ?";
 		PreparedStatement statement = null;
 		ResultSet result = null;
 		try {
 			statement = connection.prepareStatement(sqlRequst);
-			statement.setLong(1, id);
+			statement.setLong(1, id[0]);
 			result = statement.executeQuery();
 			while(result.next()) {
 				idCableCategories.add(result.getLong("id_cable_category"));

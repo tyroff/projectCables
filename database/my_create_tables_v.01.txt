@@ -26,17 +26,27 @@ CREATE TABLE "technical_normative_legal_act_vs_cable_category" (
 );
 CREATE TABLE "number_of_conductors" (
 	"id" SERIAL PRIMARY KEY,
-	"value" SMALLINT NOT NULL
+	"value" SMALLINT NOT NULL UNIQUE
 );
 CREATE TABLE "nominal_cross_section" (
 	"id" SERIAL PRIMARY KEY,
-	"value" TEXT NOT NULL
+	"value" TEXT NOT NULL UNIQUE
 );
 CREATE TABLE "type_conductor" (
 	"id" SERIAL PRIMARY KEY,
-	"value" TEXT NOT NULL
+	"value" TEXT NOT NULL UNIQUE
 );
 CREATE TABLE "rated_voltage" (
 	"id" SERIAL PRIMARY KEY,
-	"value" TEXT NOT NULL
+	"value" TEXT NOT NULL UNIQUE
+);
+CREATE TABLE "cable_brands" (
+	"id_technical_normative_legal_act" SMALLINT NOT NULL REFERENCES "technical_normative_legal_act" ON DELETE RESTRICT,
+	"id_cable_category" SMALLINT NOT NULL REFERENCES "cable_category" ON DELETE RESTRICT,
+	"type_product" INT NOT NULL CHECK ("type_product" IN (0, 1)),
+	"id_brands" SMALLINT NOT NULL REFERENCES "brands" ON DELETE RESTRICT,
+	"id_number_of_conductors" SMALLINT NOT NULL REFERENCES "number_of_conductors" ON DELETE RESTRICT,
+	"id_nominal_cross_section" SMALLINT NOT NULL REFERENCES "nominal_cross_section" ON DELETE RESTRICT,
+	"id_type_conductor" SMALLINT NOT NULL REFERENCES "type_conductor" ON DELETE RESTRICT,
+	"id_rated_voltage" SMALLINT NOT NULL REFERENCES "rated_voltage" ON DELETE RESTRICT	
 );
