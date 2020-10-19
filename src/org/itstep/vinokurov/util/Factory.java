@@ -68,9 +68,9 @@ public class Factory implements AutoCloseable{
 		actions.put("/logout", () -> getLogoutAction());
 		
 		actions.put("/workspace", () -> getWorkspaceAction());
-		actions.put("/workspace/delegate", () -> getWorkspaceDelegateAction());
+/*		actions.put("/workspace/delegate", () -> getWorkspaceDelegateAction());
 		actions.put("/workspace/add", () -> getWorkspaceAddAction());
-		
+*/	
 		actions.put("/workspace/tnla", () -> getTnlaAction());
 		actions.put("/workspace/tnla/delegate", () -> getTnlaDelegateAction());
 		actions.put("/workspace/tnla/add", () -> getTnlaAddAction());
@@ -143,7 +143,7 @@ public class Factory implements AutoCloseable{
 		}
 		return workspaceAction;
 	}
-	
+/*	
 	private Action workspaceDelegateAction = null;
 	public Action getWorkspaceDelegateAction() {
 		if(workspaceDelegateAction == null) {
@@ -159,7 +159,8 @@ public class Factory implements AutoCloseable{
 			workspaceAddAction = workspaceAddActionImpl;
 		}
 		return workspaceAddAction;
-	}	
+	}
+*/
 //TNLA------------------------------------------------------------------------------------------------------------	
 	private Action tnlaAction = null;
 	public Action getTnlaAction() throws LogicException {

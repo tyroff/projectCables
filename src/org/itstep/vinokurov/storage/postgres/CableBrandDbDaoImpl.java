@@ -4,14 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.itstep.vinokurov.domain.CableBrand;
-import org.itstep.vinokurov.domain.TnlaAndCableCategory;
 import org.itstep.vinokurov.storage.CableBrandDao;
 import org.itstep.vinokurov.storage.DaoException;
 
@@ -50,17 +46,27 @@ public class CableBrandDbDaoImpl implements CableBrandDao<CableBrand, Long> {
 
 	@Override
 	public List<CableBrand> read(Long...id) throws DaoException {
-		Set<Long> idCableCategories = new HashSet<>();
-//TODO: created method read
-		String sqlRequst = "SELECT \"id_cable_category\" FROM \"technical_normative_legal_act_vs_cable_category\" WHERE \"id_technical_normative_legal_act\" = ?";
+		List<CableBrand> entutyes = new ArrayList<>();
+		String sqlRequst = "SELECT \"id_brands\", \"id_number_of_conductors\", \"id_nominal_cross_section\", \"id_type_conductor\", \"id_rated_voltage\" FROM \"cable_brands\" WHERE \"id_technical_normative_legal_act\" = ? AND \"id_cable_category = ? AND \"type_product = ?\"\"";
 		PreparedStatement statement = null;
 		ResultSet result = null;
 		try {
 			statement = connection.prepareStatement(sqlRequst);
 			statement.setLong(1, id[0]);
+			statement.setLong(1, id[1]);
+			statement.setLong(1, id[2]);
 			result = statement.executeQuery();
 			while(result.next()) {
-				idCableCategories.add(result.getLong("id_cable_category"));
+				CableBrand cableBrand = new CableBrand();
+				cableBrand.setIdTnla(id[0]);
+				cableBrand.setIdCableCategory(id[1]);
+				cableBrand.setIdTypeProduct(id[2]);
+				cableBrand.setIdBrand(result.getLong("id_brands"));
+				cableBrand.setIdNumberСonductors(result.getLong("id_number_of_conductors"));
+				cableBrand.setIdNominalCrossSection(result.getLong("id_nominal_cross_section"));
+				cableBrand.setIdTypeConductor(result.getLong("id_type_conductor"));
+				cableBrand.setIdRatedVoltage(result.getLong("id_rated_voltage"));
+				entutyes.add(cableBrand);
 			}
 		} catch (SQLException e) {
 			throw new DaoException(e);
@@ -72,14 +78,30 @@ public class CableBrandDbDaoImpl implements CableBrandDao<CableBrand, Long> {
 				statement.close();
 			} catch (Exception e) {}
 		}
-		return idCableCategories;
+		return entutyes;
 	}
 
 	@Override
 	public void create(Long... id) throws DaoException {
-		// TODO Auto-generated method stub
-		
+		String sqlRequest = "INSERT INTO \"cable_brands\"(\"id_technical_normative_legal_act\", \"id_cable_category\", \"id_type_product\", \"id_brands\", \"id_number_of_conductors\", \"id_nominal_cross_section\", \"id_type_conductor\", \"id_rated_voltage\") VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement statement = null;
+		try {
+			statement = connection.prepareStatement(sqlRequest);
+			statement.setLong(1, id[0]);
+			statement.setLong(2, id[1]);
+			statement.setLong(2, id[2]);
+			statement.setLong(2, id[3]);
+			statement.setLong(2, id[4]);
+			statement.setLong(2, id[5]);
+			statement.setLong(2, id[6]);
+			statement.setLong(2, id[7]);
+			statement.executeUpdate();
+		} catch(SQLException e) {
+			throw new DaoException(e);
+		} finally {
+			try {
+				statement.close();
+			} catch (SQLException e) {}
+		}
 	}
-
-
 }

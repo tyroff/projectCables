@@ -1,86 +1,69 @@
 package org.itstep.vinokurov.domain;
 
-public class CableBrand extends Entity {
+public class CableBrand{
 	
-	private Tnla tnla;
-	private CableCategory cableCategory;
-	private TypeProduct typeProduct;
-	private Brands brand;
-	private Byte numberСonductors;
-	private String nominalCrossSection;
-	private String typeConductor;
-	private String ratedVoltage;
-
-	public Tnla getTnla() {
-		return tnla;
-	}
+	private Long idTnla;
+	private Long idCableCategory;
+	private Long idTypeProduct;
+	private Long idBrand;
+	private Long idNumberСonductors;
+	private Long idNominalCrossSection;
+	private Long idTypeConductor;
+	private Long idRatedVoltage;
 	
-	public void setTnla(Tnla tnla) {
-		this.tnla = tnla;
+	public Long getIdTnla() {
+		return idTnla;
 	}
-	
-	public CableCategory getCableCategory() {
-		return cableCategory;
+	public void setIdTnla(Long idTnla) {
+		this.idTnla = idTnla;
 	}
-	
-	public void setCableCategory(CableCategory cableCategory) {
-		this.cableCategory = cableCategory;
+	public Long getIdCableCategory() {
+		return idCableCategory;
 	}
-
-	public TypeProduct getTypeProduct() {
-		return typeProduct;
+	public void setIdCableCategory(Long idCableCategory) {
+		this.idCableCategory = idCableCategory;
 	}
-
-	public void setTypeProduct(TypeProduct typeProduct) {
-		this.typeProduct = typeProduct;
+	public Long getIdTypeProduct() {
+		return idTypeProduct;
 	}
-
-	public Brands getBrand() {
-		return brand;
+	public void setIdTypeProduct(Long idTypeProduct) {
+		this.idTypeProduct = idTypeProduct;
 	}
-
-	public void setBrand(Brands brand) {
-		this.brand = brand;
+	public Long getIdBrand() {
+		return idBrand;
 	}
-
-	public Byte getNumberСonductors() {
-		return numberСonductors;
+	public void setIdBrand(Long idBrand) {
+		this.idBrand = idBrand;
 	}
-
-	public void setNumberСonductors(Byte numberСonductors) {
-		this.numberСonductors = numberСonductors;
+	public Long getIdNumberСonductors() {
+		return idNumberСonductors;
 	}
-
-	public String getNominalCrossSection() {
-		return nominalCrossSection;
+	public void setIdNumberСonductors(Long idNumberСonductors) {
+		this.idNumberСonductors = idNumberСonductors;
 	}
-
-	public void setNominalCrossSection(String nominalCrossSection) {
-		this.nominalCrossSection = nominalCrossSection;
+	public Long getIdNominalCrossSection() {
+		return idNominalCrossSection;
 	}
-
-	public String getTypeConductor() {
-		return typeConductor;
+	public void setIdNominalCrossSection(Long idNominalCrossSection) {
+		this.idNominalCrossSection = idNominalCrossSection;
 	}
-
-	public void setTypeConductor(String typeConductor) {
-		this.typeConductor = typeConductor;
+	public Long getIdTypeConductor() {
+		return idTypeConductor;
 	}
-
-	public String getRatedVoltage() {
-		return ratedVoltage;
+	public void setIdTypeConductor(Long idTypeConductor) {
+		this.idTypeConductor = idTypeConductor;
 	}
-
-	public void setRatedVoltage(String ratedVoltage) {
-		this.ratedVoltage = ratedVoltage;
+	public Long getIdRatedVoltage() {
+		return idRatedVoltage;
 	}
-
+	public void setIdRatedVoltage(Long idRatedVoltage) {
+		this.idRatedVoltage = idRatedVoltage;
+	}
 	@Override
 	public String toString() {
-		return typeProduct + " " + brand + " " + numberСonductors + "×" + nominalCrossSection + typeConductor
-				+ " - " + ratedVoltage + " " + tnla + " / " + cableCategory;
+		return "CableBrand [idTnla=" + idTnla + ", idCableCategory=" + idCableCategory + ", idTypeProduct="
+				+ idTypeProduct + ", idBrand=" + idBrand + ", idNumberСonductors=" + idNumberСonductors
+				+ ", idNominalCrossSection=" + idNominalCrossSection + ", idTypeConductor=" + idTypeConductor
+				+ ", idRatedVoltage=" + idRatedVoltage + "]";
 	}
-
-
-
 }

@@ -2,7 +2,7 @@ package org.itstep.vinokurov.domain;
 
 import java.util.Set;
 
-public class TnlaAndCableCategory extends Entity{
+public class TnlaAndCableCategory{
 	private Long idTnla;
 	private Set<Long> idesCableCategory;
 	
