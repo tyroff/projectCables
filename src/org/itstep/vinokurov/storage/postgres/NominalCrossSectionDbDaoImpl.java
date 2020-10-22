@@ -25,7 +25,7 @@ public class NominalCrossSectionDbDaoImpl implements NominalCrossSectionDao<Nomi
 	
 	@Override
 	public NominalCrossSection read(Long... id) throws DaoException {
-		String sqlRequest = "SELECT \"name\" FROM \"nominal_cross_section\" WHERE \"id\" = ?";
+		String sqlRequest = "SELECT \"value\" FROM \"nominal_cross_section\" WHERE \"id\" = ?";
 		NominalCrossSection entity = cache.get(id[0]);
 		if(entity == null) {
 			PreparedStatement preparedStatement = null;
@@ -37,7 +37,7 @@ public class NominalCrossSectionDbDaoImpl implements NominalCrossSectionDao<Nomi
 				if(resultSet.next()) {
 					entity = new NominalCrossSection();
 					entity.setId(id[0]);
-					entity.setName(resultSet.getString("name"));
+					entity.setValue(resultSet.getString("value"));
 					cache.put(id[0], entity);
 				}
 			} catch (SQLException e) {
@@ -56,7 +56,7 @@ public class NominalCrossSectionDbDaoImpl implements NominalCrossSectionDao<Nomi
 
 	@Override
 	public List<NominalCrossSection> readAll() throws DaoException {
-		String sqlRequest = "SELECT \"id\", \"name\" FROM \"nominal_cross_section\" ORDER BY \"name\"";
+		String sqlRequest = "SELECT \"id\", \"value\" FROM \"nominal_cross_section\" ORDER BY \"id\"";
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
@@ -66,7 +66,7 @@ public class NominalCrossSectionDbDaoImpl implements NominalCrossSectionDao<Nomi
 			while(resultSet.next()) {
 				NominalCrossSection entity = new NominalCrossSection();
 				entity.setId(resultSet.getLong("id"));
-				entity.setName(resultSet.getString("name"));
+				entity.setValue(resultSet.getString("value"));
 				entityes.add(entity);
 			}
 			return entityes;

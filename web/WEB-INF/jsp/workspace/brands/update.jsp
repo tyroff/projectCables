@@ -13,7 +13,7 @@
 		</u:menu>
 			<div class="container-main">
 			<u:leftPannel/>
-			<u:main>
+			<u:main1>
 				<u:mainWorkspace>
 					<div>
 						<form action="save.html" method="post">
@@ -36,7 +36,7 @@
 						</form>
 					</div>
 				</u:mainWorkspace>
-			</u:main>
+			</u:main1>
 		</div>
 	</u:body>
 </u:head>

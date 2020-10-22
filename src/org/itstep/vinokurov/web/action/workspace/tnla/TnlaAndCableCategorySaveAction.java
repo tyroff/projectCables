@@ -29,7 +29,7 @@ public class TnlaAndCableCategorySaveAction implements Action{
 				idChecked = Long.parseLong(value);
 				newIdCheckedCableCategories.add(idChecked);
 				if(!idCheckedCableCategories.contains(idChecked)) {
-					tnlaAndCableCategory.save(idTnla, idChecked);
+					tnlaAndCableCategory.saveByIdes(idTnla, idChecked);
 				}
 			}
 		}

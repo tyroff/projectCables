@@ -12,9 +12,9 @@ import java.util.Map;
 
 import org.itstep.vinokurov.domain.NumberOfConductor;
 import org.itstep.vinokurov.storage.DaoException;
-import org.itstep.vinokurov.storage.NumberOfConductorsDao;
+import org.itstep.vinokurov.storage.NumberOfConductorDao;
 
-public class NumberOfConductorDbDaoImpl implements NumberOfConductorsDao<NumberOfConductor, Long>{
+public class NumberOfConductorDbDaoImpl implements NumberOfConductorDao<NumberOfConductor, Long>{
 	private Connection connection;
 
 	public void setConnection(Connection connection) {
@@ -25,7 +25,7 @@ public class NumberOfConductorDbDaoImpl implements NumberOfConductorsDao<NumberO
 	
 	@Override
 	public NumberOfConductor read(Long... id) throws DaoException {
-		String sqlRequest = "SELECT \"name\" FROM \"number_of_conductors\" WHERE \"id\" = ?";
+		String sqlRequest = "SELECT \"value\" FROM \"number_of_conductors\" WHERE \"id\" = ?";
 		NumberOfConductor numberOfConductor = cache.get(id[0]);
 		if(numberOfConductor == null) {
 			PreparedStatement preparedStatement = null;
@@ -37,7 +37,7 @@ public class NumberOfConductorDbDaoImpl implements NumberOfConductorsDao<NumberO
 				if(resultSet.next()) {
 					numberOfConductor = new NumberOfConductor();
 					numberOfConductor.setId(id[0]);
-					numberOfConductor.setName(resultSet.getString("name"));
+					numberOfConductor.setValue(resultSet.getString("value"));
 					cache.put(id[0], numberOfConductor);
 				}
 			} catch (SQLException e) {
@@ -56,7 +56,7 @@ public class NumberOfConductorDbDaoImpl implements NumberOfConductorsDao<NumberO
 
 	@Override
 	public List<NumberOfConductor> readAll() throws DaoException {
-		String sqlRequest = "SELECT \"id\", \"name\" FROM \"number_of_conductors\" ORDER BY \"name\"";
+		String sqlRequest = "SELECT \"id\", \"value\" FROM \"number_of_conductors\" ORDER BY \"id\"";
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
@@ -66,7 +66,7 @@ public class NumberOfConductorDbDaoImpl implements NumberOfConductorsDao<NumberO
 			while(resultSet.next()) {
 				NumberOfConductor numberOfConductor = new NumberOfConductor();
 				numberOfConductor.setId(resultSet.getLong("id"));
-				numberOfConductor.setName(resultSet.getString("name"));
+				numberOfConductor.setValue(resultSet.getString("value"));
 				numberOfConductores.add(numberOfConductor);
 			}
 			return numberOfConductores;

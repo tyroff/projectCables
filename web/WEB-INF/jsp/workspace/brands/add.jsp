@@ -13,14 +13,14 @@
 		</u:menu>
 			<div class="container-main">
 			<u:leftPannel/>
-			<u:main>
+			<u:main1>
 				<u:mainWorkspace>
 					<div>
 						<form action="save.html" method="post">
 							<br>
 							<label for="name">Наименование марки кабеля</label>
 							<br>
-							<input type="text" name="name">
+							<input type="text" name="name" autofocus>
 							<br>
 							<br>
 							<button type="submit" class="button button_add">
@@ -35,7 +35,7 @@
 						</form>
 					</div>
 				</u:mainWorkspace>
-			</u:main>
+			</u:main1>
 		</div>
 	</u:body>
 </u:head>

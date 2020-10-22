@@ -16,11 +16,11 @@
 			<u:leftPannel>
 				<u:leftPannelWorkspaceCUD/>
 			</u:leftPannel>
-			<u:main>
+			<u:main1>
 				<u:mainWorkspace>
 			        <table cellspacing=0 border=1 width="100%" cellpadding="5">
 			          	<tr>
-			            	<th>id</th>
+			            	<th width=30px>id</th>
 			            	<th>Наименование категории кабелей</th>
 			          	</tr>
 						<c:forEach var="cableCategory" items="${cableCategories}">
@@ -31,7 +31,7 @@
 						</c:forEach>
 					</table>
 				</u:mainWorkspace>
-			</u:main>
+			</u:main1>
 			</div>
 		</form>
 	</u:body>

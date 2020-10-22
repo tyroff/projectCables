@@ -2,18 +2,18 @@ package org.itstep.vinokurov.domain;
 
 public class NominalCrossSection extends Entity {
 	
-	private String name;
+	private String value;
 		
-	public String getName() {
-		return name;
+	public String getValue() {
+		return value;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 	@Override
 	public String toString() {
-		return  getId() + ". " +  name;
+		return  getId() + ". " +  value;
 	}
 }

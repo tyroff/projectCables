@@ -25,7 +25,7 @@ public class TypeConductorDbDaoImpl implements TypeConductorDao<TypeConductor, L
 	
 	@Override
 	public TypeConductor read(Long... id) throws DaoException {
-		String sqlRequest = "SELECT \"name\" FROM \"type_conductor\" WHERE \"id\" = ?";
+		String sqlRequest = "SELECT \"value\" FROM \"type_conductor\" WHERE \"id\" = ?";
 		TypeConductor entity = cache.get(id[0]);
 		if(entity == null) {
 			PreparedStatement preparedStatement = null;
@@ -37,7 +37,7 @@ public class TypeConductorDbDaoImpl implements TypeConductorDao<TypeConductor, L
 				if(resultSet.next()) {
 					entity = new TypeConductor();
 					entity.setId(id[0]);
-					entity.setName(resultSet.getString("name"));
+					entity.setValue(resultSet.getString("value"));
 					cache.put(id[0], entity);
 				}
 			} catch (SQLException e) {
@@ -56,7 +56,7 @@ public class TypeConductorDbDaoImpl implements TypeConductorDao<TypeConductor, L
 
 	@Override
 	public List<TypeConductor> readAll() throws DaoException {
-		String sqlRequest = "SELECT \"id\", \"name\" FROM \"type_conductor\" ORDER BY \"name\"";
+		String sqlRequest = "SELECT \"id\", \"value\" FROM \"type_conductor\" ORDER BY \"id\"";
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
@@ -66,7 +66,7 @@ public class TypeConductorDbDaoImpl implements TypeConductorDao<TypeConductor, L
 			while(resultSet.next()) {
 				TypeConductor entity = new TypeConductor();
 				entity.setId(resultSet.getLong("id"));
-				entity.setName(resultSet.getString("name"));
+				entity.setValue(resultSet.getString("value"));
 				entityes.add(entity);
 			}
 			return entityes;

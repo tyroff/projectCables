@@ -7,33 +7,60 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.itstep.vinokurov.domain.Brands;
+import org.itstep.vinokurov.domain.CableBrand;
+import org.itstep.vinokurov.domain.NominalCrossSection;
+import org.itstep.vinokurov.domain.NumberOfConductor;
 import org.itstep.vinokurov.domain.TnlaAndCableCategory;
+import org.itstep.vinokurov.domain.TypeConductor;
+import org.itstep.vinokurov.domain.RatedVoltage;
 import org.itstep.vinokurov.logic.BrandsService;
 import org.itstep.vinokurov.logic.BrandsServiceImpl;
+import org.itstep.vinokurov.logic.CableBrandService;
+import org.itstep.vinokurov.logic.CableBrandServiceImpl;
 import org.itstep.vinokurov.logic.CableCategoryService;
 import org.itstep.vinokurov.logic.CableCategoryServiceImpl;
 import org.itstep.vinokurov.logic.LogicException;
+import org.itstep.vinokurov.logic.NominalCrossSectionService;
+import org.itstep.vinokurov.logic.NominalCrossSectionServiceImpl;
+import org.itstep.vinokurov.logic.NumberOfConductorService;
+import org.itstep.vinokurov.logic.NumberOfConductorServiceImpl;
+import org.itstep.vinokurov.logic.RatedVoltageService;
+import org.itstep.vinokurov.logic.RatedVoltageServiceImpl;
 import org.itstep.vinokurov.logic.TnlaAndCableCategoryService;
 import org.itstep.vinokurov.logic.TnlaAndCableCategoryServiceImpl;
 import org.itstep.vinokurov.logic.TnlaService;
 import org.itstep.vinokurov.logic.TnlaServiceImpl;
+import org.itstep.vinokurov.logic.TypeConductorService;
+import org.itstep.vinokurov.logic.TypeConductorServiceImpl;
 import org.itstep.vinokurov.logic.UserService;
 import org.itstep.vinokurov.logic.UserServiceImpl;
 import org.itstep.vinokurov.storage.BrandsDao;
+import org.itstep.vinokurov.storage.CableBrandDao;
 import org.itstep.vinokurov.storage.CableCategoryDao;
+import org.itstep.vinokurov.storage.NominalCrossSectionDao;
+import org.itstep.vinokurov.storage.NumberOfConductorDao;
+import org.itstep.vinokurov.storage.RatedVoltageDao;
 import org.itstep.vinokurov.storage.TnlaAndCableCategoryDao;
 import org.itstep.vinokurov.storage.TnlaDao;
+import org.itstep.vinokurov.storage.TypeConductorDao;
 import org.itstep.vinokurov.storage.UserDao;
 import org.itstep.vinokurov.storage.postgres.BrandsDbDaoImpl;
+import org.itstep.vinokurov.storage.postgres.CableBrandDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.CableCategoryDbDaoImpl;
+import org.itstep.vinokurov.storage.postgres.NominalCrossSectionDbDaoImpl;
+import org.itstep.vinokurov.storage.postgres.NumberOfConductorDbDaoImpl;
+import org.itstep.vinokurov.storage.postgres.RatedVoltageDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.TnlaAndCableCategoryDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.TnlaDbDaoImpl;
+import org.itstep.vinokurov.storage.postgres.TypeConductorDbDaoImpl;
 import org.itstep.vinokurov.storage.postgres.UserDbDaoImpl;
 import org.itstep.vinokurov.web.action.Action;
 import org.itstep.vinokurov.web.action.MainAction;
 import org.itstep.vinokurov.web.action.LoginAction;
 import org.itstep.vinokurov.web.action.workspace.LogoutAction;
 import org.itstep.vinokurov.web.action.workspace.WorkspaceAction;
+import org.itstep.vinokurov.web.action.workspace.WorkspaceCableBrandsAddAction;
+import org.itstep.vinokurov.web.action.workspace.WorkspaceCableBrandsSaveAction;
 import org.itstep.vinokurov.web.action.workspace.brands.BrandsAction;
 import org.itstep.vinokurov.web.action.workspace.brands.BrandsAddAction;
 import org.itstep.vinokurov.web.action.workspace.brands.BrandsDelegateAction;
@@ -68,13 +95,13 @@ public class Factory implements AutoCloseable{
 		actions.put("/logout", () -> getLogoutAction());
 		
 		actions.put("/workspace", () -> getWorkspaceAction());
-/*		actions.put("/workspace/delegate", () -> getWorkspaceDelegateAction());
-		actions.put("/workspace/add", () -> getWorkspaceAddAction());
-*/	
+		actions.put("/workspace/addCableBrands", () -> getWorkspaceCableBrandsAddAction());
+		actions.put("/workspace/saveCableBrands", () -> getWorkspaceCableBrandsSaveAction());
+	
 		actions.put("/workspace/tnla", () -> getTnlaAction());
 		actions.put("/workspace/tnla/delegate", () -> getTnlaDelegateAction());
 		actions.put("/workspace/tnla/add", () -> getTnlaAddAction());
-		actions.put("/workspace/tnla/save", () -> getTnlaSeveAction());
+		actions.put("/workspace/tnla/save", () -> getTnlaSaveAction());
 		actions.put("/workspace/tnla/update", () -> getTnlaUpdateAction());
 		actions.put("/workspace/tnla/delete", () -> getTnlaDeleteAction());
 		actions.put("/workspace/tnla/deleteImplement", () -> getTnlaDeleteImplementAction());
@@ -84,7 +111,7 @@ public class Factory implements AutoCloseable{
 		actions.put("/workspace/cableCategory", () -> getCableCategoryAction());
 		actions.put("/workspace/cableCategory/delegate", () -> getCableCategoryDelegateAction());
 		actions.put("/workspace/cableCategory/add", () -> getCableCategoryAddAction());
-		actions.put("/workspace/cableCategory/save", () -> getCableCategorySeveAction());
+		actions.put("/workspace/cableCategory/save", () -> getCableCategorySaveAction());
 		actions.put("/workspace/cableCategory/update", () -> getCableCategoryUpdateAction());
 		actions.put("/workspace/cableCategory/delete", () -> getCableCategoryDeleteAction());
 		actions.put("/workspace/cableCategory/deleteImplement", () -> getCableCategoryDeleteImplementAction());
@@ -92,7 +119,7 @@ public class Factory implements AutoCloseable{
 		actions.put("/workspace/brands", () -> getBrandsAction());
 		actions.put("/workspace/brands/delegate", () -> getBrandsDelegateAction());
 		actions.put("/workspace/brands/add", () -> getBrandsAddAction());
-		actions.put("/workspace/brands/save", () -> getBrandsSeveAction());
+		actions.put("/workspace/brands/save", () -> getBrandsSaveAction());
 		actions.put("/workspace/brands/update", () -> getBrandsUpdateAction());
 		actions.put("/workspace/brands/delete", () -> getBrandsDeleteAction());
 		actions.put("/workspace/brands/deleteImplement", () -> getBrandsDeleteImplementAction());
@@ -140,27 +167,41 @@ public class Factory implements AutoCloseable{
 			workspaceActionImpl.setTnlaService(getTnlaService());
 			workspaceActionImpl.setCableCategoryService(getCableCategoryService());
 			workspaceActionImpl.setTnlaAndCableCategoryService(getTnlaAndCableCategoryService());
+			workspaceActionImpl.setBrandsService(getBrandsService());
+			workspaceActionImpl.setNumberOfConductorService(getNumberOfConductorService());
+			workspaceActionImpl.setNominalCrossSectionService(getNominalCrossSectionService());
+			workspaceActionImpl.setTypeConductorService(getTypeConductorService());
+			workspaceActionImpl.setRatedVoltageService(getRatedVoltageService());
+			workspaceActionImpl.setCableBrandService(getCableBrandService());
 		}
 		return workspaceAction;
 	}
-/*	
-	private Action workspaceDelegateAction = null;
-	public Action getWorkspaceDelegateAction() {
-		if(workspaceDelegateAction == null) {
-			workspaceDelegateAction = new WorkspaceDelegateAction();
+	
+	private Action workspaceCableBrandsAddAction = null;
+	public Action getWorkspaceCableBrandsAddAction() throws LogicException {
+		if(workspaceCableBrandsAddAction == null) {
+			WorkspaceCableBrandsAddAction workspaceAddCableBrandsActionImpl = new WorkspaceCableBrandsAddAction();
+			workspaceCableBrandsAddAction = workspaceAddCableBrandsActionImpl;
+			workspaceAddCableBrandsActionImpl.setTnlaService(getTnlaService());
+			workspaceAddCableBrandsActionImpl.setCableCategoryService(getCableCategoryService());
+			workspaceAddCableBrandsActionImpl.setBrandsService(getBrandsService());
+			workspaceAddCableBrandsActionImpl.setNumberOfConductorService(getNumberOfConductorService());
+			workspaceAddCableBrandsActionImpl.setNominalCrossSectionService(getNominalCrossSectionService());
+			workspaceAddCableBrandsActionImpl.setTypeConductorService(getTypeConductorService());
+			workspaceAddCableBrandsActionImpl.setRatedVoltageService(getRatedVoltageService());
 		}
-		return workspaceDelegateAction;
+		return workspaceCableBrandsAddAction;
 	}
-
-	private Action workspaceAddAction = null;
-	public Action getWorkspaceAddAction() throws LogicException {
-		if(workspaceAddAction == null) {
-			WorkspaceAddAction workspaceAddActionImpl = new WorkspaceAddAction();
-			workspaceAddAction = workspaceAddActionImpl;
+	
+	private Action workspaceCableBrandsSaveAction = null;
+	public Action getWorkspaceCableBrandsSaveAction() throws LogicException {
+		if(workspaceCableBrandsSaveAction == null) {
+			WorkspaceCableBrandsSaveAction workspaceCableBrandsSaveActionImpl = new WorkspaceCableBrandsSaveAction();
+			workspaceCableBrandsSaveAction = workspaceCableBrandsSaveActionImpl;
+			workspaceCableBrandsSaveActionImpl.setCableBrandService(getCableBrandService());
 		}
-		return workspaceAddAction;
+		return workspaceCableBrandsSaveAction;
 	}
-*/
 //TNLA------------------------------------------------------------------------------------------------------------	
 	private Action tnlaAction = null;
 	public Action getTnlaAction() throws LogicException {
@@ -190,7 +231,7 @@ public class Factory implements AutoCloseable{
 	}	
 	
 	private Action tnlaSaveAction = null;
-	public Action getTnlaSeveAction() throws LogicException {
+	public Action getTnlaSaveAction() throws LogicException {
 		if(tnlaSaveAction == null) {
 			TnlaSaveAction tnlaSaveActionImpl = new TnlaSaveAction();
 			tnlaSaveAction = tnlaSaveActionImpl;
@@ -279,7 +320,7 @@ public class Factory implements AutoCloseable{
 	}	
 	
 	private Action cableCategorySaveAction = null;
-	public Action getCableCategorySeveAction() throws LogicException {
+	public Action getCableCategorySaveAction() throws LogicException {
 		if(cableCategorySaveAction == null) {
 			CableCategorySaveAction cableCategorySaveActionImpl = new CableCategorySaveAction();
 			cableCategorySaveAction = cableCategorySaveActionImpl;
@@ -346,7 +387,7 @@ public class Factory implements AutoCloseable{
 	}	
 	
 	private Action brandsSaveAction = null;
-	public Action getBrandsSeveAction() throws LogicException {
+	public Action getBrandsSaveAction() throws LogicException {
 		if(brandsSaveAction == null) {
 			BrandsSaveAction brandsSaveActionImpl = new BrandsSaveAction();
 			brandsSaveAction = brandsSaveActionImpl;
@@ -384,15 +425,13 @@ public class Factory implements AutoCloseable{
 		}
 		return brandsDeleteImplementAction;
 	}
-//------------------------------------------------------------------------------------------------------------	
+//Service------------------------------------------------------------------------------------------------------------	
 	private TnlaService tnlaService = null;
 	public TnlaService getTnlaService() throws LogicException {
 		if(tnlaService == null) {
-			if(tnlaService == null) {
-				TnlaServiceImpl service = new TnlaServiceImpl();
-				tnlaService = service;
-				service.setTnlaDao(getTnlaDao());
-			}
+			TnlaServiceImpl service = new TnlaServiceImpl();
+			tnlaService = service;
+			service.setTnlaDao(getTnlaDao());
 		}
 		return tnlaService;
 	}
@@ -400,35 +439,79 @@ public class Factory implements AutoCloseable{
 	private CableCategoryService cableCategoryService = null;
 	public CableCategoryService getCableCategoryService() throws LogicException {
 		if(cableCategoryService == null) {
-			if(cableCategoryService == null) {
-				CableCategoryServiceImpl service = new CableCategoryServiceImpl();
-				cableCategoryService = service;
-				service.setCableCategoryDao(getCableCategoryDao());
-			}
+			CableCategoryServiceImpl service = new CableCategoryServiceImpl();
+			cableCategoryService = service;
+			service.setCableCategoryDao(getCableCategoryDao());
 		}
 		return cableCategoryService;
 	}
 
+	private CableBrandService<CableBrand, Long> cableBrandService = null;
+	public CableBrandService<CableBrand, Long> getCableBrandService() throws LogicException {
+		if(cableBrandService == null) {
+			CableBrandServiceImpl service = new CableBrandServiceImpl();
+			cableBrandService = service;
+			service.setCableBrandDao(getCableBrandDao());
+		}
+		return cableBrandService;
+	}
+	
 	private BrandsService<Brands, Long> brandsService = null;
 	public BrandsService<Brands, Long> getBrandsService() throws LogicException {
 		if(brandsService == null) {
-			if(brandsService == null) {
-				BrandsServiceImpl service = new BrandsServiceImpl();
-				brandsService = service;
-				service.setBrandsDao(getBrandsDao());
-			}
+			BrandsServiceImpl service = new BrandsServiceImpl();
+			brandsService = service;
+			service.setBrandsDao(getBrandsDao());
 		}
 		return brandsService;
 	}
+	
+	private NumberOfConductorService<NumberOfConductor, Long> numberOfConductorService = null;
+	public NumberOfConductorService<NumberOfConductor, Long> getNumberOfConductorService() throws LogicException {
+		if(numberOfConductorService == null) {
+			NumberOfConductorServiceImpl service = new NumberOfConductorServiceImpl();
+			numberOfConductorService = service;
+			service.setNumberOfConductorDao(getNumberOfConductorDao() );
+		}
+		return numberOfConductorService;
+	}
 
+	private NominalCrossSectionService<NominalCrossSection, Long> nominalCrossSectionService = null;
+	public NominalCrossSectionService<NominalCrossSection, Long> getNominalCrossSectionService() throws LogicException {
+		if(nominalCrossSectionService == null) {
+			NominalCrossSectionServiceImpl service = new NominalCrossSectionServiceImpl();
+			nominalCrossSectionService = service;
+			service.setNominalCrossSectionDao(getNominalCrossSectionDao() );
+		}
+		return nominalCrossSectionService;
+	}
+	
+	private TypeConductorService<TypeConductor, Long> typeConductorService = null;
+	public TypeConductorService<TypeConductor, Long> getTypeConductorService() throws LogicException {
+		if(typeConductorService == null) {
+			TypeConductorServiceImpl service = new TypeConductorServiceImpl();
+			typeConductorService = service;
+			service.setTypeConductorDao(getTypeConductorDao() );
+		}
+		return typeConductorService;
+	}
+
+	private RatedVoltageService<RatedVoltage, Long> ratedVoltageService = null;
+	public RatedVoltageService<RatedVoltage, Long> getRatedVoltageService() throws LogicException {
+		if(ratedVoltageService == null) {
+			RatedVoltageServiceImpl service = new RatedVoltageServiceImpl();
+			ratedVoltageService = service;
+			service.setRatedVoltageDao(getRatedVoltageDao() );
+		}
+		return ratedVoltageService;
+	}
+	
 	private TnlaAndCableCategoryService<TnlaAndCableCategory, Long> tnlaAndCableCategoryService = null;
 	public TnlaAndCableCategoryService<TnlaAndCableCategory, Long> getTnlaAndCableCategoryService() throws LogicException {
 		if(tnlaAndCableCategoryService == null) {
-			if(tnlaAndCableCategoryService == null) {
-				TnlaAndCableCategoryServiceImpl service = new TnlaAndCableCategoryServiceImpl();
-				tnlaAndCableCategoryService = service;
-				service.setTnlaAndCableCategoryDao(getTnlaAndCableCategoryDao());
-			}
+			TnlaAndCableCategoryServiceImpl service = new TnlaAndCableCategoryServiceImpl();
+			tnlaAndCableCategoryService = service;
+			service.setTnlaAndCableCategoryDao(getTnlaAndCableCategoryDao());
 		}
 		return tnlaAndCableCategoryService;
 	}
@@ -436,15 +519,13 @@ public class Factory implements AutoCloseable{
 	private UserService userService = null;
 	public UserService getUserService() throws LogicException {
 		if(userService == null) {
-			if(userService == null) {
-				UserServiceImpl service = new UserServiceImpl();
-				userService = service;
-				service.setUserDao(getUserDao());
-			}
+			UserServiceImpl service = new UserServiceImpl();
+			userService = service;
+			service.setUserDao(getUserDao());
 		}
 		return userService;
 	}
-	
+//Dao--------------------------------------------------------------------------------------------------------	
 	private TnlaDao tnlaDao = null;
 	public TnlaDao getTnlaDao() throws LogicException{
 		if(tnlaDao == null) {
@@ -483,6 +564,56 @@ public class Factory implements AutoCloseable{
 			brandsDbDaoImpl.setConnection(getConnection());
 		}
 		return brandsDao;
+	}
+	
+	private NumberOfConductorDao<NumberOfConductor, Long> numberOfConductorDao = null;
+	public NumberOfConductorDao<NumberOfConductor, Long> getNumberOfConductorDao() throws LogicException{
+		if(numberOfConductorDao == null) {
+			NumberOfConductorDbDaoImpl numberOfConductorDbDaoImpl = new NumberOfConductorDbDaoImpl();
+			numberOfConductorDao = numberOfConductorDbDaoImpl;
+			numberOfConductorDbDaoImpl.setConnection(getConnection());
+		}
+		return numberOfConductorDao;
+	}
+	
+	private NominalCrossSectionDao<NominalCrossSection, Long> nominalCrossSectionDao = null;
+	public NominalCrossSectionDao<NominalCrossSection, Long> getNominalCrossSectionDao() throws LogicException{
+		if(nominalCrossSectionDao == null) {
+			NominalCrossSectionDbDaoImpl nominalCrossSectionDbDaoImpl = new NominalCrossSectionDbDaoImpl();
+			nominalCrossSectionDao = nominalCrossSectionDbDaoImpl;
+			nominalCrossSectionDbDaoImpl.setConnection(getConnection());
+		}
+		return nominalCrossSectionDao;
+	}
+	
+	private TypeConductorDao<TypeConductor, Long> typeConductorDao = null;
+	public TypeConductorDao<TypeConductor, Long> getTypeConductorDao() throws LogicException{
+		if(typeConductorDao == null) {
+			TypeConductorDbDaoImpl typeConductorDbDaoImpl = new TypeConductorDbDaoImpl();
+			typeConductorDao = typeConductorDbDaoImpl;
+			typeConductorDbDaoImpl.setConnection(getConnection());
+		}
+		return typeConductorDao;
+	}
+
+	private RatedVoltageDao<RatedVoltage, Long> ratedVoltageDao = null;
+	public RatedVoltageDao<RatedVoltage, Long> getRatedVoltageDao() throws LogicException{
+		if(ratedVoltageDao == null) {
+			RatedVoltageDbDaoImpl ratedVoltageDbDaoImpl = new RatedVoltageDbDaoImpl();
+			ratedVoltageDao = ratedVoltageDbDaoImpl;
+			ratedVoltageDbDaoImpl.setConnection(getConnection());
+		}
+		return ratedVoltageDao;
+	}	
+	
+	private CableBrandDao<CableBrand, Long> cableBrandDao = null;
+	public CableBrandDao<CableBrand, Long> getCableBrandDao() throws LogicException{
+		if(cableBrandDao == null) {
+			CableBrandDbDaoImpl cableBrandDbDaoImpl = new CableBrandDbDaoImpl();
+			cableBrandDao = cableBrandDbDaoImpl;
+			cableBrandDbDaoImpl.setConnection(getConnection());
+		}
+		return cableBrandDao;
 	}
 	
 	private UserDao userDao = null;

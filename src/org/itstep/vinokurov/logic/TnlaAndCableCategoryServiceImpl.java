@@ -45,7 +45,7 @@ public class TnlaAndCableCategoryServiceImpl implements TnlaAndCableCategoryServ
 	}
 
 	@Override
-	public void save(Long... id) throws LogicException {
+	public void saveByIdes(Long... id) throws LogicException {
 		if(id[0] != null && id[1] != null) {
 			try {
 				tnlaAndCableCategoryDao.create(id[0], id[1]);

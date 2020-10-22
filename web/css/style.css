@@ -210,25 +210,37 @@ td {
     margin-right: 20px;
 }
 
+
 .main {
+	overflow: hidden;
     width: 100%;
     height: calc(100vh - 254px);
     display: flex;
     justify-content: flex-start;
     background: linear-gradient(180deg, rgba(254, 240, 218, 0) 0%, rgba(254, 240, 218, 0.3) 100%);
     flex-wrap: wrap;
-    overflow: hidden;
     padding-bottom: 20px;
 }
 
-.main-workspace {
-    /*height: calc(100vh - 127px);*/
+.main1{
+	overflow: hidden;
+    width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    background: linear-gradient(180deg, rgba(254, 240, 218, 0) 0%, rgba(254, 240, 218, 0.3) 100%);
+    flex-wrap: wrap;
+    padding-bottom: 0px;
+    /*border: 2px solid red;*/
+}
+
+.main-workspace {
+	overflow: hidden;;
+    height: 100vh;
     padding: 10px;
     width: 100%;
     /*border: 2px solid #15e9d7;*/
 }
-
 
 .field-workspace {
     border: 2px solid #15e9d7;

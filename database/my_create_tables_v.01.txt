@@ -43,7 +43,7 @@ CREATE TABLE "rated_voltage" (
 CREATE TABLE "cable_brands" (
 	"id_technical_normative_legal_act" SMALLINT NOT NULL REFERENCES "technical_normative_legal_act" ON DELETE RESTRICT,
 	"id_cable_category" SMALLINT NOT NULL REFERENCES "cable_category" ON DELETE RESTRICT,
-	"type_product" INT NOT NULL CHECK ("type_product" IN (0, 1)),
+	"id_type_product" SMALLINT NOT NULL,
 	"id_brands" SMALLINT NOT NULL REFERENCES "brands" ON DELETE RESTRICT,
 	"id_number_of_conductors" SMALLINT NOT NULL REFERENCES "number_of_conductors" ON DELETE RESTRICT,
 	"id_nominal_cross_section" SMALLINT NOT NULL REFERENCES "nominal_cross_section" ON DELETE RESTRICT,

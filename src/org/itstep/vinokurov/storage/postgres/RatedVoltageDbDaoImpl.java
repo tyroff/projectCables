@@ -16,7 +16,7 @@ import org.itstep.vinokurov.domain.RatedVoltage;
 import org.itstep.vinokurov.domain.TypeConductor;
 import org.itstep.vinokurov.storage.DaoException;
 import org.itstep.vinokurov.storage.NominalCrossSectionDao;
-import org.itstep.vinokurov.storage.NumberOfConductorsDao;
+import org.itstep.vinokurov.storage.NumberOfConductorDao;
 import org.itstep.vinokurov.storage.RatedVoltageDao;
 import org.itstep.vinokurov.storage.TypeConductorDao;
 
@@ -31,7 +31,7 @@ public class RatedVoltageDbDaoImpl implements RatedVoltageDao<RatedVoltage, Long
 	
 	@Override
 	public RatedVoltage read(Long... id) throws DaoException {
-		String sqlRequest = "SELECT \"name\" FROM \"rated_voltage\" WHERE \"id\" = ?";
+		String sqlRequest = "SELECT \"value\" FROM \"rated_voltage\" WHERE \"id\" = ?";
 		RatedVoltage entity = cache.get(id[0]);
 		if(entity == null) {
 			PreparedStatement preparedStatement = null;
@@ -43,7 +43,7 @@ public class RatedVoltageDbDaoImpl implements RatedVoltageDao<RatedVoltage, Long
 				if(resultSet.next()) {
 					entity = new RatedVoltage();
 					entity.setId(id[0]);
-					entity.setName(resultSet.getString("name"));
+					entity.setValue(resultSet.getString("value"));
 					cache.put(id[0], entity);
 				}
 			} catch (SQLException e) {
@@ -62,7 +62,7 @@ public class RatedVoltageDbDaoImpl implements RatedVoltageDao<RatedVoltage, Long
 
 	@Override
 	public List<RatedVoltage> readAll() throws DaoException {
-		String sqlRequest = "SELECT \"id\", \"name\" FROM \"rated_voltage\" ORDER BY \"name\"";
+		String sqlRequest = "SELECT \"id\", \"value\" FROM \"rated_voltage\" ORDER BY \"id\"";
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
@@ -72,7 +72,7 @@ public class RatedVoltageDbDaoImpl implements RatedVoltageDao<RatedVoltage, Long
 			while(resultSet.next()) {
 				RatedVoltage entity = new RatedVoltage();
 				entity.setId(resultSet.getLong("id"));
-				entity.setName(resultSet.getString("name"));
+				entity.setValue(resultSet.getString("value"));
 				entityes.add(entity);
 			}
 			return entityes;
