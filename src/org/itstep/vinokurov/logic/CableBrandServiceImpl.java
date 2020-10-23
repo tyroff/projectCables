@@ -28,6 +28,8 @@ public class CableBrandServiceImpl implements CableBrandService<CableBrand, Long
 	@Override
 	public List<CableBrand> findByIdes(Long... id) throws LogicException {
 		List<CableBrand> cableBrands = new ArrayList<>();
+System.out.println("id[0] = " + id[0]);
+System.out.println("id[1] = " + id[1]);
 		if(id[0] != null && id[1] != null) {
 			try {
 				cableBrands = cableBrandDao.read(id[0], id[1]);

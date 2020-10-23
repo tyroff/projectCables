@@ -21,13 +21,14 @@ public class CableBrandDbDaoImpl implements CableBrandDao<CableBrand, Long> {
 	@Override
 	public List<CableBrand> read(Long...id) throws DaoException {
 		List<CableBrand> entutyes = new ArrayList<>();
-		String sqlRequst = "SELECT  \"id_type_product\", \"id_brands\", \"id_number_of_conductors\", \"id_nominal_cross_section\", \"id_type_conductor\", \"id_rated_voltage\" FROM \"cable_brands\" WHERE \"id_technical_normative_legal_act\" = ? AND \"id_cable_category = ?\"";
+		String sqlRequst = "SELECT  \"id_type_product\", \"id_brands\", \"id_number_of_conductors\", \"id_nominal_cross_section\", \"id_type_conductor\", \"id_rated_voltage\" FROM \"cable_brands\" WHERE \"id_technical_normative_legal_act\" = ? AND \"id_cable_category\" = ?";
 		PreparedStatement statement = null;
 		ResultSet result = null;
 		try {
 			statement = connection.prepareStatement(sqlRequst);
 			statement.setLong(1, id[0]);
-System.out.println(4);
+			System.out.println(id[0]);
+			System.out.println(id[1]);
 			statement.setLong(2, id[1]);
 			result = statement.executeQuery();
 			while(result.next()) {
